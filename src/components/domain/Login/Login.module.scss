@@ -1,0 +1,35 @@
+// @import "../../../../src/styles/variables";
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.card {
+		min-width: 20%;
+		max-width: 40%;
+		padding: 3rem;
+		border-radius: 15px;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.logocontainer {
+		width: 60%;
+		height: 10%;
+		align-self: center;
+
+		img {
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.link {
+		text-decoration: none;
+		// color: $dark;
+	}
+}
