@@ -10,6 +10,7 @@ import React from 'react';
 
 // import styles from './App.module.scss';
 import LoginPage from './pages/LoginPage';
+import BusinessPage from './pages/BusinessPage';
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
     //     </ModalProvider>
     //   </Box>
     // </ThemeProvider>
+		<>
     <LoginPage />
+			<BusinessPage />
+		</>
   );
 }
 
