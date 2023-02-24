@@ -1,0 +1,21 @@
+$primary: #0D2C1A;
+$secondary: #A7B867;
+$light: #F4F4ED;
+$disabled: #bdbdbd;
+// son los de material, ver si cambiamos
+// no puse versiones light, main - ver
+$error: #d32f2f;
+$warning: #ffa726;
+$info: #4fc3f7;
+$success: #388e3c;
+
+:export {
+	primary: $primary;
+	secondary: $secondary;
+	light: $light;
+	disabled: $disabled;
+	error: $error;
+	warning: $warning;
+	info: $info;
+	success: $success;
+}
