@@ -3,32 +3,26 @@ import React from 'react';
 // import { SnackbarProvider } from 'context/SnackbarContext';
 // import { ModalProvider } from 'context/ModalContext';
 
-// import { ThemeProvider, Box } from '@mui/material';
-// import theme from 'themes/themeConfig';
-
-// import MRoutes from 'routes/MRoutes';
-
-// import styles from './App.module.scss';
+import { ThemeProvider, Box } from '@mui/material';
+import CRoutes from './routes/CRoutes';
+import theme from './themes/themeConfig';
 import LoginPage from './pages/LoginPage';
 import BusinessPage from './pages/BusinessPage';
 
 function App() {
   return (
-    // <ThemeProvider theme={theme}>
-    //   <Box className={styles.app}>
-    //     <ModalProvider>
+    <ThemeProvider theme={theme}>
+			<Box>
+				<CRoutes />
+			</Box>
+    {/*<ModalProvider>
     //       <LoadingProvider>
     //         <SnackbarProvider>
-    //           <MRoutes />
+    //           <CRoutes />
     //         </SnackbarProvider>
     //       </LoadingProvider>
-    //     </ModalProvider>
-    //   </Box>
-    // </ThemeProvider>
-		<>
-    <LoginPage />
-			<BusinessPage />
-		</>
+	//     </ModalProvider> */}
+    </ThemeProvider>
   );
 }
 
