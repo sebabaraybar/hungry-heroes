@@ -7,15 +7,14 @@ const CCard = function ({
 	subtitle,
 	description,
 	alt,
-	logo
+	logo,
+	btnTitle
 }) {
 	return (
 		<Box className={styles.container}>
-			<Card 
-				sx={{ maxWidth: 250}}
-			>
+			<Card className={styles.card}>
 				<CardMedia
-					sx={{height: 50}}
+					className={styles.logocontainer}
 					image= {logo}		
 					alt={alt}
 				/>
@@ -23,8 +22,7 @@ const CCard = function ({
 					<Typography
 						variant="h2"
 						fontSize="1.5rem"
-						mt={3}
-						mb={1}
+						my={1}
 						align="center"
 					>
 						{title}
@@ -38,13 +36,18 @@ const CCard = function ({
 						{subtitle}
 					</Typography>
 					<Typography
-						fontSize="0.8rem"
+						fontSize="0.7rem"
 					>
 						{description}
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<Button>Comprar</Button>
+					<Button 
+						variant="contained"
+						color="secondary"
+					>
+						{btnTitle}
+					</Button>
 				</CardActions>
 			</Card>
 		</Box>
@@ -56,7 +59,8 @@ CCard.propTypes = {
 	subtitle: PropTypes.string,
 	description: PropTypes.string,
 	alt: PropTypes.string.isRequired,
-	logo: PropTypes.node.isRequired
+	logo: PropTypes.node.isRequired,
+	btnTitle: PropTypes.node.isRequired
 };
 
 CCard.defaultProps = {

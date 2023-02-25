@@ -1,5 +1,7 @@
 $primary: #0D2C1A;
-$secondary: #A7B867;
+// $secondary: #cbe374;
+$secondary: #94af23;
+$tertiary: #2c0d1f;
 $light: #F4F4ED;
 $disabled: #bdbdbd;
 // son los de material, ver si cambiamos
@@ -12,6 +14,7 @@ $success: #388e3c;
 :export {
 	primary: $primary;
 	secondary: $secondary;
+	tertiary: $tertiary;
 	light: $light;
 	disabled: $disabled;
 	error: $error;
