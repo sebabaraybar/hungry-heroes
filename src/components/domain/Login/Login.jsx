@@ -8,6 +8,7 @@ import { PersonOutlined, LockOutlined } from '@mui/icons-material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import ROUTES_ENUM from '../../../enums/routesEnum';
+import logo from '../../../media/logo.png';
 import styles from './Login.module.scss';
 
 const Login = function () {
@@ -47,12 +48,12 @@ const Login = function () {
         elevation={2}
         className={styles.card}
       >
-        <Box className={styles.logocontainer}>
+        {/* <Box className={styles.logocontainer}>
           <img
-            // src={logo}
+            src={logo}
             alt="Logo"
           />
-        </Box>
+        </Box> */}
         <Typography
           variant="title"
           sx={{ mt: 3 }}

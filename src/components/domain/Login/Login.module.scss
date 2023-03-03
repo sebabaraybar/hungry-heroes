@@ -25,12 +25,13 @@
 
 	.logocontainer {
 		width: 60%;
-		height: 10%;
+		height: 20%;
 		align-self: center;
 
 		img {
 			width: 100%;
-			object-fit: cover;
+			height: 100%;
+			object-fit: contain;
 		}
 	}
 
