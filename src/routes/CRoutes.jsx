@@ -4,11 +4,12 @@ import { Box } from '@mui/material';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import UserPage from '../pages/UserPage';
+import Header from '../components/layout/Header';
 
 function Layout() {
 	return(
 		<Box>
-			{/* <Header />  */}
+			<Header /> 
 			<main>
 				<Outlet />
 			</main>
@@ -25,9 +26,15 @@ const CRoutes = function () {
 				// errorElement:
 			},
 			{
-				path: ROUTES_ENUM.USERS,
-				element: <UserPage />,
+				path: '/',
+				element: <Layout />,
 				// errorElement:
+				children: [
+					{
+						path: ROUTES_ENUM.USERS,
+						element: <UserPage />
+					}
+				]
 			}
 		]
 	);
