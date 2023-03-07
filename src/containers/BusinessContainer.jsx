@@ -1,13 +1,13 @@
 import React from 'react';
 import businessList from '../business.json';
 import { Box } from '@mui/material';
-import CCard from '../components/ui/CCard/CCard';
+import BusinessCard from '../components/ui/BusinessCard/BusinessCard';
 import logo from '../media/logo.svg';
 const BusinessContainer = function () {
 	return (
 		<Box sx={{display:"flex", gap: "1rem", padding:"5rem", justifyContent: "center"}}>
 			{businessList.map((business) => (
-				<CCard 
+				<BusinessCard 
 				title={business.name}
 				subtitle={business.slogan}
 				alt={`Logo de ${business.name}`}

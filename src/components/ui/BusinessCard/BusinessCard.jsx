@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { Box, Typography, Card, CardMedia, CardContent, CardActions, Button } from "@mui/material";
-import styles from './CCard.module.scss';
-const CCard = function ({
+import styles from './BusinessCard.module.scss';
+const BusinessCard = function ({
 	title,
 	subtitle,
 	description,
@@ -41,10 +41,14 @@ const CCard = function ({
 						{description}
 					</Typography>
 				</CardContent>
-				<CardActions>
+				<CardActions
+				sx={{ justifyContent: "center"}}
+					
+				>
 					<Button 
 						variant="contained"
 						color="secondary"
+						
 					>
 						{btnTitle}
 					</Button>
@@ -54,7 +58,7 @@ const CCard = function ({
 	);
 };
 
-CCard.propTypes = {
+BusinessCard.propTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle: PropTypes.string,
 	description: PropTypes.string,
@@ -63,9 +67,9 @@ CCard.propTypes = {
 	btnTitle: PropTypes.node.isRequired
 };
 
-CCard.defaultProps = {
+BusinessCard.defaultProps = {
 	subtitle: null,
 	description: null
 }
 
-export default CCard;
+export default BusinessCard;
