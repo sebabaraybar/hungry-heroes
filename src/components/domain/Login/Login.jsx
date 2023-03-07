@@ -77,37 +77,39 @@ const Login = function () {
               <Grid item xs={12}>
                 <CTextField
                   label="Usuario"
+									variant="standard"
                   size="small"
                   fullWidth
                   name="username"
                   required
                   type="text"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonOutlined />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment: (
+                  //     <InputAdornment position="start">
+                  //       <PersonOutlined />
+                  //     </InputAdornment>
+                  //   )
+                  // }}
                 />
               </Grid>
               <Grid item xs={12}>
                 <CTextField
                   label="Contraseña"
+									variant="standard"
                   size="small"
                   fullWidth
                   name="password"
                   required
                   type="password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment
-                        position="start"
-                      >
-                        <LockOutlined />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment: (
+                  //     <InputAdornment
+                  //       position="start"
+                  //     >
+                  //       <LockOutlined />
+                  //     </InputAdornment>
+                  //   )
+                  // }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -122,7 +124,7 @@ const Login = function () {
           </Form>
         </Formik>
         <Divider
-          sx={{ mt: 12, mb: 2 }}
+          sx={{ mt: "auto", mb: 2 }}
         />
         <Typography variant='caption'>
           <Link to={ROUTES_ENUM.AUTH_RESTORE_PASS} className={styles.link}>

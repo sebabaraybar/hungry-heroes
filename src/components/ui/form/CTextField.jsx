@@ -37,14 +37,14 @@ const CTextField = function ({
     return 'password';
   };
   const inputPropsPass = {
-    disableUnderline: true,
-    startAdornment: (
-      <InputAdornment
-        position="start"
-      >
-        <LockOutlined />
-      </InputAdornment>
-    ),
+    // disableUnderline: true,
+    // startAdornment: (
+    //   <InputAdornment
+    //     position="start"
+    //   >
+    //     <LockOutlined />
+    //   </InputAdornment>
+    // ),
     endAdornment: (
       <InputAdornment position="end">
         <IconButton
