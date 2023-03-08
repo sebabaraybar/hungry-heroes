@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+
+	.card {
+		min-width: 250px;
+		max-width: 300px;
+		padding: 1rem;
+		background-color: $light;
+		border-radius: 20px;
+
+		.logocontainer {
+				height: 60px;
+				background-size: contain;
+		}
+	}
+
+}

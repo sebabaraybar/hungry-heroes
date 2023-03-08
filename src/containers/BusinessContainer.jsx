@@ -1,22 +1,33 @@
 import React from 'react';
-import businessList from '../business.json';
-import { Box } from '@mui/material';
-import BusinessCard from '../components/ui/BusinessCard/BusinessCard';
+import boxList from '../box.json';
+import { Box, Button } from '@mui/material';
+import BoxCard from '../components/ui/BoxCard/BoxCard';
 import logo from '../media/logo.svg';
+import styles from './BusinessContainer.module.scss';
+
 const BusinessContainer = function () {
 	return (
-		<Box sx={{display:"flex", gap: "1rem", padding:"5rem", justifyContent: "center"}}>
-			{businessList.map((business) => (
-				<BusinessCard 
-				title={business.name}
-				subtitle={business.slogan}
-				alt={`Logo de ${business.name}`}
-				//esto va a venir del back, ver cómo
-				logo={logo}
-				//hay que definir cant de caracteres
-				description={business.description}
-				/>
-			))};
+		<Box className={styles.container}>
+			<Box className={styles.btnContainer}>
+				<Button
+					variant='contained'
+					color='secondary'
+				>
+						Crear Box
+				</Button>
+			</Box>
+			<Box className={styles.cardContainer}>
+				{boxList.map((box) => (
+					<BoxCard
+					title={box.name}
+					alt={`Logo de ${box.name}`}
+					//esto va a venir del back, ver cómo
+					logo={logo}
+					//hay que definir cant de caracteres
+					description={box.detail}
+					/>
+				))};
+			</Box>
 		</Box>
 	);
 };

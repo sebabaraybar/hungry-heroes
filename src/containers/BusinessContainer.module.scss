@@ -1,0 +1,26 @@
+@import "../styles/variables.scss";
+
+.container {
+	background-color: $tertiary;
+	width: 100vw;
+	background-image: url("../media/main-bg.png");
+	background-position-y: bottom;
+	background-position-x: left;
+	// arreglar bg
+	background-repeat: no-repeat;
+	background-size: contain;
+
+	.btnContainer {
+		padding: 3rem 3rem 0 0;
+		text-align: end;
+	}
+	
+	.cardContainer {
+		display:flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		padding: 5rem;
+	}
+}
