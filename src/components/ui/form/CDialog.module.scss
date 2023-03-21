@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	flex-direction: column;
+
+	.containerheader {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 1rem;
+		padding-bottom: 0.5rem;
+
+		.closeicon {
+			padding: 0.3rem;
+			font-size: 1rem;
+		}
+	}
+	.divider {
+		width: 90%;
+		align-self: center;
+	}
+
+	.children {
+		margin-bottom: 2rem;
+		margin-top: 1rem;
+	}
+
+	.containerbtn {
+		display: flex;
+		justify-content: center;
+	}
+}
