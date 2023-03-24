@@ -67,7 +67,7 @@ const CDialog = function({
 					<DialogActions className={styles.containerbtn}>
 					{btnPrimary && (
 							<Button
-								type='button'
+								type='submit'
 								size='small'
 								variant= 'contained'
 								onClick={handleClickBtnPrimary}
