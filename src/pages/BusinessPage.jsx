@@ -1,9 +1,9 @@
 import React from 'react';
-import BusinessContainer from '../containers/BusinessContainer';
+import BoxContainer from '../containers/BoxContainer';
 
 function BusinessPage() {
   return (
-    <BusinessContainer />
+    <BoxContainer />
   );
 }
 
