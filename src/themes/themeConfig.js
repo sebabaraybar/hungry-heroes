@@ -5,11 +5,11 @@ const theme = createTheme ( {
 	palette: {
 		primary: {
 			main: vars.primary,
-			contrastText: vars.light
+			contrastText: vars.secondary
 		},
 		secondary: {
 			main: vars.secondary,
-			contrastText: vars.primary
+			contrastText: vars.tertiary
 		},
 		disabled: {
 			main: vars.disabled
@@ -31,7 +31,7 @@ const theme = createTheme ( {
 			contrastText: vars.light
 		}
 	},
-	// TODO CS ver cómo cambiar independizar h tags de size (creo que con mapping de material)
+	// TODO CS ver cómo cambiar independizar h tags de su size (creo que con mapping de material)
   // REFERENCIA VARIANTS MATERIAL
   // h1 96px
   // h2 60px -light 300
@@ -47,7 +47,6 @@ const theme = createTheme ( {
   // caption 12px - normal 400 (abajo cambio del weight)
   // overline 10px - normal 400
   typography: {
-    // htmlFontSize: 10, TODO CS solo si facu cambia size de variants
     subtitle1: {
       fontWeight: 700
     },
