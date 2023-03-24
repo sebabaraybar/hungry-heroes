@@ -1,9 +1,9 @@
 import React from "react";
-import UserContainer from "../containers/UserContainer";
+import BusinessContainer from "../containers/BusinessContainer";
 
 function UserPage () {
 	return (
-		<UserContainer />
+		<BusinessContainer />
 	);
 }
 
