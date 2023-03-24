@@ -8,7 +8,7 @@ import { PersonOutlined, LockOutlined } from '@mui/icons-material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import ROUTES_ENUM from '../../../enums/routesEnum';
-import logo from '../../../media/logo.png';
+import img from '../../../media/login-bg-live.jpg';
 import styles from './Login.module.scss';
 
 const Login = function () {
@@ -26,9 +26,11 @@ const Login = function () {
 
   return (
     <Box className={styles.container}>
+			<Box className={styles.imgcontainer}/>
+				{/* <img src={img} alt="" /> */}
       <Box
         elevation={2}
-        className={styles.card}
+        className={styles.logincontainer}
       >
         <Typography
           variant="title"
@@ -83,6 +85,11 @@ const Login = function () {
         <Divider
           sx={{ mt: "auto", mb: 2 }}
         />
+        <Typography variant='subtitle1' mb={3}>
+          <Link to={ROUTES_ENUM.AUTH_RESTORE_PASS} className={styles.link}>
+            ¿Aún no tenés cuenta? Registrate
+          </Link>
+        </Typography>
         <Typography variant='caption'>
           <Link to={ROUTES_ENUM.AUTH_RESTORE_PASS} className={styles.link}>
             Olvidé mi contraseña
