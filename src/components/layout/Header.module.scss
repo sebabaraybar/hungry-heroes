@@ -9,6 +9,7 @@
 
 	.logoContainer {
 		padding: 1rem;
+
 		img {
 			height: 100%;
 			object-fit: contain;
@@ -23,6 +24,7 @@
 		.navigation > * {
 			margin: 0 .5rem;
 			text-decoration: none;
+			color: $primary;
 
 			// no funciona
 			.active {

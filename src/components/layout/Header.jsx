@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import ROUTES_ENUM from '../../enums/routesEnum';
+
 import {
   Avatar, Stack, Divider,
   Box, IconButton, Typography
@@ -7,16 +9,17 @@ import {
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import logo from '../../media/logo.png';
+
 import styles from './Header.module.scss';
 
 const Header = function () {
   // const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const userLocal = localStorage.getItem('userLogged');
   // const user = JSON.parse(userLocal);
 	const user = {
-		name: "Ana",
-		lastname: "Doe"
+		name: "Martín",
+		lastname: "Rodríguez"
 	}
 
   const headerUsername = () => {
@@ -29,10 +32,10 @@ const Header = function () {
   //   navigate(path);
   // };
 
-  // const onLogout = () => {
-  //   AuthService.logout();
-  //   navigate(ROUTES_ENUM.AUTH_LOGIN);
-  // };
+  const onLogout = () => {
+    // AuthService.logout();
+    navigate(ROUTES_ENUM.AUTH_LOGIN);
+  };
 
   return (
     <Stack
@@ -59,7 +62,7 @@ const Header = function () {
               </Typography>
             </Box>
           ))} */}
-					<NavLink to='/' activeClassname={styles.active}>Navlink</NavLink>
+					<NavLink to='/' activeclassname={styles.active}>Navlink</NavLink>
 					<NavLink to='/'>Navlink</NavLink>
 					<NavLink to='/'>Navlink</NavLink>
         </Box>
@@ -75,8 +78,8 @@ const Header = function () {
         <Box className={styles.user}>
           <Avatar
             sx={{
-              color: (theme) => theme.palette.primary.light,
-              backgroundColor: (theme) => theme.palette.secondary.main,
+              color: (theme) => theme.palette.secondary.main,
+              backgroundColor: (theme) => theme.palette.primary.main,
 							marginX: '0.5rem'
             }}
           >
@@ -91,13 +94,13 @@ const Header = function () {
           </Box>
           <IconButton
             aria-label="close"
-            // onClick={onLogout}
+            onClick={onLogout}
             disableRipple
           >
             <LogoutIcon
               sx={{
                 fontSize: '16px',
-                color: (theme) => theme.palette.primary.light
+                color: (theme) => theme.palette.secondary.main
               }}
             />
           </IconButton>
