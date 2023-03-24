@@ -1,87 +1,70 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { IconButton, InputAdornment, TextField } from "@mui/material";
-import { VisibilityOffOutlined, VisibilityOutlined, LockOutlined } from '@mui/icons-material';
-import { useField } from "formik";
+import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
+import FORMIK_PROPTYPES from "../../../modelsFormik/FormikProps";
 
 const CTextField = function ({
   name,
-  fullWidth,
-  variant,
-  // ...other,
   label,
   disabled,
   type,
   size,
+	color,
   placeholder,
   autocomplete,
-  InputProps
+  sx,
+  InputProps,
+	helperText,
+	error,
+	formik
 }) {
-  const [field, meta] = useField(name);
-  // const config = {
-  //   fullWidth:{fullWidth},
-  //   variant:{variant},
-  //   other:{...other},
-  //   ...field,
-  //   label: {label},
-  //   disabled:{disabled},
-  //   type:{type},
-  //   size:{size},
-  //   placeholder:{placeholder},
-  //   autocomplete:{autocomplete},
-  //   InputProps:{type === 'password' ? inputPropsPass : InputProps}
-  // };
-  const [isPassVisible, setPassVisibility] = useState(false);
-  const setPassFieldType = () => {
+
+	const [isPassVisible, setPassVisibility] = useState(false);
+  
+	const setPassFieldType = () => {
+		console.log(isPassVisible)
     if (isPassVisible) { return 'text'; }
     return 'password';
   };
-  const inputPropsPass = {
-    // disableUnderline: true,
-    // startAdornment: (
-    //   <InputAdornment
-    //     position="start"
-    //   >
-    //     <LockOutlined />
-    //   </InputAdornment>
-    // ),
+  
+	const inputPropsPass = {
     endAdornment: (
       <InputAdornment position="end">
         <IconButton
+          disableRipple
           onClick={() => {
             setPassVisibility(!isPassVisible);
           }}
         >
           {
-            isPassVisible ? <VisibilityOffOutlined />
-              : <VisibilityOutlined />
+            isPassVisible ? <VisibilityOutlined />
+              : <VisibilityOffOutlined />
           }
         </IconButton>
       </InputAdornment>
     )
   };
 
-  // if (meta && meta.touched && meta.error) {
-  //   config.error = true;
-  //   config.helperText = meta.error;
-  // }
-
   return (
-    // <TextField { ...config }/>
     <TextField
-    fullWidth={fullWidth}
-    variant={variant}
-    // other={...other}
-    name={field}
+    fullWidth
+		multiline
+    name={name}
     label= {label}
+		color={color}
     disabled={disabled}
     type={type === 'password' ? setPassFieldType() : type}
     size={size}
     placeholder={placeholder}
     autocomplete={autocomplete}
+		value={formik.values[name]}
+		onChange={(e) => (formik.handleChange(e))}
+		onBlur={(e) => (formik.handleBlur(e))}
     InputProps={type === 'password' ? inputPropsPass : InputProps}
-    error={meta.touched[name] && Boolean(meta.errors[name])}
-      helperText={meta.touched[name] && meta.errors[name]}
+		sx={sx}
+		helperText={(formik.touched[name] && formik.errors[name])}
+		error={(formik.touched[name] && Boolean(formik.errors[name]))}
     />
   );
 };
@@ -89,15 +72,31 @@ const CTextField = function ({
 CTextField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['primary', 'secondary']),
   disabled: PropTypes.bool,
-  // color: PropTypes.oneOf(['primary', 'secondary']),
   type: PropTypes.oneOf(['text', 'password', 'number']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   placeholder: PropTypes.string,
   autoComplete: PropTypes.oneOf(['on', 'off']),
-  // formik: PropTypes.shape(FORMIK_PROPTYPES).isRequired,
-  // sx: PropTypes.objectOf(PropTypes.any),
-  // InputProps: PropTypes.objectOf(PropTypes.any)
-}
+  formik: PropTypes.shape(FORMIK_PROPTYPES),
+  sx: PropTypes.objectOf(PropTypes.any),
+  InputProps: PropTypes.objectOf(PropTypes.any),
+	helperText: PropTypes.string,
+	error: PropTypes.bool
+};
+
+CTextField.defaultProps = {
+	color: 'primary',
+	disabled: false,
+	type: 'text',
+	size: 'small',
+	placeholder: null,
+	autoComplete: 'off',
+	formik: null,
+	sx: null,
+	InputProps: null,
+	helperText: 'Error',
+	error: false
+};
 
 export default CTextField;
