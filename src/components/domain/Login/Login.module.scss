@@ -6,19 +6,22 @@
 	display: flex;
 	justify-content: flex-end;
 	background-color: $primary;
-	background-image: url('../../../media/login-bg.png');
+	background-image: url('../../../media/login-bg-live.jpg');
 	background-repeat: no-repeat;
-	background-position: left bottom;
-	background-size: clamp(15%, 25%, 30%) auto;
+	// background-position: left bottom;
+	// background-size: clamp(15%, 25%, 30%) auto;
+	background-size: cover;
+
 
 	.card {
-		min-width: 30%;
-		max-width: 45%;
-		padding: 3rem;
+		width: 35%;
+		padding:3rem;
 		border-radius: 0;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
+		justify-content: center;
+		justify-items: center;
 		background-color: $light;
 	}
 

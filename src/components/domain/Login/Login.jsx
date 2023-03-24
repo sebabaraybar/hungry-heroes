@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CTextField from '../../ui/form/CTextField';
 import {
@@ -13,34 +13,16 @@ import styles from './Login.module.scss';
 
 const Login = function () {
   // const navigate = useNavigate();
+	const formikRef = useRef();
 
-  const validation = Yup.object().shape({
+  const VALIDATION = Yup.object().shape({
     username: Yup.string().email('Usuario inválido - usuario@email.com').required('Campo obligatorio'),
     password: Yup.string().required('Campo obligatorio')
   });
 
-  const onLogin = async ({ username, password }) => {
-    console.log(`USER: ${username}`, `PASS: ${password}`);
-    // TODO implementación del login - token
-
-    // try {
-    //   const userLogged = await AuthService.login(username, password);
-    //   localStorage.setItem('token', userLogged.token);
-    //   const me = await UserService.me();
-    //   localStorage.setItem('userLogged', JSON.stringify(me));
-    //   // setLoading(false); TODO
-    //   if (me.firstLogin) {
-    //     navigate(ROUTES_ENUM.AUTH_RESTORE_PASS);
-    //     return;
-    //   }
-    //   navigate(ROUTES_ENUM.HOME);
-    //   return;
-    // } catch (error) {
-    //   // eslint-disable-next-line no-console
-    //   console.log(error);
-    //   // TODO CS
-    // }
-  };
+  // const onLogin = async ({ username, password }) => {
+  //   console.log(`USER: ${username}`, `PASS: ${password}`);
+  // };
 
   return (
     <Box className={styles.container}>
@@ -48,26 +30,23 @@ const Login = function () {
         elevation={2}
         className={styles.card}
       >
-        {/* <Box className={styles.logocontainer}>
-          <img
-            src={logo}
-            alt="Logo"
-          />
-        </Box> */}
         <Typography
           variant="title"
-          sx={{ mt: 3 }}
+          sx={{ mt: 12 }}
         >
-          Proyecto Istea
+          NOMBRE DE LA APP
         </Typography>
         <Formik
-          initialValues={{
-            username: '',
-            password: ''
-          }}
-          validationSchema={validation}
-          onSubmit={onLogin}
+				initialValues={{
+					username: '',
+					password: ''
+
+				}}
+          validationSchema={VALIDATION}
+          // onSubmit={onLogin}
+					innerRef={formikRef}
         >
+					{(formik) => (
           <Form>
             <Grid
               container
@@ -77,39 +56,16 @@ const Login = function () {
               <Grid item xs={12}>
                 <CTextField
                   label="Usuario"
-									variant="standard"
-                  size="small"
-                  fullWidth
                   name="username"
-                  required
-                  type="text"
-                  // InputProps={{
-                  //   startAdornment: (
-                  //     <InputAdornment position="start">
-                  //       <PersonOutlined />
-                  //     </InputAdornment>
-                  //   )
-                  // }}
+									formik={formik}
                 />
               </Grid>
               <Grid item xs={12}>
                 <CTextField
                   label="Contraseña"
-									variant="standard"
-                  size="small"
-                  fullWidth
                   name="password"
-                  required
                   type="password"
-                  // InputProps={{
-                  //   startAdornment: (
-                  //     <InputAdornment
-                  //       position="start"
-                  //     >
-                  //       <LockOutlined />
-                  //     </InputAdornment>
-                  //   )
-                  // }}
+									formik={formik}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -122,6 +78,7 @@ const Login = function () {
               </Grid>
             </Grid>
           </Form>
+				)}
         </Formik>
         <Divider
           sx={{ mt: "auto", mb: 2 }}
