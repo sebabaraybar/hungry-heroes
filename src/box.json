@@ -1,5 +1,6 @@
 [
 	{
+		"id": 1,
 		"name": "Box 1",
 		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 		"price": 200,
@@ -7,6 +8,7 @@
 		"published": true
 	},
 	{
+		"id": 2,
 		"name": "Box 2",
 		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 		"price": 400,
@@ -14,7 +16,32 @@
 		"published": false
 	},
 	{
+		"id": 3,
 		"name": "Box 3",
+		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"price": 2000,
+		"quantity": 5,
+		"published": true
+	},
+	{
+		"id": 4,
+		"name": "Box 4",
+		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"price": 200,
+		"quantity": 1,
+		"published": true
+	},
+	{
+		"id": 5,
+		"name": "Box 5",
+		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"price": 400,
+		"quantity": 3,
+		"published": false
+	},
+	{
+		"id": 6,
+		"name": "Box 6",
 		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 		"price": 2000,
 		"quantity": 5,

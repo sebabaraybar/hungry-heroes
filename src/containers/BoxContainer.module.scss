@@ -1,0 +1,36 @@
+@import "../styles/variables.scss";
+
+.container {
+	background-color: $tertiary;
+	width: 100vw;
+	min-height: 100vh;
+	position: relative;
+	
+	&::before {
+		content: '';
+		background-image: url("../media/main-bg-live.jpg");
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		opacity: 0.3;		
+	}
+
+
+	.btnContainer {
+		padding: 3rem 3rem 0 0;
+		text-align: end;
+	}
+	
+	.cardContainer {
+		display:flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		padding: 5rem;
+		z-index: 100;
+		position: relative;
+	}
+}
