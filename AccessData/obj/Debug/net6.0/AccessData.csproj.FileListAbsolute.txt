@@ -1,0 +1,17 @@
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\bin\Debug\net6.0\AccessData.deps.json
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\bin\Debug\net6.0\AccessData.dll
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\bin\Debug\net6.0\AccessData.pdb
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\bin\Debug\net6.0\Entities.dll
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\bin\Debug\net6.0\Entities.pdb
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.csproj.AssemblyReference.cache
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.AssemblyInfoInputs.cache
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.AssemblyInfo.cs
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.csproj.CoreCompileInputs.cache
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.csproj.CopyComplete
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.dll
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\refint\AccessData.dll
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.pdb
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\ref\AccessData.dll
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\bin\Debug\net6.0\AccessData.runtimeconfig.json
+C:\Users\ferlu\Desktop\ISTEA Integrador\ProyectoIntegrador\AccessData\obj\Debug\net6.0\AccessData.genruntimeconfig.cache
