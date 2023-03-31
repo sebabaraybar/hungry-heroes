@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Box, Typography, Card, CardMedia, CardContent, CardActions, Button } from "@mui/material";
+import { Box, Typography, Card, CardMedia, CardContent, CardActions } from "@mui/material";
+import CButton from "../Button/CButton";
 import styles from './BusinessCard.module.scss';
 const BusinessCard = function ({
 	title,
 	subtitle,
 	description,
 	alt,
-	logo,
-	btnTitle
+	logo
 }) {
 	return (
 		<Box className={styles.container}>
@@ -45,13 +45,10 @@ const BusinessCard = function ({
 				sx={{ justifyContent: "center"}}
 					
 				>
-					<Button 
-						variant="contained"
-						color="secondary"
-						
-					>
-						{btnTitle}
-					</Button>
+					<CButton
+						title="Ver boxes"
+						onClick={() => alert("redirecciona a página de boxes del comercio")}
+					/>
 				</CardActions>
 			</Card>
 		</Box>
@@ -63,8 +60,7 @@ BusinessCard.propTypes = {
 	subtitle: PropTypes.string,
 	description: PropTypes.string,
 	alt: PropTypes.string.isRequired,
-	logo: PropTypes.node.isRequired,
-	btnTitle: PropTypes.node.isRequired
+	logo: PropTypes.node.isRequired
 };
 
 BusinessCard.defaultProps = {

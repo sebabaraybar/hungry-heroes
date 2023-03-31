@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
+import CIconButton from "../Button/CIconButton";
 import FORMIK_PROPTYPES from "../../../modelsFormik/FormikProps";
 
 const CTextField = function ({
@@ -23,7 +24,6 @@ const CTextField = function ({
 	const [isPassVisible, setPassVisibility] = useState(false);
   
 	const setPassFieldType = () => {
-		console.log(isPassVisible)
     if (isPassVisible) { return 'text'; }
     return 'password';
   };
@@ -31,17 +31,16 @@ const CTextField = function ({
 	const inputPropsPass = {
     endAdornment: (
       <InputAdornment position="end">
-        <IconButton
-          disableRipple
-          onClick={() => {
-            setPassVisibility(!isPassVisible);
-          }}
-        >
-          {
-            isPassVisible ? <VisibilityOutlined />
-              : <VisibilityOffOutlined />
-          }
-        </IconButton>
+				<CIconButton
+					disableRipple
+					onClick={() => {
+						setPassVisibility(!isPassVisible);
+					}}
+				>
+					{
+						isPassVisible ? <VisibilityOutlined /> : <VisibilityOffOutlined />
+					}
+				</CIconButton>
       </InputAdornment>
     )
   };
