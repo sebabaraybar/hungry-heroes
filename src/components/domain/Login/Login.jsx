@@ -1,18 +1,16 @@
 import React, { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CTextField from '../../ui/form/CTextField';
-import {
-  Box, Typography, Divider, Grid, InputAdornment, Button
-} from '@mui/material';
-import { PersonOutlined, LockOutlined } from '@mui/icons-material';
+import CButton from '../../ui/Button/CButton';
+import { Box, Grid } from '@mui/material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import ROUTES_ENUM from '../../../enums/routesEnum';
-import img from '../../../media/login-bg-live.jpg';
+import logo from '../../../media/logo.png';
 import styles from './Login.module.scss';
 
 const Login = function () {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 	const formikRef = useRef();
 
   const VALIDATION = Yup.object().shape({
@@ -20,32 +18,26 @@ const Login = function () {
     password: Yup.string().required('Campo obligatorio')
   });
 
-  // const onLogin = async ({ username, password }) => {
-  //   console.log(`USER: ${username}`, `PASS: ${password}`);
-  // };
+  const onLogin = async ({ username, password }) => {
+    console.log(`USER: ${username}`, `PASS: ${password}`);
+  };
 
   return (
     <Box className={styles.container}>
-			<Box className={styles.imgcontainer}/>
-				{/* <img src={img} alt="" /> */}
       <Box
         elevation={2}
         className={styles.logincontainer}
       >
-        <Typography
-          variant="title"
-          sx={{ mt: 12 }}
-        >
-          NOMBRE DE LA APP
-        </Typography>
+				<Box className={styles.logocontainer}>
+					<img src={logo} alt="" />
+				</Box>
         <Formik
 				initialValues={{
 					username: '',
 					password: ''
-
 				}}
           validationSchema={VALIDATION}
-          // onSubmit={onLogin}
+          onSubmit={onLogin}
 					innerRef={formikRef}
         >
 					{(formik) => (
@@ -57,6 +49,7 @@ const Login = function () {
             >
               <Grid item xs={12}>
                 <CTextField
+									variant="standard"
                   label="Usuario"
                   name="username"
 									formik={formik}
@@ -64,38 +57,53 @@ const Login = function () {
               </Grid>
               <Grid item xs={12}>
                 <CTextField
+									variant="standard"
                   label="Contraseña"
                   name="password"
                   type="password"
 									formik={formik}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Button
+							<Box className={styles.linkpass}>
+								<CButton
+									title="Olvidé mi contraseña"
+									variant="text"
+									color="secondary"
+									sx={{fontSize: '0.8rem', fontWeight: '700'}}
+									onClick={() => navigate(ROUTES_ENUM.AUTH_RESTORE_PASS)}
+								/>
+        			</Box>
+              <Grid item xs={12} mt={4}>
+                <CButton
                   type="submit"
                   variant="contained"
-                >
-                  Ingresar
-                </Button>
+									title="Ingresar"
+									sx={{fontSize: '1rem'}}
+                />
               </Grid>
             </Grid>
           </Form>
 				)}
         </Formik>
-        <Divider
-          sx={{ mt: "auto", mb: 2 }}
-        />
-        <Typography variant='subtitle1' mb={3}>
-          <Link to={ROUTES_ENUM.AUTH_RESTORE_PASS} className={styles.link}>
-            ¿Aún no tenés cuenta? Registrate
-          </Link>
-        </Typography>
-        <Typography variant='caption'>
-          <Link to={ROUTES_ENUM.AUTH_RESTORE_PASS} className={styles.link}>
-            Olvidé mi contraseña
-          </Link>
-        </Typography>
+        <Box className={styles.linkaccount}>
+					<CButton 
+						title='Creá tu cuenta'
+						variant='outlined'
+						sx={{fontSize: '1.4rem'}}
+						onClick={() => navigate(ROUTES_ENUM.CREATE_ACCOUNT)}
+					/>
+        </Box>
       </Box>
+			<Box className={styles.imgcontainer}>
+				<Box className={styles.btncontainer}>
+					<CButton
+						title="Sobre nosotros"
+						variant="text"
+						sx={{ fontSize: '2.2rem' }}
+						onClick={() => navigate(ROUTES_ENUM.ABOUT)}
+					/>
+				</Box>
+			</Box>
     </Box>
   );
 };

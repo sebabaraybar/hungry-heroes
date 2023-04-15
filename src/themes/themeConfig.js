@@ -54,9 +54,20 @@ const theme = createTheme ( {
       fontWeight: 700
     },
     button: {
-      textTransform: 'none'
+      textTransform: 'lowercase',
+			letterSpacing: '-0.5px',
+			fontWeight: 900,
     }
   },
+	components: {
+		MuiButton: {
+			styleOverrides: {
+				root: {
+					borderRadius: '0'
+				}
+			}
+		}
+	}
 });
 
 export default theme;

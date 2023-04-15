@@ -1,19 +1,15 @@
-// $primary: #0D2C1A;
-$primary: #267d5e;
-// $primary: #F3DE2C;
-// $secondary: #cbe374;
-// $secondary: #94af23;
-$secondary: #FCF2AD;
-$tertiary: #2c0d1f;
-// $light: #F4F4ED;
-$light: #f7f7f7;
+$primary: #ffffe6;
+$secondary: #2C3535;
+$tertiary: #e3f54a;
+$light: #B3D6F4;
 $disabled: #bdbdbd;
-// son los de material, ver si cambiamos
+
 // no puse versiones light, main en theme config
-$error: #d32f2f;
+$error: #d35151;
 $warning: #ffa726;
 $info: #4fc3f7;
 $success: #388e3c;
+
 
 :export {
 	primary: $primary;

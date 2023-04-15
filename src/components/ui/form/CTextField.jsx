@@ -14,6 +14,7 @@ const CTextField = function ({
 	color,
   placeholder,
   autocomplete,
+	variant,
   sx,
   InputProps,
 	helperText,
@@ -21,7 +22,7 @@ const CTextField = function ({
 	formik
 }) {
 
-	const [isPassVisible, setPassVisibility] = useState(false);
+  const [isPassVisible, setPassVisibility] = useState(false);
   
 	const setPassFieldType = () => {
     if (isPassVisible) { return 'text'; }
@@ -31,16 +32,17 @@ const CTextField = function ({
 	const inputPropsPass = {
     endAdornment: (
       <InputAdornment position="end">
-				<CIconButton
-					disableRipple
-					onClick={() => {
-						setPassVisibility(!isPassVisible);
-					}}
-				>
-					{
-						isPassVisible ? <VisibilityOutlined /> : <VisibilityOffOutlined />
-					}
-				</CIconButton>
+        <CIconButton
+          disableRipple
+          onClick={() => {
+            setPassVisibility(!isPassVisible);
+          }}
+        >
+          {
+            isPassVisible ? <VisibilityOutlined />
+              : <VisibilityOffOutlined />
+          }
+        </CIconButton>
       </InputAdornment>
     )
   };
@@ -57,6 +59,7 @@ const CTextField = function ({
     size={size}
     placeholder={placeholder}
     autocomplete={autocomplete}
+		variant={variant}
 		value={formik.values[name]}
 		onChange={(e) => (formik.handleChange(e))}
 		onBlur={(e) => (formik.handleBlur(e))}
@@ -81,7 +84,8 @@ CTextField.propTypes = {
   sx: PropTypes.objectOf(PropTypes.any),
   InputProps: PropTypes.objectOf(PropTypes.any),
 	helperText: PropTypes.string,
-	error: PropTypes.bool
+	error: PropTypes.bool,
+	variant: PropTypes.oneOf(['outlined', 'filled', 'standard'])
 };
 
 CTextField.defaultProps = {
@@ -95,7 +99,8 @@ CTextField.defaultProps = {
 	sx: null,
 	InputProps: null,
 	helperText: 'Error',
-	error: false
+	error: false,
+	variant: 'outlined'
 };
 
 export default CTextField;
