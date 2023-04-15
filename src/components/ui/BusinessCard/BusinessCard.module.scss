@@ -6,16 +6,49 @@
 	align-content: center;
 
 	.card {
+		box-shadow: 0 3px 6px #0000001c;
 		min-width: 250px;
 		max-width: 300px;
 		padding: 1rem;
-		background-color: $light;
-		border-radius: 20px;
+		color: $secondary;
 
 		.logocontainer {
-				height: 60px;
-				background-size: contain;
+			height: 60px;
+			background-size: contain;
+		}
+
+		.cardcontent {
+			& > * {
+				color: $secondary;
+			}
+
+			.cardtitle {
+				font-size: 1.5rem;
+				text-transform: uppercase;
+				font-weight: 900;
+				letter-spacing: -1px;
+				text-align: center;
+				color: $blue;
+			}
+
+			.cardsubtitle {
+				font-size: 1rem;
+				margin: 0.5rem 0 2rem 0;
+				text-align: center;
+			}
+		}
+
+		.btncontainer {
+			justify-content: center;
+			margin: 0 3rem 0 3rem;
+			& > * {
+				color: $green;
+				font-size: 1rem;
+			}
+
+			&:hover {
+				background-color: rgba($color: $green, $alpha: 0.2);
+			}
 		}
 	}
-
 }

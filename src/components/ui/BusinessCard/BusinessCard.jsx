@@ -18,20 +18,16 @@ const BusinessCard = function ({
 					image= {logo}		
 					alt={alt}
 				/>
-				<CardContent>
+				<CardContent className={styles.cardcontent}>
 					<Typography
 						variant="h2"
-						fontSize="1.5rem"
-						my={1}
-						align="center"
+						className={styles.cardtitle}
 					>
 						{title}
 					</Typography>
 					<Typography
 						variant="h3"
-						fontSize="1rem"
-						mb={2}
-						align="center"
+						className={styles.cardsubtitle}
 					>
 						{subtitle}
 					</Typography>
@@ -42,11 +38,11 @@ const BusinessCard = function ({
 					</Typography>
 				</CardContent>
 				<CardActions
-				sx={{ justifyContent: "center"}}
-					
+				className={styles.btncontainer}
 				>
 					<CButton
 						title="Ver boxes"
+						variant="text"
 						onClick={() => alert("redirecciona a página de boxes del comercio")}
 					/>
 				</CardActions>
