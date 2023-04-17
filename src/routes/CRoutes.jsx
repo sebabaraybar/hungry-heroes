@@ -5,8 +5,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import UserPage from '../pages/UserPage';
 import Header from '../components/layout/Header';
-import BusinessPage from '../pages/BusinessPage';
-
+import BoxPage from '../pages/BoxPage';
 function Layout() {
 	return(
 		<Box>
@@ -38,7 +37,7 @@ const CRoutes = function () {
 					},
 					{
 						path: ROUTES_ENUM.BUSINESS,
-						element: <BusinessPage />
+						element: <BoxPage />
 					}
 				]
 			}

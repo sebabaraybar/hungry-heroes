@@ -7,8 +7,7 @@ import { ThemeProvider, Box } from '@mui/material';
 import CRoutes from './routes/CRoutes';
 import theme from './themes/themeConfig';
 import LoginPage from './pages/LoginPage';
-import BusinessPage from './pages/BusinessPage';
-
+import BoxPage from './pages/BoxPage';
 function App() {
   return (
     <ThemeProvider theme={theme}>
