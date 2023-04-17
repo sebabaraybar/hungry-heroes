@@ -1,7 +1,9 @@
 $primary: #ffffe6;
 $secondary: #2C3535;
 $tertiary: #e3f54a;
-$light: #B3D6F4;
+$blue: #B3D6F4;
+$green: #a8de98;
+$pink: rgb(253, 211, 236);
 $disabled: #bdbdbd;
 
 // no puse versiones light, main en theme config
@@ -15,7 +17,8 @@ $success: #388e3c;
 	primary: $primary;
 	secondary: $secondary;
 	tertiary: $tertiary;
-	light: $light;
+	blue: $blue;
+	green: $green;
 	disabled: $disabled;
 	error: $error;
 	warning: $warning;
