@@ -68,15 +68,16 @@ const Login = function () {
 								<CButton
 									title="Olvidé mi contraseña"
 									variant="text"
-									color="secondary"
-									sx={{fontSize: '0.8rem', fontWeight: '700'}}
+									color="primary"
+									sx={{fontSize:"0.8rem"}}
 									onClick={() => navigate(ROUTES_ENUM.AUTH_RESTORE_PASS)}
 								/>
-        			</Box>
+							</Box>
               <Grid item xs={12} mt={4}>
                 <CButton
                   type="submit"
                   variant="contained"
+									color="secondary"
 									title="Ingresar"
 									sx={{fontSize: '1rem'}}
                 />
@@ -89,6 +90,7 @@ const Login = function () {
 					<CButton 
 						title='Creá tu cuenta'
 						variant='outlined'
+						color="secondary"
 						sx={{fontSize: '1.4rem'}}
 						onClick={() => navigate(ROUTES_ENUM.CREATE_ACCOUNT)}
 					/>
