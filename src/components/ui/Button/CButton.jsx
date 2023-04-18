@@ -42,7 +42,7 @@ CButton.propTypes = {
 	type: PropTypes.oneOf(['submit', 'button', 'reset']),
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
 	color: PropTypes.oneOf(['primary', 'secondary', 'disabled', 'success', 'error', 'warning', 'info']),
-	variant: PropTypes.oneOf(['contained', 'oulined', 'text']),
+	variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 	startIcon: PropTypes.element,
 	endIcon: PropTypes.element,
 	title: PropTypes.string,

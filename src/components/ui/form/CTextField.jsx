@@ -23,20 +23,24 @@ const CTextField = function ({
 }) {
 
   const [isPassVisible, setPassVisibility] = useState(false);
+	console.log(isPassVisible)
   
 	const setPassFieldType = () => {
-    if (isPassVisible) { return 'text'; }
+		console.log(isPassVisible)
+    if (isPassVisible) { 
+			console.log('TEXT')
+			return 'text'; }
+			console.log('PASS')
     return 'password';
   };
   
 	const inputPropsPass = {
     endAdornment: (
-      <InputAdornment position="end">
+      <InputAdornment>
         <CIconButton
           disableRipple
-          onClick={() => {
-            setPassVisibility(!isPassVisible);
-          }}
+          onClick={() => { 
+						setPassVisibility(!isPassVisible); }}
         >
           {
             isPassVisible ? <VisibilityOutlined />
@@ -76,7 +80,7 @@ CTextField.propTypes = {
   label: PropTypes.string.isRequired,
   color: PropTypes.oneOf(['primary', 'secondary']),
   disabled: PropTypes.bool,
-  type: PropTypes.oneOf(['text', 'password', 'number']),
+  type: PropTypes.oneOf(['button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   placeholder: PropTypes.string,
   autoComplete: PropTypes.oneOf(['on', 'off']),
