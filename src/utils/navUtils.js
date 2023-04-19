@@ -1,6 +1,7 @@
 import { ROLES_ENUM } from "../enums/rolesEnum";
 import ROUTES_ENUM, { ROUTES_KEY_ENUM } from "../enums/routesEnum";
 import { LOCAL_STORAGE } from "./constants";
+import users from '../user.json';
 
 const NAV_SYSTEM = [
 	// ver esto, porque about es pública

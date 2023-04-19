@@ -1,0 +1,24 @@
+@import '../../../../styles/variables.scss';
+
+.navItem {
+	padding: 6px 16px;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	
+	& > * {
+		font-weight: 900 !important;
+		font-size: 1.5rem !important;
+		color: $secondary;
+		text-transform: lowercase;
+		letter-spacing: -1px !important;
+	}
+}
+
+.navItemActive {
+	padding: 6px 16px;
+	border-radius: 4px;
+	background-color: $green;
+	color: $primary;
+	cursor: pointer;
+}

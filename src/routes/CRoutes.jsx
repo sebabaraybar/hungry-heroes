@@ -6,7 +6,7 @@ import RequireAuth from '../components/common/RequireAuth';
 import NoRequireAuth from '../components/common/NoRequireAuth';
 import LoginPage from '../pages/LoginPage';
 import BusinessPage from '../pages/BusinessPage';
-import Header from '../components/layout/Header';
+import Header from '../components/layout/Header/Header';
 import BoxPage from '../pages/BoxPage';
 function Layout() {
 	return(

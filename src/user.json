@@ -1,0 +1,20 @@
+[
+	{
+		"username": "1@mail.com",
+		"role": "ROLE_CLIENT"
+	},
+	{
+		"username": "2@mail.com",
+		"role": "ROLE_CLIENT"
+	},
+	{
+		"username": "3@mail.com",
+		"role": "ROLE_BUSINESS"
+	},
+	
+	{
+		"username": "4@mail.com",
+		"role": "ROLE_BUSINESS"
+	}	
+]
+	
