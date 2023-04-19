@@ -3,23 +3,46 @@
 .container {
 	padding: 1rem 3.5rem;
 	box-shadow: 0 3px 6px #00000029 !important;
-
+	
 	.toolbar {
 		justify-content: space-between;
 
 		.logoContainer {
 			img {
 				object-fit: cover;
-				max-width: 20%;
+				max-width: 30%;
 				height: auto;
 			}
 		}
 
-		.actionsContainer {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
+		.menu {
+		
+
+			.listcontainer {
+				background-color:red !important;
+
+				& > * {
+					font-size: 1.5rem !important;
+				}
+
+			}
 		}
+		
 	}
 }
+.listItem {
+	text-align: center;
+	
+	// & > * {
 
+	// 	font-size: 3rem !important;
+	// }
+}
+
+.menu-paper{
+	background-color: $blue;
+	margin-top: 0.5rem;
+	border-radius: 0;
+	padding: 0.5rem 1.5rem;
+	box-shadow: 0 3px 6px #00000029;
+}
