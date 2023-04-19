@@ -42,7 +42,7 @@ const Header = function () {
 					/>
 					</Link>
 				</Box>
-				<Box className={styles.menu}>
+				<Box>
 					<CButton
 						onClick={handleClick}
 						variant="outlined"
