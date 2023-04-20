@@ -1,10 +1,11 @@
 const ROUTES_ENUM = Object.freeze({
 	AUTH_LOGIN: '/login',
 	AUTH_RESTORE_PASS: '/restore',
-	AUTH_CHANGE_PASS: '/change',
 	AUTH_EMAIL_SENT: 'emailsent',
-	CREATE_ACCOUNT: '/create-account',
+	AUTH_CHANGE_PASS: 'change-password',
+	AUTH_REQUEST_PASS: 'request-password',
 	
+	CREATE_ACCOUNT: '/create-account',
 	ABOUT: '/about',
 	// USERS: '/users',
 	BUSINESS: '/business',
