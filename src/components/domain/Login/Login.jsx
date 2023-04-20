@@ -79,7 +79,7 @@ const Login = function () {
                   variant="contained"
 									color="secondary"
 									title="Ingresar"
-									sx={{fontSize: '1rem'}}
+									sx={{fontSize: '1.2rem'}}
                 />
               </Grid>
             </Grid>

@@ -104,7 +104,7 @@ CTextField.defaultProps = {
 	InputProps: null,
 	helperText: 'Error',
 	error: false,
-	variant: 'outlined'
+	variant: 'standard'
 };
 
 export default CTextField;
