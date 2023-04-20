@@ -4,10 +4,16 @@ import { Box } from '@mui/material';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import RequireAuth from '../components/common/RequireAuth';
 import NoRequireAuth from '../components/common/NoRequireAuth';
+import ErrorPage from '../pages/ErrorPage';
 import LoginPage from '../pages/LoginPage';
 import BusinessPage from '../pages/BusinessPage';
 import Header from '../components/layout/Header/Header';
 import BoxPage from '../pages/BoxPage';
+import ChangePassPage from '../pages/ChangePassPage';
+import environments from '../api/environments';
+
+const { IS_DEVELOPMENT } = environments;
+
 function Layout() {
 	return(
 		<Box>
@@ -25,7 +31,8 @@ const CRoutes = function () {
 			{
 				path: ROUTES_ENUM.AUTH_LOGIN,
 				element: <LoginPage />,
-				// errorElement:
+				// errorElement: IS_DEVELOPMENT ? null : <ErrorPage />
+				errorElement: <ErrorPage />
 			},
 			// {
 			// 	path: ROUTES_ENUM.ABOUT,
@@ -36,11 +43,12 @@ const CRoutes = function () {
 			// 	path: ROUTES_ENUM.CREATE_ACCOUNT,
 			// 	element: <CreateAccountPage />
 			// },
-			// {
-			// 	path: ROUTES_ENUM.AUTH_CHANGE_PASS,
-			// 	element: <NoRequireAuth><ChangePassPage /></NoRequireAuth>
-			// 	// errorElement
-			// },
+			{
+				path: ROUTES_ENUM.AUTH_CHANGE_PASS,
+				// element: <RequireAuth><ChangePassPage /></RequireAuth>
+				element: <ChangePassPage />
+				// errorElement
+			},
 			// {
 			// 	path: ROUTES_ENUM.AUTH_RESTORE_PASS,
 			// 	element: <NoRequireAuth><RestorePassPage /></NoRequireAuth>
