@@ -3,7 +3,9 @@ import LoginContainer from '../containers/LoginContainer';
 
 function LoginPage() {
   return (
+		<>
     <LoginContainer />
+		</>
   );
 }
 

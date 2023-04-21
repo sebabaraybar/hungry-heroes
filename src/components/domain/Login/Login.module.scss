@@ -18,6 +18,7 @@
 		.btncontainer {
 			align-items: flex-end;
 			margin: auto 3.5rem 1.5rem 4rem;
+			z-index: 100;
 
 			& > * {
 				color: $blue;
@@ -79,8 +80,11 @@
 	}
 
 	.linkpass {
-		width: 100%;
-		text-align: right;
+		
+		&:hover {
+			background-color: rgba($color: $primary, $alpha: 0.2);
+			color: $primary;
+		}
 	}
 
 	.linkaccount {

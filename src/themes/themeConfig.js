@@ -9,7 +9,7 @@ const theme = createTheme ( {
 		},
 		secondary: {
 			main: vars.secondary,
-			contrastText: vars.tertiary
+			contrastText: vars.primary
 		},
 		disabled: {
 			main: vars.disabled
