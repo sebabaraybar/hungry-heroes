@@ -22,7 +22,7 @@ const ChangePass = function () {
 	}
 
 	return (
-		<MasterCard 
+		<MasterCard
 			headerTitle="Cambiar contraseña"
 		>
 			<Formik
