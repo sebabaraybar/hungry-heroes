@@ -43,12 +43,6 @@ const CRoutes = function () {
 			// 	path: ROUTES_ENUM.CREATE_ACCOUNT,
 			// 	element: <CreateAccountPage />
 			// },
-			{
-				path: ROUTES_ENUM.AUTH_CHANGE_PASS,
-				// element: <RequireAuth><ChangePassPage /></RequireAuth>
-				element: <ChangePassPage />
-				// errorElement
-			},
 			// {
 			// 	path: ROUTES_ENUM.AUTH_RESTORE_PASS,
 			// 	element: <NoRequireAuth><RestorePassPage /></NoRequireAuth>
@@ -81,7 +75,11 @@ const CRoutes = function () {
 					{
 						path: ROUTES_ENUM.BOXES,
 						element: <BoxPage />
-					}
+					},
+					{
+						path: ROUTES_ENUM.AUTH_CHANGE_PASS,
+						element: <ChangePassPage />
+					},
 				]
 			}
 		]
