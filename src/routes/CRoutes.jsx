@@ -8,6 +8,7 @@ import ErrorPage from '../pages/ErrorPage';
 import LoginPage from '../pages/LoginPage';
 import BusinessPage from '../pages/BusinessPage';
 import RequestPassPage from '../pages/RequestPassPage';
+import RequestPassConfirmationPage from '../pages/RequestPassConfirmationPage';
 import Header from '../components/layout/Header/Header';
 import BoxPage from '../pages/BoxPage';
 import ChangePassPage from '../pages/ChangePassPage';
@@ -38,6 +39,12 @@ const CRoutes = function () {
 			{
 				path: ROUTES_ENUM.AUTH_REQUEST_PASS,
 				element: <NoRequireAuth><RequestPassPage /></NoRequireAuth>,
+				// errorElement: IS_DEVELOPMENT ? null : <PageError />
+				errorElement: <ErrorPage />
+			},
+			{
+				path: ROUTES_ENUM.AUTH_REQUEST_PASS_CONFIRMATION,
+				element: <NoRequireAuth><RequestPassConfirmationPage /></NoRequireAuth>,
 				// errorElement: IS_DEVELOPMENT ? null : <PageError />
 				errorElement: <ErrorPage />
 			},

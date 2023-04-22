@@ -4,6 +4,7 @@ const ROUTES_ENUM = Object.freeze({
 	AUTH_EMAIL_SENT: 'emailsent',
 	AUTH_CHANGE_PASS: 'change-password',
 	AUTH_REQUEST_PASS: 'request-password',
+	AUTH_REQUEST_PASS_CONFIRMATION: 'request-password-confirmation',
 	
 	CREATE_ACCOUNT: '/create-account',
 	ABOUT: '/about',
