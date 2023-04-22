@@ -26,12 +26,13 @@ const RequestPassConfirmation = function () {
 			footerBtnIcon={ <LoginRounded /> }
 			onClick={() => navigate(ROUTES_ENUM.AUTH_LOGIN)}
 		>
-			<Typography mb={2}>
+			<Typography mb={2} variant='subtitle1'>
 				¿No recibiste el e-mail?
 			</Typography>
 			<CButton
 				type="submit"
 				title="Reenviar e-mail"
+				sx={{fontSize: '1.2rem'}}
 				onClick={reSend}
 			/>
 		</MasterCard>

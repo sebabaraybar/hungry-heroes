@@ -20,10 +20,7 @@ MasterCard = ({ headerTitle, headerSubtitle, children, footerBtnTitle, footerBtn
 				</Box>
 			)}
 			<Typography className={styles.headerTitle}>{headerTitle}</Typography>
-			<Typography 
-				className={styles.headerSubtitle}
-				mt={1}
-			>
+			<Typography mt={1}>
 				{headerSubtitle}
 			</Typography>
 			<Box my={6}>
@@ -33,7 +30,6 @@ MasterCard = ({ headerTitle, headerSubtitle, children, footerBtnTitle, footerBtn
 				<Box>
 					<CButton 
 						variant="text"
-						color="secondary"
 						title={footerBtnTitle}
 						startIcon={footerBtnIcon}
 						sx={{fontSize: '1rem'}}
@@ -51,11 +47,6 @@ MasterCard.propTypes = {
 	subtitle: PropTypes.string,
 	children: PropTypes.any,
 	logoComponent: PropTypes.bool,
-	// footerComponent: PropTypes.shape({
-	// 	footerBtnTitle: PropTypes.string.isRequired,
-	// 	footerBtnIcon: PropTypes.node,
-	// 	onClick: PropTypes.func.isRequired
-	// })
 	footerComponent: PropTypes.bool,
 	footerBtnTitle: PropTypes.string.isRequired,
 	footerBtnIcon: PropTypes.node,

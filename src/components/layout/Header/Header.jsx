@@ -6,7 +6,7 @@ import ROUTES_ENUM from '../../../enums/routesEnum';
 import { getHome } from '../../../utils/navUtils';
 import logo from '../../../media/logo.png'
 import styles from './Header.module.scss';
-// import { ExitToAppRounded, LockRounded, ManageAccountsRounded } from '@mui/icons-material';
+import { ExitToAppRounded, LockRounded, ManageAccountsRounded } from '@mui/icons-material';
 
 const Header = function () {
 
@@ -45,8 +45,6 @@ const Header = function () {
 				<Box>
 					<CButton
 						onClick={handleClick}
-						variant="outlined"
-						color="secondary"
 						title="menú"
 						sx={{fontSize: "2rem"}}
 					/>
@@ -77,30 +75,27 @@ const Header = function () {
 							<ListItemText sx={{ textAlign: 'left'}} >
 								<CButton
 									variant="text"
-									color="secondary"
 									title="Perfil"
-									// startIcon={<ManageAccountsRounded />}
-									sx={{ fontSize: '1.3rem'}}
+									startIcon={<ManageAccountsRounded />}
+									sx={{ fontSize: '1.2rem'}}
 									// onClick={}
 								/>
 							</ListItemText>
 							<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton
 									variant="text"
-									color="secondary"
 									title="Cambiar contraseña"
-									sx={{ fontSize: '1.3rem'}}
-									// startIcon={ <LockRounded /> }
+									sx={{ fontSize: '1.2rem'}}
+									startIcon={ <LockRounded /> }
 									onClick={() => navigate(ROUTES_ENUM.AUTH_CHANGE_PASS)}
 								/>
 							</ListItemText>
 							<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton
 									variant="text"
-									color="secondary"
 									title="Cerrar sesión"
-									sx={{ fontSize: '1.3rem'}}
-									// startIcon={ <ExitToAppRounded /> }
+									sx={{ fontSize: '1.2rem'}}
+									startIcon={ <ExitToAppRounded /> }
 									onClick={onLogout}
 								/>
 							</ListItemText>
