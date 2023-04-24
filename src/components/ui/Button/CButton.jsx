@@ -15,7 +15,9 @@ const CButton = function ({
 	disabled,
 	// component,
 	// children,
-	sx
+	sx,
+	disableFocusRipple,
+	disableRipple
 }) {
 	return (
 		<Button
@@ -28,11 +30,11 @@ const CButton = function ({
 			endIcon={endIcon}
 			onClick={onClick}
 			disabled={disabled}
-			// component={component}
 			sx={sx}
+			disableFocusRipple={disableFocusRipple}
+			disableRipple={disableRipple}
 		>
 			{title}
-			{/* {children} */}
 		</Button>
 	);
 };
@@ -47,10 +49,10 @@ CButton.propTypes = {
 	endIcon: PropTypes.element,
 	title: PropTypes.string,
 	disabled: PropTypes.bool,
-	// component: PropTypes.string,
-	// children: PropTypes.node, 
 	sx: PropTypes.oneOf(PropTypes.any),
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	disableFocusRipple: PropTypes.bool,
+	disableRipple: PropTypes.bool
 };
 
 CButton.defaultProps = {
@@ -63,10 +65,10 @@ CButton.defaultProps = {
 	endIcon: null,
 	title: null,
 	disabled: false,
-	// component: 'button'
-	// children: null, 
 	sx: null,
-	onClick: () => null
+	onClick: () => null,
+	disableFocusRipple: false,
+	disableRipple:false
 };
 
 export default CButton;

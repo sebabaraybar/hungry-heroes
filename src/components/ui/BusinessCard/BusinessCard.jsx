@@ -32,7 +32,7 @@ const BusinessCard = function ({
 						{subtitle}
 					</Typography>
 					<Typography
-						fontSize="0.7rem"
+						className={styles.carddescription}
 					>
 						{description}
 					</Typography>
@@ -42,7 +42,7 @@ const BusinessCard = function ({
 				>
 					<CButton
 						title="Ver boxes"
-						variant="text"
+						sx={{fontSize: '1.2rem'}}
 						onClick={() => alert("redirecciona a página de boxes del comercio")}
 					/>
 				</CardActions>

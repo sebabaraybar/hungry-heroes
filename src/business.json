@@ -1,47 +1,63 @@
 [
 {
-	"name": "Le Panem",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-},
-{
 	"name": "Salvaje",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	"slogan": "Bakery",
+	"description": "Una panadería artesanal con un estilo único. Un producto para cada gusto."
 },
 {
-	"name": "Mikena",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."	
+	"name": "Bio Tienda Mikena",
+	"slogan": "Cuidate más, viví mejor",
+	"description": "La variedad de productos que necesitás para todos los días: vegetarianos, veganos, sin tacc, orgánicos, integrales y mucho más..."
 },
 {
 	"name": "Le Panem",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	"slogan": "Panadería Vegana y Orgánica",
+	"description": "Nos proponemos a acompañar y generar cambios en la manera de alimentarnos, amigándonos con el medio ambiente a través de packaging compostable y biodegradable."
 },
 {
-	"name": "Salvaje",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	"name": "Let it V",
+	"slogan": "Mother Nature's food Boutique",
+	"description": " Fusionamos culturas, aromas y sabores de todo el mundo para ofrecer una propuesta plant based única e inclusiva."
 },
 {
-	"name": "Mikena",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."	
+	"name": "Antares",
+	"slogan": "El lúpulo es un camino de ida!",
+	"description": "Cerveza hecha de forma 100% artesanal en Mar del Plata"	
 },
 {
-	"name": "Le Panem",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	"name": "Izakaya",
+	"slogan": "El Bar de Sushi POP",
+	"description": "No importa la altura del mes, ni el día de la semana, a Izakaya vení a disfrutar el mejor Sushi, nuestra selección de tapas y platos gourmet, tragos y cerveza tirada artesanal."
 },
 {
-	"name": "Salvaje",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+	"name": "Kentucky",
+	"slogan": "#amamosLaPizza",
+	"description": "Amamos que la pizza sea parte de nuestras vidas. Tanto la amamos, que desde 1942 estamos abiertos desde la mañana hasta la madrugada, porque no hay hora para comer una buena pizza."
 },
 {
-	"name": "Mikena",
-	"slogan": "La mejor panadería",
-	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."	
+	"name": "Gratitude",
+	"slogan": "Bar veggie, deco & regalos para el alma",
+	"description": "Te invitamos a disfrutar la vida, a agradecer al universo todo lo que nos da y a vivir en GRATITUD"
+},
+{
+	"name": "La Cabrera",
+	"description": "La mejor carne argentina, excelentes vinos y una selección de guarniciones, especialmente elaboradas para cada plato y servidas en pequeñas cazuelas." 
+},
+{
+	"name": "Bioma",
+	"slogan": "Plant Based Café Palermo",
+	"description": "Un espacio donde conviven el café de alta calidad y los principios éticos del veganismo."
+},
+{
+	"name": "Hell's Pizza",
+	"description": "Luego de un largo camino recorrido por los barrios Manhattan, Brooklyn y el Soho de New York recreamos el estilo clásico de las pizzas más reconocidas de la gran manzana."
+},
+{
+	"name": "Organic Market",
+	"description": "Todo lo rico y natural que necesitás en un solo lugar. Comida integral, natural, orgánica y de calidad."
+},
+{
+	"name": "Smash Burger",
+	"description": "Restaurante especializado en hamburguesas, acompañamientos caseros y cerveza."
 }
 ]
