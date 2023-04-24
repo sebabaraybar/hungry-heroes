@@ -12,6 +12,8 @@ import RequestPassConfirmationPage from '../pages/RequestPassConfirmationPage';
 import Header from '../components/layout/Header/Header';
 import BoxPage from '../pages/BoxPage';
 import ChangePassPage from '../pages/ChangePassPage';
+import CreateUserPage from '../pages/CreateUserPage';
+import CreateUserConfirmationPage from '../pages/CreateUserConfirmationPage';
 import environments from '../api/environments';
 
 const { IS_DEVELOPMENT } = environments;
@@ -53,10 +55,14 @@ const CRoutes = function () {
 			// 	element: <AboutPage />
 			// 	//error element
 			// },
-			// {
-			// 	path: ROUTES_ENUM.CREATE_ACCOUNT,
-			// 	element: <CreateAccountPage />
-			// },
+			{
+				path: ROUTES_ENUM.CREATE_ACCOUNT,
+				element: <NoRequireAuth><CreateUserPage /></NoRequireAuth>
+			},
+			{
+				path: ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION,
+				element: <NoRequireAuth><CreateUserConfirmationPage /></NoRequireAuth>
+			},
 			// {
 			// 	path: ROUTES_ENUM.AUTH_RESTORE_PASS,
 			// 	element: <NoRequireAuth><RestorePassPage /></NoRequireAuth>

@@ -70,7 +70,7 @@ const Login = function () {
 									variant="text"
 									// color="primary"
 									sx={{fontSize:"0.8rem"}}
-									onClick={() => navigate(ROUTES_ENUM.AUTH_RESTORE_PASS)}
+									onClick={() => navigate(ROUTES_ENUM.AUTH_REQUEST_PASS)}
 								/>
 							</Box>
               <Grid item xs={12} mt={4}>
