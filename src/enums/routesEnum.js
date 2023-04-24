@@ -3,6 +3,7 @@ const ROUTES_ENUM = Object.freeze({
 	// AUTH_RESTORE_PASS: '/restore-password',
 	AUTH_EMAIL_SENT: '/emailsent',
 	AUTH_CHANGE_PASS: '/change-password',
+	AUTH_CHANGE_PASS_CONFIRMATION: '/change-password-confirmation',
 	AUTH_REQUEST_PASS: '/request-password',
 	AUTH_REQUEST_PASS_CONFIRMATION: '/request-password-confirmation',
 	

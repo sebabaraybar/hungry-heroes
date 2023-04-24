@@ -12,6 +12,7 @@ import RequestPassConfirmationPage from '../pages/RequestPassConfirmationPage';
 import Header from '../components/layout/Header/Header';
 import BoxPage from '../pages/BoxPage';
 import ChangePassPage from '../pages/ChangePassPage';
+import ChangePassConfirmationPage from '../pages/ChangePassConfirmationPage';
 import CreateUserPage from '../pages/CreateUserPage';
 import CreateUserConfirmationPage from '../pages/CreateUserConfirmationPage';
 import environments from '../api/environments';
@@ -100,6 +101,10 @@ const CRoutes = function () {
 						path: ROUTES_ENUM.AUTH_CHANGE_PASS,
 						element: <ChangePassPage />
 					},
+					{
+						path: ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION,
+						element: <ChangePassConfirmationPage />
+					}
 				]
 			}
 		]
