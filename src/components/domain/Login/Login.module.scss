@@ -31,7 +31,7 @@
 		&::before {
 			content: '';
 			background-image: url('../../../media/woman.png');
-			background-size: 100%;
+			background-size: cover;
 			background-repeat: no-repeat;
 			position: absolute;
 			top: -5%;
