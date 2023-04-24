@@ -64,6 +64,10 @@ const CRoutes = function () {
 				path: ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION,
 				element: <NoRequireAuth><CreateUserConfirmationPage /></NoRequireAuth>
 			},
+			{
+				path: ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION,
+				element: <NoRequireAuth><ChangePassConfirmationPage /></NoRequireAuth>
+			},
 			// {
 			// 	path: ROUTES_ENUM.AUTH_RESTORE_PASS,
 			// 	element: <NoRequireAuth><RestorePassPage /></NoRequireAuth>
@@ -100,10 +104,6 @@ const CRoutes = function () {
 					{
 						path: ROUTES_ENUM.AUTH_CHANGE_PASS,
 						element: <ChangePassPage />
-					},
-					{
-						path: ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION,
-						element: <ChangePassConfirmationPage />
 					}
 				]
 			}

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import MasterCard from '../../layout/MasterCard/MasterCard';
-import { LoginRounded } from '@mui/icons-material';
 import ROUTES_ENUM from '../../../enums/routesEnum';
+import CButton from '../../ui/Button/CButton';
 
 const ChangePassConfirmation = function () {
 	const navigate = useNavigate();
@@ -12,11 +12,12 @@ const ChangePassConfirmation = function () {
 			logoComponent
 			headerTitle="Ya cambiamos tu contraseña"
 			headerSubtitle={`Por favor, volvé a ingresar a tu cuenta`}
-			footerComponent
-			footerBtnTitle='Ingresar a mi cuenta'
-			footerBtnIcon={ <LoginRounded /> }
-			onClick={() => navigate(ROUTES_ENUM.AUTH_LOGIN)}
 		>
+			<CButton 
+				title="Ingresar a mi cuenta"
+				sx={{fontSize: '1.2rem'}}
+				onClick={() => navigate(ROUTES_ENUM.AUTH_LOGIN)}
+			/>
 		</MasterCard>
 	);
 };
