@@ -1,10 +1,10 @@
 import React from 'react';
-import RequestPassConfirmation from '../components/domain/RequestPassConfirmation/RequestPassConfirmation';
+import ChangePassConfirmation from '../components/domain/ChangePass/ChangePassConfirmation';
 
-const RequestPassConfirmationContainer = function () {
+const ChangePassConfirmationContainer = function () {
 	return (
-		<RequestPassConfirmation />
+		<ChangePassConfirmation />
 	);
 };
 
-export default RequestPassConfirmationContainer;
+export default ChangePassConfirmationContainer;
