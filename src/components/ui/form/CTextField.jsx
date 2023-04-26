@@ -23,7 +23,7 @@ const CTextField = function ({
 }) {
 
   const [isPassVisible, setPassVisibility] = useState(false);
-	console.log(isPassVisible)
+	// console.log(isPassVisible)
   
 	const setPassFieldType = () => {
 		console.log(isPassVisible)

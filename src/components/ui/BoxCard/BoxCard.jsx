@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Box, Typography, Card, CardMedia, CardContent, CardActions, Button, IconButton } from "@mui/material";
-import { DeleteOutline, EditOutlined } from "@mui/icons-material";
+import CIconButton from "../Button/CIconButton";
+import { Box, Typography, Card, CardMedia, CardContent, CardActions } from "@mui/material";
+import { EditRounded, DeleteRounded } from "@mui/icons-material";
 import styles from './BoxCard.module.scss';
 
 const BoxCard = function ({
@@ -9,50 +10,41 @@ const BoxCard = function ({
 	title,
 	description,
 	alt,
-	logo,
+	img,
 	id,
 	onEdit,
-	onDelete,
-	icon
+	onDelete
 }) {
 	return (
 		<Box className={styles.container} key={key}>
 			<Card className={styles.card}>
-				<CardMedia
-					className={styles.logocontainer}
-					image= {logo}		
-					alt={alt}
-				/>
-				<CardContent>
-					<Typography
-						variant="h2"
-						fontSize="1.5rem"
-						my={1}
-						align="center"
+				<Box className={styles.imgcontainer}>
+					<CardMedia
+						className={styles.img}
+						image={img}		
+						alt={alt}
+					/>
+				</Box>
+				<CardContent className={styles.cardcontent}>
+					<Typography className={styles.cardtitle}
 					>
 						{title}
 					</Typography>
-					<Typography
-						fontSize="0.7rem"
-					>
+					<Typography>
 						{description}
 					</Typography>
 				</CardContent>
-				<CardActions sx={{ justifyContent: "center"}}>
-					<IconButton>
-						<EditOutlined 
-							// aria-label="Editar"
-							title= "Editar"
-							onClick={() => onEdit(id)}
-						/>
-					</IconButton>
-					<IconButton
-						// aria-label="Eliminar"
+				<CardActions className={styles.btncontainer}>
+					<CIconButton
+						icon={ <EditRounded />}
+						title="Editar"
+						onClick={() => onEdit()}
+					/>
+					<CIconButton
+						icon={ <DeleteRounded />}
 						title="Eliminar"
-            onClick={() => onDelete(id)}
-					>
-						<DeleteOutline/>	
-					</IconButton>
+						onClick={() => onDelete()}
+					/>
 				</CardActions>
 			</Card>
 		</Box>
@@ -64,7 +56,7 @@ BoxCard.propTypes = {
 	title: PropTypes.string.isRequired,
 	description: PropTypes.string,
 	alt: PropTypes.string.isRequired,
-	logo: PropTypes.node.isRequired,
+	img: PropTypes.node.isRequired,
 	onEdit: PropTypes.func.isRequired,
 	onDelete: PropTypes.func.isRequired,
 };

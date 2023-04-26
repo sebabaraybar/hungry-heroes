@@ -1,19 +1,26 @@
+@import '../../../styles/variables.scss';
+
 .container {
 	display: flex;
 	flex-direction: column;
+	background-color: $blue;
 
 	.containerheader {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		font-size: 1rem;
-		padding-bottom: 0.5rem;
+		font-weight: 900;
+		text-transform: lowercase;
+		letter-spacing: -1px;
 
 		.closeicon {
-			padding: 0.3rem;
-			font-size: 1rem;
+
+			&:hover {
+				background-color: rgba($color: $secondary, $alpha: 0.1)
+			}
 		}
 	}
+
 	.divider {
 		width: 90%;
 		align-self: center;

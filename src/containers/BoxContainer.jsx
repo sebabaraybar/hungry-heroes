@@ -1,44 +1,59 @@
 import React, { useRef, useState } from 'react';
 import boxList from '../box.json';
-import { Box, Button, Dialog, DialogTitle } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import BoxCard from '../components/ui/BoxCard/BoxCard';
 import CDialog from '../components/ui/form/CDialog';
-import logo from '../media/logo.svg';
+import CButton from '../components/ui/Button/CButton';
+import img from '../media/box-img-placeholder.png'
 import FormBox from '../components/domain/Boxes/FormBox';
 import styles from './BoxContainer.module.scss';
 
 const BoxContainer = function () {
-
-	const [openModalEdit, setOpenModalEdit] = useState(false);
-	const [item, setItem] = useState({});
+	
 	const formikRef = useRef();
+	const [openModalCreate, setOpenModalCreate] = useState(false);
+	const [openModalEdit, setOpenModalEdit] = useState(false);
+	const [openModalDelete, setOpenModalDelete] = useState(false);
+	const [item, setItem] = useState(null);
+	const [boxName, setBoxName] = useState();
 
-	// const editBox = (values) => {
-	// 	setOpenModalEdit(true);
-	// 	console.log(values);
-	// }
-
-	// const handleClickEditDialog = (value) => {
-	// 	// const boxEdit = {...item};
-	// 	// setLoading(true);
-	// 	console.log(value);
-	// }
 	const createBox = (values) => {
 		console.log(values);
-		console.log("TESTTTTT");
+		alert("llama al servicio createBox");
+		setOpenModalCreate(false);
 	}
 
+	const editBox = () => {
+		alert("llama al servicio editBox");
+		setOpenModalEdit(false);
+	}
+
+	const handleEditBox = (item) => {
+		setItem(item);
+		setOpenModalEdit(true);
+		console.log(item);
+		console.log(item.name);
+	}
+
+	const deleteBox = () => {
+		alert("llama al servicio deleteBox");
+		setOpenModalDelete(false);
+	}
+
+	const handleDeleteBox = (item) => {
+		setItem(item);
+		setBoxName(item.name);
+		setOpenModalDelete(true);
+	}	
 
 	return (
 		<Box className={styles.container}>
 			<Box className={styles.btnContainer}>
-				<Button
-					variant='contained'
-					color='primary'
-					onClick={()=> {setOpenModalEdit(true)}}
-				>
-						Crear Box
-				</Button>
+				<CButton
+					title="Crear box"
+					sx={{fontSize: '1.2rem'}}
+					onClick={()=> {setOpenModalCreate(true)}}
+				/>
 			</Box>
 			<Box className={styles.cardContainer}>
 				{boxList.map((box) => (
@@ -46,27 +61,49 @@ const BoxContainer = function () {
 					key={box.id}
 					title={box.name}
 					alt={`Logo de ${box.name}`}
-					//esto va a venir del back, ver cómo
-					logo={logo}
+					img={img}
 					//hay que definir cant de caracteres
 					description={box.detail}
-					// onEdit={() => editBox(box.id)}
-					// onDelete={() => console.log(`delete ${box.id}`)}
+					onEdit={() => handleEditBox(box)}
+					onDelete={() => handleDeleteBox(box)}
 					/>
 				))}
 			</Box>
 			<CDialog
-				title="Crear box"
-				open={openModalEdit}
-				closeModal={() => setOpenModalEdit(false)}
-				btnPrimary={{
-					title: "Guardar",
-					type: "submit",
-					action: createBox
-				}}
+				title="Crear"
+				open={openModalCreate}
+				closeModal={() => setOpenModalCreate(false)}
+				btnDialogTitle="Guardar"
+				btnDialogOnClick={createBox}
+				formikRef={formikRef}
 			>
 				<FormBox
 					onSubmit={createBox}
+					formikRef={formikRef}
+				/>
+			</CDialog>
+			<CDialog
+				title="Eliminar"
+				open={openModalDelete}
+				closeModal={() => setOpenModalDelete(false)}
+				btnDialogTitle="Eliminar"
+				btnDialogOnClick={deleteBox}
+				formikRef={formikRef}
+			>
+				<Typography variant='h6'>
+					¿Querés eliminar el box {boxName}?
+				</Typography>
+			</CDialog>
+			<CDialog
+				title="Editar"
+				open={openModalEdit}
+				closeModal={() => setOpenModalEdit(false)}
+				btnDialogTitle="Guardar cambios"
+				btnDialogOnClick={editBox}
+				formikRef={formikRef}
+			>
+				<FormBox
+					onSubmit={editBox}
 					formikRef={formikRef}
 				/>
 			</CDialog>

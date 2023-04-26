@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid } from "@mui/material";
 import CTextField from "../../ui/form/CTextField";
 
 const FormBox = function ({
-	onSubmit, formikRef
+	onSubmit,
+	formikRef,
+	initialValues
 }) {
 
 	const VALIDATION = Yup.object().shape({
@@ -15,6 +17,30 @@ const FormBox = function ({
 		price: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio'),
 		quantity: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio')
 	});
+
+	// useEffect(() => {
+  //   if (userId) {
+  //     setLoading(true);
+  //     UsersService.getSingleUser(userId).then((response) => {
+  //       formikRef.current.setValues(response);
+  //       setLoading(false);
+  //     })
+  //       .catch((error) => {
+  //         setSnackbar(isAuth(handleError(error)));
+  //         setLoading(false);
+  //       });
+  //   }
+  // }, []);
+
+	useEffect(() => {
+		formikRef.current.setValues({
+			name: initialValues.name || '',
+			detail: initialValues.detail || '',
+			price: initialValues.price || null,
+			quantity: initialValues.quantity || null,
+			published: initialValues.published || false
+		});
+	}, [formikRef, initialValues]);
 
 	return (
 		<Formik
@@ -28,37 +54,36 @@ const FormBox = function ({
 			validationSchema={VALIDATION}
 			onSubmit={onSubmit}
 			innerRef={formikRef}
-		>{(formik) => (
-
+		>
+			{(formik) => (
 			<Form>
 				<Grid container columnSpacing={1} rowSpacing={2}>
 					<Grid item xs={12} >
 						<CTextField
 							label="Nombre"
-							name="name" // atributo del back
+							name="name"
 							formik={formik}
 						/>
 					</Grid>
 					<Grid item xs={12}>
 						{/* hay que poner contador de caracteres  */}
 						<CTextField
-							multiline
 							label="Descripción"
-							name="detail" // atributo del back
+							name="detail"
 							formik={formik}
 						/>
 					</Grid>
 					<Grid item xs={6}>
 						<CTextField
 							label="Precio"
-							name="price" // atributo del back
+							name="price"
 							formik={formik}
 						/>
 					</Grid>
 					<Grid item xs={6}>
 						<CTextField
 							label="Cantidad"
-							name="quantity" // atributo del back
+							name="quantity"
 							formik={formik}
 						/>
 					</Grid>
@@ -71,7 +96,12 @@ const FormBox = function ({
 
 FormBox.propTypes = {
   formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+	initialValues: PropTypes.objectOf(PropTypes.any)
+};
+
+FormBox.defaultProps = {
+	initialValues: {}
 };
 
 export default FormBox;

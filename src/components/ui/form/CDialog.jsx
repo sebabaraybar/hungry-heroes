@@ -10,37 +10,13 @@ import styles from './CDialog.module.scss';
 const CDialog = function({
 	title,
 	children,
-	btnPrimary,
-	btnSecondary,
-	formikRef,
 	open,
 	closeModal,
 	fullWidth,
-	maxWidth
+	maxWidth,
+	btnDialogTitle,
+	btnDialogOnClick
 }){
-	const handleClickBtnPrimary = () => {
-		if(!btnPrimary.onClick) {
-			closeModal();
-			return;
-		}
-		if(formikRef) {
-			formikRef.current.validateForm().then(() => {
-				formikRef.current.handleSubmit();
-			});
-		} else {
-			if(btnPrimary.onClick) {
-				btnPrimary.onClick();
-			}
-			closeModal();
-		}
-	};
-
-	const handleClickBtnSecondary = () => {
-		closeModal();
-		if(!btnSecondary.onClick) {
-			btnSecondary.onClick();
-		}	
-	};
 
 	const afterModalClose = (event, reason) => {
 		if (reason === 'backdropClick') {
@@ -60,7 +36,7 @@ const CDialog = function({
 			maxWidth={maxWidth}
 			disableEscapeKeyDown
 			PaperProps={{
-				elevation: 2
+				elevation: 1
 			}}
 		>
 			<Box className={styles.container}>
@@ -69,8 +45,7 @@ const CDialog = function({
 					<CIconButton
 						icon={<Close className={styles.closeicon}/>}
 						onClick={closeModal}
-					>
-					</CIconButton>
+					/>
 				</DialogTitle>
 				<Divider className={styles.divider}/>
 				<DialogContent>
@@ -78,24 +53,12 @@ const CDialog = function({
 						{children}
 					</Box>
 					<DialogActions className={styles.containerbtn}>
-					{btnPrimary && (
-							<CButton
-								// type={btnPrimary.type || 'button'}
-								// size={btnPrimary.size 'small'
-								// variant= 'contained'
-								onClick={handleClickBtnPrimary}
-								title={btnPrimary.title}
-							/>
-						)}
-						{btnSecondary && (
-							<CButton
-								// type='button'
-								// size='small'
-								variant='outlined'
-								onClick={handleClickBtnSecondary}
-								title={btnSecondary.title}
-							/>
-						)}
+						<CButton
+							type="submit"
+							title={btnDialogTitle}
+							onClick={btnDialogOnClick}
+							sx={{fontSize: '1.2rem'}}
+						/>
 					</DialogActions>
 				</DialogContent>
 			</Box>
@@ -113,28 +76,12 @@ CDialog.propTypes = {
 	formikRef: PropTypes.oneOfType([
     PropTypes.shape(FORMIK_PROPTYPES).isRequired,
     PropTypes.bool
-  ]),
-	btnPrimary: PropTypes.oneOfType([
-		PropTypes.shape({
-			title: PropTypes.string,
-			action: PropTypes.func
-		}).isRequired,
-	PropTypes.bool
-	]),
-	btnSecondary: PropTypes.oneOfType([
-		PropTypes.shape({
-			title: PropTypes.string,
-			action: PropTypes.func
-		}).isRequired,
-	PropTypes.bool
-	]),
+  ])
 };
 
 CDialog.defaultProps = {
-	maxWidth: 'md',
+	maxWidth: 'sm',
 	fullWidth: false,
-	btnPrimary: false,
-	btnSecondary: false,
 	formikRef: false,
 };
 

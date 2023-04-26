@@ -1,48 +1,48 @@
 [
 	{
 		"id": 1,
-		"name": "Box 1",
-		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-		"price": 200,
-		"quantity": 1,
+		"name": "Rolls",
+		"detail": "Cinnamon rolls de canela x 2",
+		"price": 900,
+		"quantity": 3,
 		"published": true
 	},
 	{
 		"id": 2,
-		"name": "Box 2",
-		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-		"price": 400,
-		"quantity": 3,
+		"name": "Super Cookies",
+		"detail": "Cookies de chocolate  y 2 cookies de coco con ganache de frambuesa y vainilla x 2",
+		"price": 1200,
+		"quantity": 4,
 		"published": false
 	},
 	{
 		"id": 3,
-		"name": "Box 3",
-		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-		"price": 2000,
+		"name": "Waffle",
+		"detail": "Waffle de almendras con sirup de miel y canela",
+		"price": 850,
 		"quantity": 5,
 		"published": true
 	},
 	{
 		"id": 4,
-		"name": "Box 4",
-		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-		"price": 200,
+		"name": "Combo Bravo",
+		"detail": "Hamburguesa de carne con queso, lechuga, tomate y huevo acompañada con papas bravas",
+		"price": 1200,
 		"quantity": 1,
 		"published": true
 	},
 	{
 		"id": 5,
-		"name": "Box 5",
-		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"name": "Pepperoni",
+		"detail": "Pizza grande de pepperoni con aceitunas negras",
 		"price": 400,
 		"quantity": 3,
 		"published": false
 	},
 	{
 		"id": 6,
-		"name": "Box 6",
-		"detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"name": "Vegan",
+		"detail": "Sandwich vegano de tofu con verduras y emusión de limón y veganesa con papas fritas",
 		"price": 2000,
 		"quantity": 5,
 		"published": true
