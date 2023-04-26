@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import CIconButton from "../Button/CIconButton";
 import { Box, Typography, Card, CardMedia, CardContent, CardActions } from "@mui/material";
 import { EditRounded, DeleteRounded } from "@mui/icons-material";
-import CIconButton from "../Button/CIconButton";
-import { Box, Typography, Card, CardMedia, CardContent, CardActions } from "@mui/material";
-import { EditRounded, DeleteRounded } from "@mui/icons-material";
 import styles from './BoxCard.module.scss';
 
 const BoxCard = function ({
