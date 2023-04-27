@@ -4,7 +4,7 @@ import { Box, AppBar, Toolbar, List, ListItemText, Menu } from '@mui/material';
 import CButton from '../../ui/Button/CButton';
 import ROUTES_ENUM from '../../../enums/routesEnum';
 import { getHome } from '../../../utils/navUtils';
-import logo from '../../../media/logo.png'
+import logo from '../../../media/logo-light.png'
 import styles from './Header.module.scss';
 import { ExitToAppRounded, LockRounded, ManageAccountsRounded } from '@mui/icons-material';
 
@@ -46,6 +46,7 @@ const Header = function () {
 					<CButton
 						onClick={handleClick}
 						title="menú"
+						color="primary"
 						sx={{fontSize: "2rem"}}
 					/>
 					<Menu

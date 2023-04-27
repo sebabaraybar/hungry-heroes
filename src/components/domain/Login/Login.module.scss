@@ -21,11 +21,12 @@
 			z-index: 100;
 
 			& > * {
-				color: $blue;
+				// color: $blue;
+				letter-spacing: -2.5px;
 			}
-			&:hover {
-				background-color: rgba($color: $blue, $alpha: 0.2);
-			}
+			// &:hover {
+			// 	background-color: rgba($color: $blue, $alpha: 0.2);
+			// }
 		}
 
 		&::before {
@@ -42,7 +43,7 @@
 	}
 
 	.logincontainer {
-		max-width: 20%;
+		max-width: 25%;
 		padding:3rem;
 		border-radius: 0;
 		display: flex;
@@ -60,7 +61,7 @@
 			background-size: contain;
       background-repeat: no-repeat;
       position: absolute;
-      left: 75%;
+      left: 65%;
       height: 100%;
       width: 100%;
       z-index: -1;
