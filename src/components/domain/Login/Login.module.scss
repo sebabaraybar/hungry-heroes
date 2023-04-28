@@ -35,7 +35,7 @@
 			background-size: cover;
 			background-repeat: no-repeat;
 			position: absolute;
-			right: -10%;
+			right: -5%;
 			height: 100%;
 			width: 100%;
 			z-index: 2;
@@ -55,17 +55,17 @@
 		position: relative;
 		z-index: 100;
 
-		&::before {
-			content: '';
-			background-image: url('../../../media/waves.png');
-			background-size: contain;
-      background-repeat: no-repeat;
-      position: absolute;
-      left: 65%;
-      height: 100%;
-      width: 100%;
-      z-index: -1;
-		}
+		// &::before {
+		// 	content: '';
+		// 	background-image: url('../../../media/waves.png');
+		// 	background-size: contain;
+    //   background-repeat: no-repeat;
+    //   position: absolute;
+    //   left: 65%;
+    //   height: 100%;
+    //   width: 100%;
+    //   z-index: -1;
+		// }
 	}
 
 	.logocontainer {
