@@ -7,12 +7,9 @@
 
 	.card {
 		box-shadow: 0 3px 6px #0000001c;
-		width: 350px;
-		height: 350px;
-		box-shadow: 0 3px 6px #0000001c;
-		width: 350px;
-		height: 350px;
-		padding: 1rem;
+		width: 380px;
+		height: 400px;
+		padding-bottom: 1rem;
 		display: flex;
 		flex-direction: column;
 
@@ -32,6 +29,12 @@
 				letter-spacing: -1px;
 				text-align: center;
 				margin-bottom: 1rem;
+			}
+
+			.carddetails {
+				font-weight: 900;
+				font-size: 1.1rem;
+				letter-spacing: -0.5px;
 			}
 		}
 

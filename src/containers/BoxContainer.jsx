@@ -46,12 +46,19 @@ const BoxContainer = function () {
 		setOpenModalDelete(true);
 	}	
 
+	const handleBuyBox = (item) => {
+		setItem(item);
+		setBoxName(item.name);
+		alert("llama al servicio comprar")
+	}
+
 	return (
 		<Box className={styles.container}>
 			<Box className={styles.btnContainer}>
 				<CButton
 					title="Crear box"
 					sx={{fontSize: '1.2rem'}}
+					variant="contained"
 					onClick={()=> {setOpenModalCreate(true)}}
 				/>
 			</Box>
@@ -64,8 +71,11 @@ const BoxContainer = function () {
 					img={img}
 					//hay que definir cant de caracteres
 					description={box.detail}
+					quantity={box.quantity}
+					price={box.price}
 					onEdit={() => handleEditBox(box)}
 					onDelete={() => handleDeleteBox(box)}
+					onBuy={() => handleBuyBox(box)}
 					/>
 				))}
 			</Box>
