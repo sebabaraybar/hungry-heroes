@@ -66,6 +66,56 @@ const theme = createTheme ( {
 					borderRadius: '0'
 				}
 			}
+		},
+		MuiFormLabel: {
+			styleOverrides: {
+				root: {
+					fontWeight: '900',
+					textTransform: 'lowercase',
+					letterSpacing: '-0.5px',
+				}
+			}
+		},
+		MuiInputLabel: {
+			styleOverrides: {
+				root: {
+					fontWeight: '900',
+					fontSize: '1.2rem',
+					textTransform: 'lowercase',
+					letterSpacing: '-1px'
+				}
+			}
+		},
+		MuiFormHelperText: {
+			styleOverrides: {
+				root: {
+					textTransform: 'lowercase',
+					letterSpacing: '-0.5px',
+					fontWeight: '900'
+				}
+			}
+		},
+		MuiInputBase: {
+			styleOverrides: {
+				root: {
+					'& .Mui-focused': {
+						color: vars.secondary
+					}
+				}
+			}
+		},
+		MuiTooltip: {
+			styleOverrides: {
+				tooltip: {
+					backgroundColor: vars.blue,
+					color: vars.secondary,
+					fontSize: '1.1rem',
+					fontWeight: '900',
+					textTransform: 'lowercase',
+					letterSpacing: '-1px',
+					borderRadius: '0'
+				}
+			}
 		}
 	}
 });
