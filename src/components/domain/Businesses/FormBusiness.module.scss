@@ -1,0 +1,25 @@
+@import '../../../styles/variables.scss';
+
+.container {
+	// background-color: rgba($color: $primary, $alpha: 0.9);
+	padding: 0 5rem;
+	max-width: 60%;
+	// z-index: 100;
+
+	.title {
+		margin-top: 3rem;
+		margin-bottom: 6rem;
+		font-size: 2rem;
+		font-weight: 900;
+		letter-spacing: -1px;
+		text-transform: lowercase;
+	}
+
+	.btncontainer {
+		width: 100%;
+		margin-top: 5rem;
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+}

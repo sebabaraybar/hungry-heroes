@@ -15,13 +15,14 @@ import ChangePassPage from '../pages/ChangePassPage';
 import ChangePassConfirmationPage from '../pages/ChangePassConfirmationPage';
 import CreateUserPage from '../pages/CreateUserPage';
 import CreateUserConfirmationPage from '../pages/CreateUserConfirmationPage';
+import ProfileBusinessPage from '../pages/ProfileBusinessPage';
 import environments from '../api/environments';
 
 const { IS_DEVELOPMENT } = environments;
 
 function Layout() {
 	return(
-		<Box>
+		<Box sx={{boxSizing: 'border-box'}}>
 			<Header /> 
 			<main>
 				<Outlet />
@@ -104,6 +105,10 @@ const CRoutes = function () {
 					{
 						path: ROUTES_ENUM.AUTH_CHANGE_PASS,
 						element: <ChangePassPage />
+					},
+					{
+						path: ROUTES_ENUM.PROFILE,
+						element: <ProfileBusinessPage />
 					}
 				]
 			}
