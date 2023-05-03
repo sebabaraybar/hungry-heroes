@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Formik, Form, useFormikContext } from 'formik';
+import React, {  useRef, useState } from 'react';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid, Typography } from '@mui/material';
 import CTextField from '../../ui/form/CTextField';
@@ -38,8 +38,8 @@ const FormBusiness = function() {
 			<Typography className={styles.title}>Editar perfil</Typography>
 			<Formik
 				initialValues={{
-					username: '',
-					name: 'Negocio SRL',
+					username: 'salvaje@info.com.ar',
+					name: '',
 					realName: '',
 					slogan: '',
 					description: '',
