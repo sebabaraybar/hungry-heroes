@@ -9,7 +9,6 @@
 		box-shadow: 0 3px 6px #0000001c;
 		width: 380px;
 		height: 400px;
-		padding-bottom: 1rem;
 		display: flex;
 		flex-direction: column;
 
@@ -41,6 +40,22 @@
 		.btncontainer {
 			margin-top: auto;
 			justify-content: center;
+			margin-bottom: 0.5rem;
+		}
+
+		.state {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			text-align: center;
+			text-transform: lowercase;
+			padding: 0.3rem;
+			background-color: $disabled;
+			& > * {
+				font-weight: 900;
+				letter-spacing: -1px;
+			}
 		}
 	}
 }

@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
+import ROUTES_ENUM from "../../../enums/routesEnum";
 import CIconButton from "../Button/CIconButton";
 import { Box, Typography, Card, CardMedia, CardContent, CardActions } from "@mui/material";
 import { EditRounded, DeleteRounded } from "@mui/icons-material";
 import styles from './BoxCard.module.scss';
 import CButton from "../Button/CButton";
+import { InfoRounded } from "@mui/icons-material";
 
 const BoxCard = function ({
 	key,
@@ -14,12 +17,14 @@ const BoxCard = function ({
 	price,
 	alt,
 	img,
-	id,
 	onEdit,
 	onDelete,
-	onBuy
+	onBuy,
+	userType,
+	published
 }) {
-	let user = "business0";
+
+	const navigate = useNavigate();
 
 	return (
 		<Box className={styles.container} key={key}>
@@ -40,14 +45,14 @@ const BoxCard = function ({
 					<Typography mt={2} className={styles.carddetails}>
 						${price}
 					</Typography>
-					{user === "business" ? (
+					{userType === "business" ? (
 						<Typography className={styles.carddetails}>
 							stock: {quantity}
 						</Typography>
 					): null}
 				</CardContent>
 				<CardActions className={styles.btncontainer}>
-					{user === "business" ? (
+					{userType === "business" ? (
 						<>
 						<CIconButton
 							icon={ <EditRounded />}
@@ -68,6 +73,19 @@ const BoxCard = function ({
 						/>
 					}
 				</CardActions>
+				{(userType === "business" && !published) ? (
+					<>
+					<Box className={styles.state}>
+						<Typography>sin publicar</Typography>
+					<CIconButton
+					icon={<InfoRounded />}
+					size="large"
+					title="Completá tu perfil y los boxes serán publicados"
+					onClick={() => navigate(ROUTES_ENUM.PROFILE)}
+					/>
+					</Box>
+					</>
+				): null}
 			</Card>
 		</Box>
 	);
@@ -81,7 +99,9 @@ BoxCard.propTypes = {
 	img: PropTypes.node.isRequired,
 	onEdit: PropTypes.func.isRequired,
 	onDelete: PropTypes.func.isRequired,
-	onBuy: PropTypes.func.isRequired
+	onBuy: PropTypes.func.isRequired,
+	userType: PropTypes.string.isRequired,
+	published: PropTypes.bool.isRequired
 };
 
 BoxCard.defaultProps = {
