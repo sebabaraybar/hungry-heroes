@@ -93,7 +93,6 @@ const FormUser = function () {
 											value="business"
 											label="Quiero comprar"
 											control={ <Radio /> }
-											sx={{marginLeft: '3rem'}}
 										/>
 									</RadioGroup>
 									<ErrorMessage
