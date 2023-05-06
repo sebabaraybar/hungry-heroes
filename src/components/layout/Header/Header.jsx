@@ -79,7 +79,7 @@ const Header = function () {
 									title="Perfil"
 									startIcon={<ManageAccountsRounded />}
 									sx={{ fontSize: '1.2rem'}}
-									// onClick={}
+									onClick={() => navigate(ROUTES_ENUM.PROFILE)}
 								/>
 							</ListItemText>
 							<ListItemText sx={{ textAlign: 'left'}}>
