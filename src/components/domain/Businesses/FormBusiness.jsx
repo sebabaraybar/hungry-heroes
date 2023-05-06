@@ -1,13 +1,17 @@
 import React, {  useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import businessList from '../../../business.json';
 import { Grid, Typography } from '@mui/material';
 import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
 import { Box } from '@mui/material';
 import styles from './FormBusiness.module.scss';
 
-const FormBusiness = function() {
+const FormBusiness = function({
+	formTitle,
+	activeProfile
+}) {
 
 	const formikRef = useRef();
 	const [disabledField, setdisabledField] = useState(true);
@@ -28,14 +32,18 @@ const FormBusiness = function() {
 	};
 	
 	const onSubmit = () => {
-		alert("llama al servicio updateProfile");
+		if(activeProfile) {
+			alert("llama al servicio updateProfile");
+		} else {
+			alert("llama al servicio createProfile");
+		}
 		setdisabledField(true);
 		setEnableBtn(false);
 	};
 
 	return(
 		<Box className={styles.container}>
-			<Typography className={styles.title}>Editar perfil</Typography>
+			<Typography className={styles.title}>{activeProfile ? "Editar perfil" : "Completar perfil"}</Typography>
 			<Formik
 				initialValues={{
 					username: 'salvaje@info.com.ar',
@@ -142,7 +150,7 @@ const FormBusiness = function() {
 							</Grid>
 							<Grid item xs={6}>
 								<CTextField
-									disabled={disabledField}
+									disabled
 									label="E-mail"
 									name="username"
 									formik={formik}
@@ -151,7 +159,7 @@ const FormBusiness = function() {
 							<Box  className={styles.btncontainer}>
 								{(!enableBtn && (
 									<CButton
-										title="Editar"
+										title="editar"
 										sx={{fontSize: '1.2rem'}}
 										onClick={handleEdit}
 									/>
