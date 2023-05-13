@@ -1,0 +1,20 @@
+@import "../styles/variables.scss";
+
+.container {
+	background-color: rgba($color: $blue, $alpha: 0.3);
+	width: 100%;
+	min-height: 100vh;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		background-image: url("../media/bg-drop.png");
+		position: absolute;
+		height: 100%;
+		width: 120%;
+		background-size: contain;
+		left: -10%;
+		opacity: 0.2;
+	}
+}

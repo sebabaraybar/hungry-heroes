@@ -6,7 +6,8 @@ import CIconButton from "../Button/CIconButton";
 import FORMIK_PROPTYPES from "../../../modelsFormik/FormikProps";
 
 const CTextField = function ({
-  name,
+  fullWidth,
+	name,
   label,
   disabled,
   type,
@@ -53,7 +54,7 @@ const CTextField = function ({
 
   return (
     <TextField
-    fullWidth
+    fullWidth={fullWidth}
 		multiline
     name={name}
     label= {label}
@@ -89,7 +90,8 @@ CTextField.propTypes = {
   InputProps: PropTypes.objectOf(PropTypes.any),
 	helperText: PropTypes.string,
 	error: PropTypes.bool,
-	variant: PropTypes.oneOf(['outlined', 'filled', 'standard'])
+	variant: PropTypes.oneOf(['outlined', 'filled', 'standard']),
+	fullWidth: PropTypes.bool
 };
 
 CTextField.defaultProps = {
@@ -104,7 +106,8 @@ CTextField.defaultProps = {
 	InputProps: null,
 	helperText: 'Error',
 	error: false,
-	variant: 'standard'
+	variant: 'standard',
+	fullWidth: true
 };
 
 export default CTextField;

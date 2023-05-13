@@ -1,0 +1,55 @@
+@import '../../../styles/variables.scss';
+
+.container {
+	padding: 5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	opacity: 0.9;
+	
+	.cardwrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		
+		.card {
+			padding: 1rem 2rem;
+			background-color: $blue;
+			box-shadow: 0 3px 6px #0000001c;
+			border-radius: 0;
+	
+			.datacontainer {
+				display: flex;
+				text-transform: lowercase;
+				font-size: 1.1rem;
+				margin-bottom: 0.5rem;
+
+				.formikcontainer {
+					display: flex;
+					align-items: flex-end;
+					gap: 1rem;
+				}
+			}
+	
+			.title {
+				margin-right: 1rem;
+				font-weight: 900;
+				letter-spacing: -1px;
+				width: auto;
+			}
+	
+			.statedelivered {
+				font-weight: 900;
+				letter-spacing: -1px;
+				background-color: $green;
+				}
+				.statepending {
+					font-weight: 900;
+					letter-spacing: -1px;
+					background-color: $pink;
+				}
+			}
+	}
+
+	}

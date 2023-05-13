@@ -1,0 +1,26 @@
+[
+	{
+		"date": "01/11/2022",
+		"boxName": "Super Cookies",
+		"businessName": "Salvaje",
+		"buyer": "martina@gmail.com",
+		"code": "5512",
+		"delivered": true
+	},
+	{
+		"date": "12/02/2022",
+		"boxName": "Waffle",
+		"businessName": "Salvaje",
+		"buyer": "federico@gmail.com",
+		"code": "",
+		"delivered": false
+	},
+	{
+		"date": "12/11/2022",
+		"boxName": "Combo Bravo",
+		"businessName": "Alma de Barrio",
+		"buyer": "marcos@gmail.com",
+		"code": "5998",
+		"delivered": true
+	}
+]

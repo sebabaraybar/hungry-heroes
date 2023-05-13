@@ -15,7 +15,8 @@ const ROUTES_ENUM = Object.freeze({
 	// BOXES: '/business/:id',
 	BOXES: '/boxes',
 	// PROFILE: '/user/:id'
-	PROFILE: '/profile'
+	PROFILE: '/profile',
+	SALES: '/sales'
 });
 
 const ROUTES_KEY_ENUM = Object.freeze({
