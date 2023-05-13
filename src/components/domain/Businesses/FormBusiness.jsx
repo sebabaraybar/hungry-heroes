@@ -1,11 +1,11 @@
 import React, {  useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import businessList from '../../../business.json';
 import { Grid, Typography } from '@mui/material';
 import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
 import { Box } from '@mui/material';
+import UploadImg from '../../ui/UploadImg/UploadImg';
 import styles from './FormBusiness.module.scss';
 
 const FormBusiness = function({
@@ -16,6 +16,30 @@ const FormBusiness = function({
 	const formikRef = useRef();
 	const [disabledField, setdisabledField] = useState(true);
 	const [enableBtn, setEnableBtn] = useState(false);
+	const [selectedImage, setSelectedImage] = useState();
+
+	const VALIDATION = Yup.object().shape({
+		name: Yup.string().required('Campo obligatorio'),
+		realName: Yup.string().required('Campo obligatorio'),
+		slogan: Yup.string().required('Campo obligatorio'),
+		description: Yup.string().required('Campo obligatorio'),
+	// 	// logo
+		address: Yup.string()
+  .required('Campo obligatorio'),
+	postalCode: Yup.string()
+  .required('Campo obligatorio')
+  .matches(/^[0-9]{4}$/, 'El código postal debe contener 4 números'),
+	district: Yup.string().required('Campo obligatorio'),
+	cuit: Yup.string()
+  .required('Campo obligatorio')
+  .matches(/^\d{2}-\d{8}-\d{1}$/, 'El CUIT debe tener el formato 00-00000000-0'),
+	cbu: Yup.string()
+  .required('Campo obligatorio')
+  .matches(/^([a-zA-Z]{1}\.?){6,20}$/, 'El CBU debe tener entre 6 y 20 letras. Puede contener puntos'),
+	web: Yup.string()
+  .url('Ejemplo: https://www.negocio.com/')
+  .required('Campo obligatorio')
+	});
 
 	const handleChange = () => {
 		setEnableBtn(true);
@@ -30,13 +54,39 @@ const FormBusiness = function({
 		setdisabledField(true);
 		setEnableBtn(false);
 	};
+
+	// const handleUpload = (e) => {
+	// 	let file = e.target.files[0];
+	// 	const reader = new FileReader();
+	// 	let url = reader.readAsDataURL(file);
+
+	// 	reader.onloadend = function(e) {
+	// 		setSelectedImage(reader.result);
+	// 	}
+	// 	console.log("TESTTTTT")
+	// 	console.log(file);
+	// }
 	
 	const onSubmit = () => {
+	// 	console.log(formikRef.current.values.logo)
+	// 	const formData = new FormData();
+  // Object.keys(formikRef.current.values).forEach((key) => {
+  //   if (key === 'logo') {
+  //     const value = formikRef.current.values[key];
+  //     const blob = value instanceof File
+  //       ? new Blob([value], { type: value.type })
+  //       : value;
+  //     formData.append(key, blob, value.name);
+  //   } else {
+  //     formData.append(key, formikRef.current.values[key]);
+  //   }
+  // });
 		if(activeProfile) {
 			alert("llama al servicio updateProfile");
 		} else {
 			alert("llama al servicio createProfile");
 		}
+		console.log(formikRef.current.values);
 		setdisabledField(true);
 		setEnableBtn(false);
 	};
@@ -51,16 +101,16 @@ const FormBusiness = function({
 					realName: '',
 					slogan: '',
 					description: '',
-					logo: null,
+					logo: '',
 					address: '',
 					postalCode: '',
 					district: '',
 					cuit: '',
 					cbu: '',
 					web: '',
-					active: false
+					active: false,
 				}}
-				// validationSchema={VALIDATION}
+				validationSchema={VALIDATION}
 				onSubmit={onSubmit}
 				innerRef={formikRef}
 			>
@@ -120,7 +170,7 @@ const FormBusiness = function({
 								<CTextField
 									disabled={disabledField}
 									label="Barrio"
-									name="postalCode"
+									name="district"
 									formik={formik}
 								/>
 							</Grid>
@@ -156,6 +206,17 @@ const FormBusiness = function({
 									formik={formik}
 								/>
 							</Grid>
+							{/* <Grid item xs={6}>
+								<UploadImg
+									name='logo'
+									// disabled={disabledField}
+									formik={formik}
+									onChange={(event) => {
+										formik.setFieldValue("file", event.currentTarget.files[0]);
+									}}
+									// onChange={handleUpload}
+								/>
+							</Grid> */}
 							<Box  className={styles.btncontainer}>
 								{(!enableBtn && (
 									<CButton
@@ -175,7 +236,7 @@ const FormBusiness = function({
 										title="Guardar cambios"
 										variant="contained"
 										sx={{fontSize: '1.2rem'}}
-										onClick={onSubmit}
+										onClick={formik.handleSubmit}
 									/>
 								</>
 								)}
@@ -184,7 +245,6 @@ const FormBusiness = function({
 					</Form>
 				)}
 			</Formik>
-
 		</Box>
 	);
 };
