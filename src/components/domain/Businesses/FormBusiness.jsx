@@ -3,9 +3,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid, Typography } from '@mui/material';
 import CTextField from '../../ui/form/CTextField';
+import CSelect from '../../ui/Select/CSelect';
 import CButton from '../../ui/Button/CButton';
 import { Box } from '@mui/material';
 import UploadImg from '../../ui/UploadImg/UploadImg';
+import DISTRICT_ENUM from '../../../enums/districtEnum';
+import { makeOptionsObject } from '../../../utils/utils';
 import styles from './FormBusiness.module.scss';
 
 const FormBusiness = function({
@@ -166,12 +169,12 @@ const FormBusiness = function({
 								/>
 							</Grid>
 							<Grid item xs={4}>
-								{/* Cambiar por select */}
-								<CTextField
+								<CSelect
 									disabled={disabledField}
 									label="Barrio"
 									name="district"
 									formik={formik}
+									selectOption={makeOptionsObject(DISTRICT_ENUM, 'label', 'key')}
 								/>
 							</Grid>
 							<Grid item xs={6}>
