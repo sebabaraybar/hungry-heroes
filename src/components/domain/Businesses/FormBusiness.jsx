@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Grid, Typography } from '@mui/material';
 import CTextField from '../../ui/form/CTextField';
 import CSelect from '../../ui/Select/CSelect';
+import CAutocomplete from '../../ui/Select/CAutocomplete';
 import CButton from '../../ui/Button/CButton';
 import { Box } from '@mui/material';
 import UploadImg from '../../ui/UploadImg/UploadImg';
@@ -152,7 +153,7 @@ const FormBusiness = function({
 									formik={formik}
 								/>
 							</Grid>
-							<Grid item xs={4}>
+							<Grid item xs={12}>
 								<CTextField
 									disabled={disabledField}
 									label="Dirección"
@@ -160,7 +161,7 @@ const FormBusiness = function({
 									formik={formik}
 								/>
 							</Grid>
-							<Grid item xs={4}>
+							<Grid item xs={6}>
 								<CTextField
 									disabled={disabledField}
 									label="Código postal"
@@ -168,13 +169,13 @@ const FormBusiness = function({
 									formik={formik}
 								/>
 							</Grid>
-							<Grid item xs={4}>
-								<CSelect
+							<Grid item xs={6}>
+								<CAutocomplete
 									disabled={disabledField}
 									label="Barrio"
 									name="district"
 									formik={formik}
-									selectOption={makeOptionsObject(DISTRICT_ENUM, 'label', 'key')}
+									options={makeOptionsObject(DISTRICT_ENUM, 'label', 'key')}
 								/>
 							</Grid>
 							<Grid item xs={6}>
@@ -188,7 +189,7 @@ const FormBusiness = function({
 							<Grid item xs={6}>
 								<CTextField
 									disabled={disabledField}
-									label="CBU"
+									label="CBU Alias"
 									name="cbu"
 									formik={formik}
 								/>

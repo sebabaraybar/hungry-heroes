@@ -67,6 +67,16 @@ const theme = createTheme ( {
 				}
 			}
 		},
+		// style for autocomplete in main.scss
+		MuiAutocomplete: {
+			styleOverrides: {
+				root: {
+					'& .MuiAutocomplete-clearIndicator': {
+						display: 'none'
+					}
+				},
+			}
+		},
 		MuiFormLabel: {
 			styleOverrides: {
 				root: {
@@ -82,7 +92,7 @@ const theme = createTheme ( {
 					fontWeight: '900',
 					fontSize: '1.2rem',
 					textTransform: 'lowercase',
-					letterSpacing: '-1px'
+					letterSpacing: '-1px',		
 				}
 			}
 		},
@@ -98,9 +108,20 @@ const theme = createTheme ( {
 		MuiInputBase: {
 			styleOverrides: {
 				root: {
-					'& .Mui-focused': {
-						color: vars.secondary
-					}
+					'& > *': {
+						textTransform: 'lowercase',
+						fontWeight: '900',
+						color: vars.secondary,
+						fontSize: '1.1rem',
+						letterSpacing: '-0.5px',
+						backgroundColor: 'transparent'
+					},
+					// '& .Mui-focused': {
+					// 	color: vars.secondary
+					// },
+					// '& .MuiInputBase-input-MuiInput-input::focus': {
+					// 	color: vars.blue
+					// }
 				}
 			}
 		},
