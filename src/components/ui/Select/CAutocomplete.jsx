@@ -37,7 +37,8 @@ const CAutocomplete = function ({
 			margin={margin}
 		>
 			<Autocomplete
-				clearText='Borrar'
+				clearText='borrar'
+				noOptionsText='sin coincidencias'
 				id={name}
 				name={name}
 				value={fieldValue}
