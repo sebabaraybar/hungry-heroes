@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, AppBar, Toolbar, List, ListItemText, Menu } from '@mui/material';
+import { Box, AppBar, Toolbar, List, ListItemText, Menu, Divider } from '@mui/material';
 import CButton from '../../ui/Button/CButton';
 import ROUTES_ENUM from '../../../enums/routesEnum';
 import { getHome } from '../../../utils/navUtils';
 import logo from '../../../media/logo-light.png'
 import styles from './Header.module.scss';
-import { ExitToAppRounded, LockRounded, ManageAccountsRounded } from '@mui/icons-material';
+import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded } from '@mui/icons-material';
 
 const Header = function () {
 
@@ -97,6 +97,16 @@ const Header = function () {
 									title="Cerrar sesión"
 									sx={{ fontSize: '1.2rem'}}
 									startIcon={ <ExitToAppRounded /> }
+									onClick={onLogout}
+								/>
+							</ListItemText>
+							<Divider sx={{marginTop: '1.5rem'}}/>
+							<ListItemText sx={{ textAlign: 'left'}}>
+								<CButton
+									variant="text"
+									title="Eliminar cuenta"
+									sx={{ fontSize: '1rem'}}
+									startIcon={ <PersonRemoveRounded /> }
 									onClick={onLogout}
 								/>
 							</ListItemText>

@@ -17,6 +17,7 @@ import CreateUserPage from '../pages/CreateUserPage';
 import CreateUserConfirmationPage from '../pages/CreateUserConfirmationPage';
 import ProfileBusinessPage from '../pages/ProfileBusinessPage';
 import SalesPage from '../pages/SalesPage';
+import RemoveAccountPage from '../pages/RemoveAccountPage';
 import environments from '../api/environments';
 
 const { IS_DEVELOPMENT } = environments;
@@ -114,6 +115,10 @@ const CRoutes = function () {
 					{
 						path: ROUTES_ENUM.SALES,
 						element: <SalesPage />
+					},
+					{
+						path: ROUTES_ENUM.REMOVE_ACCOUNT,
+						element: <RemoveAccountPage />
 					}
 				]
 			}

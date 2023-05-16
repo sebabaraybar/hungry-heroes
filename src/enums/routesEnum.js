@@ -9,6 +9,7 @@ const ROUTES_ENUM = Object.freeze({
 	
 	CREATE_ACCOUNT: '/create-account',
 	CREATE_ACCOUNT_CONFIRMATION: '/create-account-confirmation',
+	REMOVE_ACCOUNT: '/remove-account',
 	ABOUT: '/about',
 	// USERS: '/users',
 	BUSINESS: '/business',
