@@ -6,7 +6,7 @@ import ROUTES_ENUM from '../../../enums/routesEnum';
 import { getHome } from '../../../utils/navUtils';
 import logo from '../../../media/logo-light.png'
 import styles from './Header.module.scss';
-import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded } from '@mui/icons-material';
+import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded, ShoppingCart} from '@mui/icons-material';
 
 const Header = function () {
 
@@ -100,6 +100,15 @@ const Header = function () {
 									onClick={onLogout}
 								/>
 							</ListItemText>
+							<ListItemText sx={{ textAlign: 'left'}}>
+								<CButton
+									variant="text"
+									title="Mis compras"
+									sx={{ fontSize: '1.2rem'}}
+									startIcon={ <ShoppingCart /> }
+									onClick={() => navigate(ROUTES_ENUM.SALES)}
+								/>
+							</ListItemText>
 							<Divider sx={{marginTop: '1.5rem'}}/>
 							<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton
@@ -107,7 +116,7 @@ const Header = function () {
 									title="Eliminar cuenta"
 									sx={{ fontSize: '1rem'}}
 									startIcon={ <PersonRemoveRounded /> }
-									onClick={onLogout}
+									onClick={() => navigate(ROUTES_ENUM.REMOVE_ACCOUNT)}
 								/>
 							</ListItemText>
 						</List>
