@@ -18,6 +18,7 @@ import CreateUserConfirmationPage from '../pages/CreateUserConfirmationPage';
 import ProfileBusinessPage from '../pages/ProfileBusinessPage';
 import SalesPage from '../pages/SalesPage';
 import RemoveAccountPage from '../pages/RemoveAccountPage';
+import AboutPage from '../pages/AboutPage';
 import environments from '../api/environments';
 
 const { IS_DEVELOPMENT } = environments;
@@ -54,11 +55,11 @@ const CRoutes = function () {
 				// errorElement: IS_DEVELOPMENT ? null : <PageError />
 				errorElement: <ErrorPage />
 			},
-			// {
-			// 	path: ROUTES_ENUM.ABOUT,
-			// 	element: <AboutPage />
-			// 	//error element
-			// },
+			{
+				path: ROUTES_ENUM.ABOUT,
+				element:<NoRequireAuth><AboutPage /></NoRequireAuth>
+				//error element
+			},
 			{
 				path: ROUTES_ENUM.CREATE_ACCOUNT,
 				element: <NoRequireAuth><CreateUserPage /></NoRequireAuth>
