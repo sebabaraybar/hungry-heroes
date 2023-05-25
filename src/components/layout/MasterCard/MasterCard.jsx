@@ -20,7 +20,7 @@ MasterCard = ({ headerTitle, headerSubtitle, children, footerBtnTitle, footerBtn
 				</Box>
 			)}
 			<Typography className={styles.headerTitle}>{headerTitle}</Typography>
-			<Typography mt={1}>
+			<Typography mt={1} className={styles.headersubtitle}>
 				{headerSubtitle}
 			</Typography>
 			<Box my={6}>
