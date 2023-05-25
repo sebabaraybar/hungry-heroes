@@ -8,7 +8,7 @@ import styles from './Sales.module.scss';
 import CButton from '../../ui/Button/CButton';
 
 const Sales = function() {
-	let type="cl2ient";
+	let type="clisent";
 
 	const VALIDATION = Yup.object().shape({
 		code: Yup.number().typeError("solo números").required('Campo obligatorio'),
@@ -20,6 +20,9 @@ const Sales = function() {
 
 	return(
 		<Box  className={styles.container}>
+				<Typography className={styles.maintitle}>
+					{type === "client" ? "Mis compras" : "Mis ventas"}
+				</Typography>
 			<Box className={styles.cardwrapper}>
 				{salesList.map((sale) => (
 				<Paper className={styles.card}>
