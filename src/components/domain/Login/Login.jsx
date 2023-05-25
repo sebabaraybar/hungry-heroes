@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, TextField } from '@mui/material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import ROUTES_ENUM from '../../../enums/routesEnum';
@@ -49,7 +49,6 @@ const Login = function () {
             >
               <Grid item xs={12}>
                 <CTextField
-									variant="standard"
                   label="Usuario"
                   name="username"
 									formik={formik}
@@ -57,7 +56,6 @@ const Login = function () {
               </Grid>
               <Grid item xs={12}>
                 <CTextField
-									variant="standard"
                   label="Contraseña"
                   name="password"
                   type="password"

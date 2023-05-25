@@ -7,6 +7,7 @@ import FORMIK_PROPTYPES from "../../../modelsFormik/FormikProps";
 
 const CTextField = function ({
   fullWidth,
+	multiline,
 	name,
   label,
   disabled,
@@ -55,7 +56,7 @@ const CTextField = function ({
   return (
     <TextField
     fullWidth={fullWidth}
-		multiline
+		multiline={multiline}
     name={name}
     label= {label}
 		color={color}
@@ -91,7 +92,8 @@ CTextField.propTypes = {
 	helperText: PropTypes.string,
 	error: PropTypes.bool,
 	variant: PropTypes.oneOf(['outlined', 'filled', 'standard']),
-	fullWidth: PropTypes.bool
+	fullWidth: PropTypes.bool,
+	multiline: PropTypes.bool
 };
 
 CTextField.defaultProps = {
@@ -107,7 +109,8 @@ CTextField.defaultProps = {
 	helperText: 'Error',
 	error: false,
 	variant: 'standard',
-	fullWidth: true
+	fullWidth: true,
+	multiline: false
 };
 
 export default CTextField;
