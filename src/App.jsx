@@ -6,13 +6,15 @@ import React from 'react';
 import { ThemeProvider, Box } from '@mui/material';
 import CRoutes from './routes/CRoutes';
 import theme from './themes/themeConfig';
-import LoginPage from './pages/LoginPage';
-import BoxPage from './pages/BoxPage';
+// import { UserProvider } from './context/UserContext';
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
 			<Box>
-				<CRoutes />
+				{/* <UserProvider> */}
+				  <CRoutes />
+				{/* </UserProvider> */}
 			</Box>
     {/*<ModalProvider>
     //       <LoadingProvider>
