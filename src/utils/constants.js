@@ -1,6 +1,8 @@
 const LOCAL_STORAGE = Object.freeze ({
-	TOKEN_LOGIN: 'token',
-	USER_LOGGED: 'userLogged'
+	TOKEN_LOGIN: 'jwtToken',
+	USER_LOGGED: 'id',
+	USER_EMAIL: 'email',
+	USER_ROLE: 'role'
 });
 
 export {

@@ -17,6 +17,11 @@ const api = axios.create({
 	headers: getHeaders()
 });
 
+const test = () => {
+	console.log(API_BASE_URL);
+}
+test()
+
 api.interceptors.request.use(
 	(config) => {
 		const token = localStorage.getItem(LOCAL_STORAGE.TOKEN_LOGIN);
@@ -36,10 +41,8 @@ api.interceptors.request.use(
     const token = localStorage.getItem(LOCAL_STORAGE.TOKEN_LOGIN);
 
     if (token) {
-      // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${token}`;
     } else {
-      // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = undefined;
     }
 

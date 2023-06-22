@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Box, AppBar, Toolbar, List, ListItemText, Menu, Divider } from '@mui/material';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Box, AppBar, Toolbar, List, ListItemText, Menu, Divider, MenuItem, Typography } from '@mui/material';
 import CButton from '../../ui/Button/CButton';
 import ROUTES_ENUM from '../../../enums/routesEnum';
-import { getHome } from '../../../utils/navUtils';
+import { getHome, getItemsForRole } from '../../../utils/navUtils';
 import logo from '../../../media/logo-light.png'
 import styles from './Header.module.scss';
 import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded, ShoppingCart} from '@mui/icons-material';
@@ -13,6 +13,7 @@ const Header = function () {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +64,7 @@ const Header = function () {
 						}}
 						classes={{ paper: styles['menu-paper'] }}
 					>
-				{/* {getItemsForRol().map((item) => (
+				{getItemsForRole().map((item) => (
 					<MenuItem
 						key={item.key}
 						className={location.pathname === item.link ? styles.navItemActive : styles.navItem }
@@ -71,8 +72,8 @@ const Header = function () {
 					>
 						<Typography>{item.label}</Typography>
 					</MenuItem>
-		 	))} */}
-						<List>
+		 	))}
+						{/* <List>
 							<ListItemText sx={{ textAlign: 'left'}} >
 								<CButton
 									variant="text"
@@ -119,7 +120,7 @@ const Header = function () {
 									onClick={() => navigate(ROUTES_ENUM.REMOVE_ACCOUNT)}
 								/>
 							</ListItemText>
-						</List>
+						</List> */}
 					</Menu>
 				</Box>
 			</Toolbar>

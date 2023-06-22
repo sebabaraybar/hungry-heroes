@@ -1,13 +1,19 @@
 import api from "../api/api";
 import apiUrl from "../api/apiUrl";
 
-const login = (username, password) => {
+const login = (email, password) => {
 	const urlService = apiUrl.getUrlService('auth.login');
-	return api.post(urlService, { username, password });
+	console.log("SERVICE", email, password);
+	return api.post(urlService, { email, password });
 };
 
 const logout = () => {
 	localStorage.clear();
+};
+
+const register = (email, password, confirmPassword, role) => {
+	const urlService = apiUrl.getUrlService('auth.register');
+	return api.post(urlService, { email, password, confirmPassword, role});
 };
 
 const restorePass = (body) => {
@@ -32,6 +38,7 @@ const requestPass = (email) => {
 export default {
 	login,
 	logout,
+	register,
 	restorePass,
 	requestPass
 };

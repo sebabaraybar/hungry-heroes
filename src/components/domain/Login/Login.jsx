@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
@@ -8,19 +8,42 @@ import * as Yup from 'yup';
 import ROUTES_ENUM from '../../../enums/routesEnum';
 import logo from '../../../media/logo.png';
 import styles from './Login.module.scss';
+import AuthService from '../../../services/AuthService';
+import { LOCAL_STORAGE } from '../../../utils/constants';
 
 const Login = function () {
   const navigate = useNavigate();
 	const formikRef = useRef();
 
   const VALIDATION = Yup.object().shape({
-    username: Yup.string().email('Usuario inválido - usuario@email.com').required('Campo obligatorio'),
+    email: Yup.string().email('Usuario inválido - usuario@email.com').required('Campo obligatorio'),
     password: Yup.string().required('Campo obligatorio')
   });
 
-  const onLogin = async ({ username, password }) => {
-    console.log(`USER: ${username}`, `PASS: ${password}`);
+  const onLogin = async ({ email, password }) => {
+    console.log(`USER: ${email}`, `PASS: ${password}`);
+		try {
+			const userLogged = await AuthService.login(email, password);
+			// const userLogged = {
+			// 	jwtToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJuYmYiOjE2ODY5NTgyNTQsImV4cCI6MTY4Njk1OTE1NCwiaWF0IjoxNjg2OTU4MjU0fQ.pdZFWwpuprwvlKUSjLgAoD3YJZp-frUNXZ7MZwrvM6Y",
+			// 	email: "cs@hotmail.com",
+			// 	role: "Business"
+			// }
+			localStorage.setItem(LOCAL_STORAGE.TOKEN_LOGIN, userLogged.jwtToken);
+			localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, userLogged.email);
+			localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
+			console.log(userLogged)
+
+			if(userLogged.role === 'Client') {
+				navigate(ROUTES_ENUM.BUSINESS);
+			} else {
+				navigate(ROUTES_ENUM.BOXES);
+			}
+		} catch (error) {
+			console.log(error)
+		}
   };
+
 
   return (
     <Box className={styles.container}>
@@ -33,7 +56,7 @@ const Login = function () {
 				</Box>
         <Formik
 				initialValues={{
-					username: '',
+					email: '',
 					password: ''
 				}}
           validationSchema={VALIDATION}
@@ -50,7 +73,7 @@ const Login = function () {
               <Grid item xs={12}>
                 <CTextField
                   label="Usuario"
-                  name="username"
+                  name="email"
 									formik={formik}
                 />
               </Grid>

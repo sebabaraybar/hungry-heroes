@@ -1,10 +1,10 @@
 const ROUTES_ENUM = Object.freeze({
 	AUTH_LOGIN: '/login',
-	// AUTH_RESTORE_PASS: '/restore-password',
+	AUTH_RESTORE_PASS: '/restore-password',
 	AUTH_EMAIL_SENT: '/emailsent',
-	AUTH_CHANGE_PASS: '/change-password',
+	AUTH_CHANGE_PASS: '/request-password-confirmation',
 	AUTH_CHANGE_PASS_CONFIRMATION: '/change-password-confirmation',
-	AUTH_REQUEST_PASS: '/request-password',
+	AUTH_REQUEST_PASS: '/Accounts/forgot-password',
 	AUTH_REQUEST_PASS_CONFIRMATION: '/request-password-confirmation',
 	
 	CREATE_ACCOUNT: '/create-account',
@@ -21,10 +21,14 @@ const ROUTES_ENUM = Object.freeze({
 });
 
 const ROUTES_KEY_ENUM = Object.freeze({
-	ABOUT: 'ABOUT',
+	// ABOUT: 'ABOUT',
 	BUSINESS: 'BUSINESS',
 	BOXES: 'BOXES',
-	PROFILE: 'PROFILE'
+	PROFILE: 'PROFILE',
+	CHANGE_PASSWORD: 'AUTH_CHANGE_PASS',
+	LOGOUT: 'AUTH_LOGIN',
+	SALES: 'SALES',
+	REMOVE_ACCOUNT: 'REMOVE_ACCOUNT'
 });
 
 export { ROUTES_KEY_ENUM };

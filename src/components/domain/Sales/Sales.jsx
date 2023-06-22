@@ -8,7 +8,8 @@ import styles from './Sales.module.scss';
 import CButton from '../../ui/Button/CButton';
 
 const Sales = function() {
-	let type="clisent";
+	const userType = localStorage.getItem('role');
+	console.log(userType)
 
 	const VALIDATION = Yup.object().shape({
 		code: Yup.number().typeError("solo números").required('Campo obligatorio'),
@@ -21,7 +22,7 @@ const Sales = function() {
 	return(
 		<Box  className={styles.container}>
 				<Typography className={styles.maintitle}>
-					{type === "client" ? "Mis compras" : "Mis ventas"}
+					{userType === "Client" ? "Mis compras" : "Mis ventas"}
 				</Typography>
 			<Box className={styles.cardwrapper}>
 				{salesList.map((sale) => (
@@ -43,7 +44,7 @@ const Sales = function() {
 						<Typography className={styles.text}>{sale.buyer}</Typography>
 					</Box>
 					<Box>
-						{type === "client" ? (
+						{userType === "Client" ? (
 							<Box className={styles.datacontainer}>
 							<Typography className={styles.title}>Código</Typography>
 							<Typography className={styles.data}>{sale.code}</Typography>

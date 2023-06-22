@@ -45,14 +45,14 @@ const BoxCard = function ({
 					<Typography mt={2} className={styles.carddetails}>
 						${price}
 					</Typography>
-					{userType === "business" ? (
+					{userType === "Business" ? (
 						<Typography className={styles.carddetails}>
 							stock: {quantity}
 						</Typography>
 					): null}
 				</CardContent>
 				<CardActions className={styles.btncontainer}>
-					{userType === "business" ? (
+					{userType === "Business" ? (
 						<>
 						<CIconButton
 							icon={ <EditRounded />}
@@ -73,7 +73,7 @@ const BoxCard = function ({
 						/>
 					}
 				</CardActions>
-				{(userType === "business" && !published) ? (
+				{(userType === "Business" && !published) ? (
 					<>
 					<Box className={styles.state}>
 						<Typography>sin publicar</Typography>

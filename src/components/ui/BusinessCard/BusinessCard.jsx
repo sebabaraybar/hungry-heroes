@@ -8,7 +8,8 @@ const BusinessCard = function ({
 	subtitle,
 	description,
 	alt,
-	logo
+	logo,
+	onSelect
 }) {
 	return (
 		<Box className={styles.container}>
@@ -43,7 +44,7 @@ const BusinessCard = function ({
 					<CButton
 						title="Ver boxes"
 						sx={{fontSize: '1.2rem'}}
-						onClick={() => alert("redirecciona a página de boxes del comercio")}
+						onClick={() => onSelect()}
 					/>
 				</CardActions>
 			</Card>
@@ -56,7 +57,8 @@ BusinessCard.propTypes = {
 	subtitle: PropTypes.string,
 	description: PropTypes.string,
 	alt: PropTypes.string.isRequired,
-	logo: PropTypes.node.isRequired
+	logo: PropTypes.node.isRequired,
+	onSelect: PropTypes.func.isRequired
 };
 
 BusinessCard.defaultProps = {

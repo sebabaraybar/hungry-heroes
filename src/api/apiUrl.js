@@ -1,6 +1,10 @@
+import API_BASE_URL from './environments';
+const API = 'https://hungry-heroes.azurewebsites.net';
 const apiUrl = {
 	auth: {
-		login: 'auth/login',
+		login: `${API}/Accounts/login`,
+		// login: `/Accounts/login`,
+		register: `${API}/Account/register`,
 		restorePass: 'auth/restore-password',
 		requestPass: 'auth/send-restore-email'
 	},
@@ -11,6 +15,12 @@ const apiUrl = {
 		deleteUSer: '/users/:id',
 		editUser: '/users/:id',
 		getSingleUser: '/users/:id'
+	},
+	business: {
+		getBusinesses: `${API}/Business/All`
+	},
+	product: {
+		getProductsByBusinessId: `${API}/Product/AllByBusiness/:id`
 	}
 };
 

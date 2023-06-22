@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Grid, RadioGroup, FormControl, Radio, FormControlLabel, Box, Typography } from '@mui/material';
@@ -7,11 +7,16 @@ import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
 
 import styles from './FormUser.module.scss';
+import AuthService from '../../../services/AuthService';
+import { useNavigate } from 'react-router-dom';
 
 const FormUser = function () {
 
+	const formikRef = useRef();
+	const navigate = useNavigate();
+
 	const VALIDATION = Yup.object().shape({
-		username: Yup.string()
+		email: Yup.string()
 			.email('Usuario inválido - usuario@email.com')
 			.required('Campo obligatorio'),
 		password: Yup.string().required('Campo obligatorio')
@@ -22,12 +27,23 @@ const FormUser = function () {
 		.min(8, 'Debe contener al menos 8 caracteres')
 		.max(20, 'Debe contener un máximo de 20 caracteres')
 		.oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden'),
-		userType: Yup.string().required('Campo obligatorio')
+		role: Yup.string().required('Campo obligatorio')
 	});
 
-	const onSubmit = () => {
-		alert("llama al servicio createUser");
-		window.location.href = ROUTES_ENUM.AUTH_LOGIN;
+	const onRegister = async (values) => {
+		
+		const valuesAfter = {...values};
+		valuesAfter.role = parseInt(valuesAfter.role); 
+		
+		
+		console.log(valuesAfter, valuesAfter.role, typeof valuesAfter.role)
+		AuthService.register(valuesAfter)
+		.then(() => {
+			navigate(ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION);
+		})
+		.catch((error) => {
+			console.log(error);
+		})
 	}
 
 	return (
@@ -35,14 +51,14 @@ const FormUser = function () {
 			<Typography className={styles.title} mb={3}>Completá los datos y unite a la liga hambrienta</Typography>
 			<Formik
 				initialValues={{
-					username: '',
+					email: '',
 					password: '',
 					confirmPassword: '',
-					userType: ''
+					role: 0
 				}}
 				validationSchema={VALIDATION}
-				onSubmit={onSubmit}
-				// innerRef={formikRef}
+				onSubmit={onRegister}
+				innerRef={formikRef}
 			>
 				{(formik) => (
 					<Form>
@@ -57,7 +73,7 @@ const FormUser = function () {
 							<Grid item xs={12}>
 								<CTextField
 									label="Usuario"
-									name="username"
+									name="email"
 									formik={formik}
 								/>
 							</Grid>
@@ -78,25 +94,25 @@ const FormUser = function () {
 							<Grid item xs={12}>
 								<FormControl component="fieldset" className={styles.error}>
 									<RadioGroup 
-										name='userType'
-										value={formik.values.userType}
+										name='role'
+										value={formik.values.role}
 										onChange={formik.handleChange}
 										className={styles.radiobtncontainer}
 										error={formik.touched.userType && Boolean(formik.errors.userType)}
 									>
 										<FormControlLabel
-											value="customer"
+											value={2}
 											label="Quiero vender"
 											control={ <Radio /> }
 										/>
 										<FormControlLabel
-											value="business"
+											value={1}
 											label="Quiero comprar"
 											control={ <Radio /> }
 										/>
 									</RadioGroup>
 									<ErrorMessage
-										name="userType"
+										name="role"
 										className={styles.error}
 									/>
 
@@ -107,6 +123,7 @@ const FormUser = function () {
 										type="submit"
 										title="Crear usuario"
 										sx={{fontSize: '1.2rem'}}
+										// onClick={onRegister}
 									/>
 							</Grid>
 						</Grid>
