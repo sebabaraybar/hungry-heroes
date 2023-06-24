@@ -19,13 +19,28 @@ const NAV_SYSTEM = [
 		roles: [ROLES_ENUM.ROLE_BUSINESS, ROLES_ENUM.ROLE_CLIENT],
 		order: 2
 	},
+	// {
+	// 	key: ROUTES_KEY_ENUM.SALES,
+	// 	// label: [ROLES_ENUM.ROLE_BUSINESS ? 'Mis ventas' :'Mis compras'],
+	// 	label: userLocalRole === ROLES_ENUM.ROLE_BUSINESS ? 'Mis ventas' : 'Mis compras',
+	// 	link: ROUTES_ENUM.SALES,
+	// 	roles: [ROLES_ENUM.ROLE_BUSINESS, ROLES_ENUM.ROLE_CLIENT],
+	// 	order: 3
+	// },
 	{
-		key: ROUTES_KEY_ENUM.SALES,
-		label: [ROLES_ENUM.ROLE_BUSINESS ? 'Mis ventas' :'Mis compras'],
-		link: ROUTES_ENUM.SALES,
-		roles: [ROLES_ENUM.ROLE_BUSINESS, ROLES_ENUM.ROLE_CLIENT],
-		order: 3
-	},
+    key: ROUTES_KEY_ENUM.SALES,
+    label: 'Mis ventas',
+    link: ROUTES_ENUM.SALES,
+    roles: [ROLES_ENUM.ROLE_BUSINESS],
+    order: 3
+  },
+  {
+    key: ROUTES_KEY_ENUM.SALES,
+    label: 'Mis compras',
+    link: ROUTES_ENUM.SALES,
+    roles: [ROLES_ENUM.ROLE_CLIENT],
+    order: 3
+  },
 	{
 		key: ROUTES_KEY_ENUM.LOGOUT,
 		label: 'Cerrar sesión',
@@ -41,14 +56,11 @@ const NAV_SYSTEM = [
 ];
 
 const getItemsForRole = () => {
-  const userLocalRole = localStorage.getItem(LOCAL_STORAGE.USER_ROLE);
-	console.log(userLocalRole)
+  const userLocal = localStorage.getItem('role');
+	console.log(userLocal)
   // const user = JSON.parse(userLocal);
-	console.log(NAV_SYSTEM)
-  const itemForUser = NAV_SYSTEM.filter((item) => item.roles.includes(userLocalRole));
+  const itemForUser = NAV_SYSTEM.filter((item) => item.roles.includes(userLocal) || item.roles.includes('*'));
   const itemsInOrder = itemForUser.sort((o1, o2) => o1.order - o2.order);
-	console.log(itemForUser)
-	console.log(itemsInOrder)
   return itemsInOrder;
 };
 

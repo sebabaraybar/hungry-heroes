@@ -45,7 +45,7 @@ const BusinessContainer = function () {
 					// hay que definir cant de caracteres
 					description={business.description}
 					// btnTitle="Comp888rar"
-					onSelect={() => handleSelectBusiness(4)}
+					onSelect={() => handleSelectBusiness(1)}
 					/>
 				))}
 			</Box>

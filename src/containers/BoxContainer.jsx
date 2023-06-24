@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTES_ENUM from '../enums/routesEnum';
 import boxList from '../box.json';
@@ -9,6 +9,7 @@ import CButton from '../components/ui/Button/CButton';
 import img from '../media/box-img-placeholder.png'
 import FormBox from '../components/domain/Boxes/FormBox';
 import styles from './BoxContainer.module.scss';
+import ProductService from '../services/ProductService';
 
 const BoxContainer = function () {
 	
@@ -19,11 +20,36 @@ const BoxContainer = function () {
 	const [openModalDelete, setOpenModalDelete] = useState(false);
 	const [item, setItem] = useState(null);
 	const [boxName, setBoxName] = useState();
-	const userType = 'business';
+	const [boxes, setBoxes] = useState([]);
+	const userType = localStorage.getItem('role');
+	console.log(userType)
+	// INSTANCIA FINAL
+	// const businessId = localStorage.getItem('businessId');
+	const businessId = 1;
+
+	useEffect(() => {
+		ProductService.getProductsByBusinessId(businessId)
+	.then((response) => {
+		setBoxes(response)
+		console.log(boxes)
+	})
+	.catch((error) => {
+   console.log(error)
+	})
+	},[]);
 
 	const createBox = (values) => {
 		console.log(values);
-		alert("llama al servicio createBox");
+		const valuesAfter = {...values};
+		valuesAfter.userBusinessId = businessId;
+		ProductService.createProduct(valuesAfter)
+		.then((response) => {
+			setBoxes((prevBoxes) => [...prevBoxes, response]);
+			console.log(boxes);
+		})
+		.catch((error) => {
+			console.log(error);
+		})
 		setOpenModalCreate(false);
 	};
 
@@ -32,11 +58,11 @@ const BoxContainer = function () {
 		setOpenModalEdit(false);
 	};
 
-	const handleEditBox = (item) => {
-		setItem(item);
+	const handleEditBox = (box) => {
+		setItem(box);
 		setOpenModalEdit(true);
-		console.log(item);
-		console.log(item.name);
+		console.log(box);
+		console.log(box.name);
 	};
 
 	const deleteBox = () => {
@@ -53,7 +79,7 @@ const BoxContainer = function () {
 	const handleBuyBox = (item) => {
 		setItem(item);
 		setBoxName(item.name);
-		alert("llama al servicio comprar")
+		alert("llama al servicio comprar:")
 	};
 
 	return (
@@ -67,7 +93,7 @@ const BoxContainer = function () {
 				/>
 			</Box>
 			<Box className={styles.cardContainer}>
-				{boxList.length === 0 ? (
+				{boxes.length === 0 ? (
 					<Box className={styles.emptycontainer}>
 						<Typography>
 							Todavía no creaste ningún box.
@@ -82,15 +108,15 @@ const BoxContainer = function () {
 						/>
 					</Box>
 				) : (
-				boxList.map((box) => (
+				boxes.map((box) => (
 					<BoxCard
 					key={box.id}
 					title={box.name}
 					alt={`Logo de ${box.name}`}
 					img={img}
 					//hay que definir cant de caracteres
-					description={box.detail}
-					quantity={box.quantity}
+					description={box.description}
+					stock={box.stock}
 					price={box.price}
 					onEdit={() => handleEditBox(box)}
 					onDelete={() => handleDeleteBox(box)}
@@ -106,12 +132,14 @@ const BoxContainer = function () {
 				open={openModalCreate}
 				closeModal={() => setOpenModalCreate(false)}
 				btnDialogTitle="Guardar"
-				btnDialogOnClick={createBox}
+				btnDialogOnClick={() => createBox(formikRef.current.values)}
+
 				formikRef={formikRef}
 			>
 				<FormBox
 					onSubmit={createBox}
 					formikRef={formikRef}
+					// businessId={businessId}
 				/>
 			</CDialog>
 			<CDialog
@@ -119,7 +147,7 @@ const BoxContainer = function () {
 				open={openModalDelete}
 				closeModal={() => setOpenModalDelete(false)}
 				btnDialogTitle="Eliminar"
-				btnDialogOnClick={deleteBox}
+				btnDialogOnClick={() => deleteBox(formikRef.current.values)}
 				formikRef={formikRef}
 			>
 				<Typography variant='h6'>

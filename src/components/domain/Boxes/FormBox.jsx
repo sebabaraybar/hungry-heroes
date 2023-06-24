@@ -4,11 +4,13 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid } from "@mui/material";
 import CTextField from "../../ui/form/CTextField";
+import BusinessService from "../../../services/BusinessService";
 
 const FormBox = function ({
 	onSubmit,
 	formikRef,
-	initialValues
+	initialValues,
+	businessId
 }) {
 
 	const VALIDATION = Yup.object().shape({
@@ -18,41 +20,52 @@ const FormBox = function ({
 		quantity: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio')
 	});
 
+	const onSubmitForm = (values) => {
+		onSubmit(values);
+	};
+
 	// useEffect(() => {
-  //   if (userId) {
-  //     setLoading(true);
-  //     UsersService.getSingleUser(userId).then((response) => {
+  //   if (businessId) {
+  //     // setLoading(true);
+  //     BusinessService.getBusinessById(businessId)
+	// 		.then((response) => {
   //       formikRef.current.setValues(response);
-  //       setLoading(false);
+	// 			console.log(formikRef.current.initialValues)
+	// 			console.log(businessId)
+  //       // setLoading(false);
   //     })
   //       .catch((error) => {
-  //         setSnackbar(isAuth(handleError(error)));
-  //         setLoading(false);
+  //         // setSnackbar(isAuth(handleError(error)));
+  //         // setLoading(false);
+	// 				console.log(error)
   //       });
   //   }
   // }, []);
 
-	useEffect(() => {
-		formikRef.current.setValues({
-			name: initialValues.name || '',
-			detail: initialValues.detail || '',
-			price: initialValues.price || null,
-			quantity: initialValues.quantity || null,
-			published: initialValues.published || false
-		});
-	}, [formikRef, initialValues]);
+  
+
+	// useEffect(() => {
+	// 	formikRef.current.setValues({
+	// 		name: initialValues.name || '',
+	// 		description: initialValues.description || '',
+	// 		price: initialValues.price || null,
+	// 		stock: initialValues.stock || null,
+	// 		published: initialValues.published || false
+	// 	});
+	// }, [formikRef, initialValues]);
 
 	return (
 		<Formik
 			initialValues={{
 				name: '',
-				detail: '',
+				description: '',
 				price: null,
-				quantity: null,
+				stock: null,
 				published: false
 			}}
+			// initialValues={initialValues}
 			validationSchema={VALIDATION}
-			onSubmit={onSubmit}
+			onSubmit={onSubmitForm}
 			innerRef={formikRef}
 		>
 			{(formik) => (
@@ -69,7 +82,7 @@ const FormBox = function ({
 						{/* hay que poner contador de caracteres  */}
 						<CTextField
 							label="Descripción"
-							name="detail"
+							name="description"
 							formik={formik}
 						/>
 					</Grid>
@@ -83,7 +96,7 @@ const FormBox = function ({
 					<Grid item xs={6}>
 						<CTextField
 							label="Cantidad"
-							name="quantity"
+							name="stock"
 							formik={formik}
 						/>
 					</Grid>
@@ -97,11 +110,13 @@ const FormBox = function ({
 FormBox.propTypes = {
   formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
   onSubmit: PropTypes.func.isRequired,
-	initialValues: PropTypes.objectOf(PropTypes.any)
+	// initialValues: PropTypes.objectOf(PropTypes.any),
+	userId: PropTypes.number
 };
 
 FormBox.defaultProps = {
-	initialValues: {}
+	// initialValues: {},
+	userId: undefined
 };
 
 export default FormBox;

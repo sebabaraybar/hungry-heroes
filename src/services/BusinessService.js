@@ -6,7 +6,22 @@ const getBusinesses = () => {
 	return api.get(urlService);
 };
 
+const getBusinessById = (id, body) => {
+	console.log("SERVICE", id)
+	let urlService = apiUrl.getUrlService('business.getBusinessById');
+	urlService = urlService.replace(':id', id);
+	return api.get(urlService, body);
+};
+
+const editBusiness = (id) => {
+	let urlService = apiUrl.getUrlService('business.editBusiness');
+	urlService = urlService.replace(':id', id);
+	return api.put(urlService);
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-	getBusinesses
+	getBusinesses,
+	getBusinessById,
+	editBusiness
 };

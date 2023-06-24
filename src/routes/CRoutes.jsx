@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ROUTES_ENUM from '../enums/routesEnum';
 import { Box } from '@mui/material';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider, useLocation } from 'react-router-dom';
 import RequireAuth from '../components/common/RequireAuth';
 import NoRequireAuth from '../components/common/NoRequireAuth';
 import ErrorPage from '../pages/ErrorPage';
@@ -19,6 +19,7 @@ import ProfileBusinessPage from '../pages/ProfileBusinessPage';
 import SalesPage from '../pages/SalesPage';
 import RemoveAccountPage from '../pages/RemoveAccountPage';
 import AboutPage from '../pages/AboutPage';
+import ResetPassPage from '../pages/ResetPassPage';
 import environments from '../api/environments';
 
 const { IS_DEVELOPMENT } = environments;
@@ -35,6 +36,23 @@ function Layout() {
 }
 
 const CRoutes = function () {
+
+	// **************
+	// método para recuperar token on resetPass
+	// no tiene que estar acá
+	// const location = useLocation();
+	// const [token, setToken] = useState('');
+
+	// useEffect(() => {
+	// 	const searchParams = new URLSearchParams(location.search);
+	// 	const tokenParam = searchParams.get('token');
+	// 	if(tokenParam) {
+	// 		setToken(tokenParam);
+	// 	}
+	// }, [location.search]);
+	// **************
+
+
 	const router = createBrowserRouter(
 		[
 			{
@@ -45,28 +63,35 @@ const CRoutes = function () {
 			},
 			{
 				path: ROUTES_ENUM.AUTH_REQUEST_PASS,
-				element: <NoRequireAuth><RequestPassPage /></NoRequireAuth>,
+				element: <RequestPassPage />,
 				// errorElement: IS_DEVELOPMENT ? null : <PageError />
 				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.AUTH_REQUEST_PASS_CONFIRMATION,
-				element: <NoRequireAuth><RequestPassConfirmationPage /></NoRequireAuth>,
+				element: <RequestPassConfirmationPage />,
 				// errorElement: IS_DEVELOPMENT ? null : <PageError />
 				errorElement: <ErrorPage />
 			},
 			{
+				path: ROUTES_ENUM.AUTH_RESET_PASS,
+				element: <ResetPassPage/>
+			},
+			{
 				path: ROUTES_ENUM.ABOUT,
-				element:<NoRequireAuth><AboutPage /></NoRequireAuth>
+				// element:<NoRequireAuth><AboutPage /></NoRequireAuth>
+				element:<AboutPage />
 				//error element
 			},
 			{
 				path: ROUTES_ENUM.CREATE_ACCOUNT,
-				element: <NoRequireAuth><CreateUserPage /></NoRequireAuth>
+				// element: <NoRequireAuth><CreateUserPage /></NoRequireAuth>
+				element: <CreateUserPage />
 			},
 			{
 				path: ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION,
-				element: <NoRequireAuth><CreateUserConfirmationPage /></NoRequireAuth>
+				// element: <NoRequireAuth><CreateUserConfirmationPage /></NoRequireAuth>
+				element: <CreateUserConfirmationPage />
 			},
 			{
 				path: ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION,
@@ -89,8 +114,9 @@ const CRoutes = function () {
 				// errorElement:
 				children: [
 					// {
-					// 	path: ROUTES_ENUM.PROFILE,
-					// 	element: <ProfilePage />
+					// 	path: ROUTES_ENUM.AUTH_LOGIN,
+					// 	element: <LoginPage />,
+					// 	errorElement: <ErrorPage />
 					// },
 					{
 						path: ROUTES_ENUM.BUSINESS,

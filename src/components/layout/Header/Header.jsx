@@ -14,6 +14,7 @@ const Header = function () {
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const userRole = localStorage.getItem('role');
 
 	const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,25 +65,18 @@ const Header = function () {
 						}}
 						classes={{ paper: styles['menu-paper'] }}
 					>
-				{getItemsForRole().map((item) => (
-					<MenuItem
-						key={item.key}
-						className={location.pathname === item.link ? styles.navItemActive : styles.navItem }
-						onClick={() => navigate(item.link)}
-					>
-						<Typography>{item.label}</Typography>
-					</MenuItem>
-		 	))}
-						{/* <List>
-							<ListItemText sx={{ textAlign: 'left'}} >
-								<CButton
-									variant="text"
-									title="Perfil"
-									startIcon={<ManageAccountsRounded />}
-									sx={{ fontSize: '1.2rem'}}
-									onClick={() => navigate(ROUTES_ENUM.PROFILE)}
-								/>
-							</ListItemText>
+						<List>
+							{userRole==='Business' ? (
+								<ListItemText sx={{ textAlign: 'left'}} >
+									<CButton
+										variant="text"
+										title="Perfil"
+										startIcon={<ManageAccountsRounded />}
+										sx={{ fontSize: '1.2rem'}}
+										onClick={() => navigate(ROUTES_ENUM.PROFILE)}
+									/>
+								</ListItemText>
+							):null}
 							<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton
 									variant="text"
@@ -101,15 +95,27 @@ const Header = function () {
 									onClick={onLogout}
 								/>
 							</ListItemText>
-							<ListItemText sx={{ textAlign: 'left'}}>
+							{userRole === 'Client' ? (
+								<ListItemText sx={{ textAlign: 'left'}}>
+									<CButton
+										variant="text"
+										title="Mis compras"
+										sx={{ fontSize: '1.2rem'}}
+										startIcon={ <ShoppingCart /> }
+										onClick={() => navigate(ROUTES_ENUM.SALES)}
+									/>
+								</ListItemText>
+							):(
+								<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton
 									variant="text"
-									title="Mis compras"
+									title="Mis ventas"
 									sx={{ fontSize: '1.2rem'}}
 									startIcon={ <ShoppingCart /> }
 									onClick={() => navigate(ROUTES_ENUM.SALES)}
 								/>
 							</ListItemText>
+							)}
 							<Divider sx={{marginTop: '1.5rem'}}/>
 							<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton
@@ -120,7 +126,7 @@ const Header = function () {
 									onClick={() => navigate(ROUTES_ENUM.REMOVE_ACCOUNT)}
 								/>
 							</ListItemText>
-						</List> */}
+						</List>
 					</Menu>
 				</Box>
 			</Toolbar>

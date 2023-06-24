@@ -32,6 +32,7 @@ const Login = function () {
 			localStorage.setItem(LOCAL_STORAGE.TOKEN_LOGIN, userLogged.jwtToken);
 			localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, userLogged.email);
 			localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
+			localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id)
 			console.log(userLogged)
 
 			if(userLogged.role === 'Client') {

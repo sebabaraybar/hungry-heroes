@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { LOCAL_STORAGE } from '../utils/constants';
-import environments from './environments';
+// import { LOCAL_STORAGE } from '../utils/constants';
+// import environments from './environments';
 
-const { API_BASE_URL } = environments;
+// const { API_BASE_URL } = environments;
+const API_BASE_URL = 'https://hungry-heroes.azurewebsites.net';
 
 const getHeaders = () => {
-	const token = localStorage.getItem(LOCAL_STORAGE.TOKEN_LOGIN);
+	const token = localStorage.getItem('jwtToken');
 	if(token) {
 		return {Authorization: `Bearer ${token}`};
 	}
@@ -24,7 +25,7 @@ test()
 
 api.interceptors.request.use(
 	(config) => {
-		const token = localStorage.getItem(LOCAL_STORAGE.TOKEN_LOGIN);
+		const token = localStorage.getItem('jwtToken');
 
 		if(token) {
 			config.headers.Authorization = `Bearer ${token}`;
@@ -38,7 +39,7 @@ api.interceptors.request.use(
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(LOCAL_STORAGE.TOKEN_LOGIN);
+    const token = localStorage.getItem('jwtToken');
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

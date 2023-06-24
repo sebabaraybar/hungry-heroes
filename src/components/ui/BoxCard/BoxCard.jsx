@@ -13,7 +13,7 @@ const BoxCard = function ({
 	key,
 	title,
 	description,
-	quantity,
+	stock,
 	price,
 	alt,
 	img,
@@ -47,7 +47,7 @@ const BoxCard = function ({
 					</Typography>
 					{userType === "Business" ? (
 						<Typography className={styles.carddetails}>
-							stock: {quantity}
+							stock: {stock}
 						</Typography>
 					): null}
 				</CardContent>

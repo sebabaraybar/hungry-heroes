@@ -1,9 +1,8 @@
 import React from 'react';
-import ChangePassConfirmation from '../components/domain/ChangePass/ChangePassConfirmation';
-
+import RequestPassConfirmation from '../components/domain/RequestPass/RequestPassConfirmation';
 const ChangePassConfirmationContainer = function () {
 	return (
-		<ChangePassConfirmation />
+		<RequestPassConfirmation />
 	);
 };
 

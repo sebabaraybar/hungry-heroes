@@ -8,6 +8,7 @@ import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
 import { ArrowBackRounded } from '@mui/icons-material';
 import ROUTES_ENUM from '../../../enums/routesEnum';
+import AuthService from '../../../services/AuthService';
 
 
 const RequestPass = function () {
@@ -15,13 +16,20 @@ const RequestPass = function () {
 	const navigate = useNavigate();
 
 	const VALIDATION = Yup.object().shape({
-		username: Yup.string()
+		email: Yup.string()
 			.email('Usuario inválido')
 			.required('Campo obligatorio')
 	});
 
-	const onSubmit = ({ username }) => {
-		alert("Llama al servicio requestPass")
+	const onSubmit = ({ email}) => {
+		AuthService.requestPass(email)
+		.then((response) => {
+			console.log(response)
+			navigate(ROUTES_ENUM.AUTH_REQUEST_PASS_CONFIRMATION);
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 	};
 
 	return (
@@ -36,7 +44,7 @@ const RequestPass = function () {
 		>
 			<Formik
 				initialValues={{
-					username: ''
+					email: ''
 				}}
 				validationSchema={ VALIDATION }
 				onSubmit={onSubmit}
@@ -48,7 +56,7 @@ const RequestPass = function () {
 							<Grid item xs={12}>
 								<CTextField
 									label='Email'
-									name='username'
+									name='email'
 									required
 									formik={formik}
 								/>

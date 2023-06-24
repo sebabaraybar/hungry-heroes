@@ -8,8 +8,14 @@ const getProductsByBusinessId = (id) => {
 	return api.get(urlService);
 };
 
+const createProduct = (body) => {
+	const urlService = apiUrl.getUrlService('product.createProduct');
+	return api.post(urlService, body);
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-	getProductsByBusinessId
+	getProductsByBusinessId,
+	createProduct
 };
 

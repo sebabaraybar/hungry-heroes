@@ -28,11 +28,8 @@ const CTextField = function ({
 	// console.log(isPassVisible)
   
 	const setPassFieldType = () => {
-		console.log(isPassVisible)
     if (isPassVisible) { 
-			console.log('TEXT')
 			return 'text'; }
-			console.log('PASS')
     return 'password';
   };
   

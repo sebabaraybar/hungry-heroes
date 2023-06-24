@@ -5,15 +5,21 @@ import { Typography } from '@mui/material';
 import CButton from '../../ui/Button/CButton';
 import { LoginRounded } from '@mui/icons-material';
 import ROUTES_ENUM from '../../../enums/routesEnum';
+import AuthService from '../../../services/AuthService';
 
 const RequestPassConfirmation = function () {
 	const navigate = useNavigate();
-	// const [ searchParams ] = useSearchParams();
-	// const email = searchParams.get('email');
-	const email = "camila@email.com"
+	const email = localStorage.getItem('storedEmail');
 
 	const reSend = () => {
-		alert("Llama al servicio requestPass")
+		AuthService.requestPass(email)
+		.then((response) => {
+			console.log(response)
+			alert("email enviado")
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 	};
 
 	return (

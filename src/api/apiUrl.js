@@ -4,9 +4,9 @@ const apiUrl = {
 	auth: {
 		login: `${API}/Accounts/login`,
 		// login: `/Accounts/login`,
-		register: `${API}/Account/register`,
-		restorePass: 'auth/restore-password',
-		requestPass: 'auth/send-restore-email'
+		register: `${API}/Accounts/register`,
+		requestPass: `${API}/Accounts/forgot-password`,
+		restorePass: 'auth/restore-password'
 	},
 	user: {
 		me: 'users/me',
@@ -17,10 +17,13 @@ const apiUrl = {
 		getSingleUser: '/users/:id'
 	},
 	business: {
-		getBusinesses: `${API}/Business/All`
+		getBusinesses: `${API}/Business/All`,
+		getBusinessById: `${API}/Business/:id`,
+		editBusiness: `${API}/Business/:id`,
 	},
 	product: {
-		getProductsByBusinessId: `${API}/Product/AllByBusiness/:id`
+		getProductsByBusinessId: `${API}/Product/AllByBusiness/:id`,
+		createProduct: `${API}/Product`
 	}
 };
 

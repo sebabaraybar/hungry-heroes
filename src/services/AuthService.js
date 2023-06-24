@@ -12,13 +12,18 @@ const logout = () => {
 };
 
 const register = (email, password, confirmPassword, role) => {
-	const urlService = apiUrl.getUrlService('auth.register');
-	return api.post(urlService, { email, password, confirmPassword, role});
-};
-
-const restorePass = (body) => {
-	const urlService = apiUrl.getUrlService('auth.restorePass');
-	return api.post(urlService, body);
+	console.log("SERVICIO", email, password, confirmPassword, role);
+	console.log("SERVICIO", role, typeof role);
+  const urlService = apiUrl.getUrlService('auth.register');
+  return api.post(urlService, email, password, confirmPassword, role )
+	.then((response) => {
+		console.log(response);
+		console.log("SERVICIO", email, password, confirmPassword, role);
+	})
+	.catch((err) => {
+		console.log(err);
+		console.log("SERVICIO", email, password, confirmPassword, role);
+	})
 };
 
 const requestPass = (email) => {
@@ -26,12 +31,26 @@ const requestPass = (email) => {
 	const UriParameters = new URLSearchParams();
 	let url;
 
-	UriParameters.append('mail', email);
+	UriParameters.append('email', email);
 
 	if(UriParameters.entries().next().done === false) {
 		url = urlService.concat(`?${UriParameters.toString()}`);
 	}
-	return api.get(url);
+	return api.post(url, {email})
+	.then((response) => {
+		localStorage.setItem('storedEmail', email);
+		return response;
+	})
+	.catch((error) => {
+		return error
+	});
+};
+
+
+
+const restorePass = (body) => {
+	const urlService = apiUrl.getUrlService('auth.restorePass');
+	return api.post(urlService, body);
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export

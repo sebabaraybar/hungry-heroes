@@ -31,12 +31,10 @@ const FormUser = function () {
 	});
 
 	const onRegister = async (values) => {
-		
 		const valuesAfter = {...values};
-		valuesAfter.role = parseInt(valuesAfter.role); 
+		values.role = parseInt(values.role); 
 		
-		
-		console.log(valuesAfter, valuesAfter.role, typeof valuesAfter.role)
+		console.log(valuesAfter)
 		AuthService.register(valuesAfter)
 		.then(() => {
 			navigate(ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION);
