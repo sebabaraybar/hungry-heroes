@@ -3,34 +3,41 @@ import { Box } from '@mui/material';
 import FormBusiness from '../components/domain/Businesses/FormBusiness';
 import styles from './ProfileBusinessContainer.module.scss';
 import BusinessService from '../services/BusinessService';
+import useLoading from '../hooks/useLoading';
 
 const ProfileBusinessContainer = function () {
 	const [business, setBusiness] = useState({});
-	// INSTANCIA FINAL
-	// const businessId = localStorage.getItem('businessId');
+	const setLoading = useLoading();
+	const businessId = localStorage.getItem('userBusinessId');
 	const accountId = localStorage.getItem('id');
 	const businessEmail = localStorage.getItem('email');
-	const businessId = 1;
+	console.log(businessEmail);
+	console.log(accountId);
 	console.log(businessId);
 
 	useEffect(() => {
+		setLoading(true)
 		BusinessService.getBusinessById(businessId)
 	.then((response) => {
 		setBusiness(response)
 		console.log(business)
+		setLoading(false);
 	})
 	.catch((error) => {
    console.log(error)
+	 setLoading(false);
 	})
 	},[]);
 
 	return (
 		<Box className={styles.container}>
-			<FormBusiness
-				business={business}
-				accountId={accountId}
-				businessEmail={businessEmail}
-			/>
+			{Object.keys(business).length && (
+				<FormBusiness
+					business={business}
+					accountId={accountId}
+					businessEmail={businessEmail}
+				/>
+			)}
 		</Box>
 	);
 };

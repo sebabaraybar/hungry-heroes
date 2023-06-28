@@ -6,31 +6,37 @@ import logo from '../media/logo-placeholder.png';
 import styles from './BusinessContainer.module.scss';
 import BusinessService from '../services/BusinessService';
 import ProductService from '../services/ProductService';
+import { useNavigate } from 'react-router-dom';
+import ROUTES_ENUM from '../enums/routesEnum';
 
 const BusinessContainer = function () {
 
 	const [businesses, setBusinesses] = useState([]);
+	const [businessId, setBusinessId] = useState();
+	const navigate = useNavigate();
 
 	const handleSelectBusiness = (id) => {
-		console.log(id)
-		ProductService.getProductsByBusinessId(id)
-		.then((response) => {
-			console.log(response);
-		})
-		.catch((error) => {
-			console.log(error);
-		})
+		setBusinessId(id);
+		console.log(id);
+		// ProductService.getProductsByBusinessId(id)
+		// .then((response) => {
+		// 	console.log(response);
+		// 	navigate(ROUTES_ENUM.BOXES_FOR_CLIENT)
+		// })
+		// .catch((error) => {
+		// 	console.log(error);
+		// })
 	}
 
 	useEffect(() => {
 		BusinessService.getBusinesses()
 	.then((response) => {
-		setBusinesses(response)
-		console.log(businesses)
+		setBusinesses(response);
 	})
 	.catch((error) => {
-   console.log(error)
+		console.log(error)
 	})
+	console.log(businesses)
 	},[]);
 
 	return (
@@ -38,14 +44,13 @@ const BusinessContainer = function () {
 			<Box className={styles.cardContainer}>
 				{businesses.map((business) => (
 					<BusinessCard 
-					title={business.name}
+					title={business.fantasyName}
 					subtitle={business.slogan}
-					alt={`Logo de ${business.name}`}
+					alt={`Logo de ${business.fantasyName}`}
 					logo={logo}
 					// hay que definir cant de caracteres
 					description={business.description}
-					// btnTitle="Comp888rar"
-					onSelect={() => handleSelectBusiness(1)}
+					onSelect={() => handleSelectBusiness(business.userBusinessId)}
 					/>
 				))}
 			</Box>

@@ -109,7 +109,7 @@ const theme = createTheme ( {
 			styleOverrides: {
 				root: {
 					'& > *': {
-						textTransform: 'lowercase',
+						// textTransform: 'lowercase',
 						fontWeight: '900',
 						color: vars.secondary,
 						fontSize: '1.1rem',

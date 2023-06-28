@@ -20,16 +20,16 @@ const CAutocomplete = function ({
 	const [fieldValue, setFieldValue] = useState(null);
 	const [inputValue, setInputValue] = useState('');
 
-	// useEffect(() => {
-  //   if (freeSolo && !inputValue) {
-  //     setInputValue(formik.values[name]);
-  //   }
-  //   if (!freeSolo && !fieldValue) {
-  //     const formikValue = formik.values[name];
-  //     const initialOption = options.find((item) => item.key === formikValue);
-  //     setFieldValue(initialOption);
-  //   }
-  // }, [options, formik.values[name]]);
+	useEffect(() => {
+    if (freeSolo && !inputValue) {
+      setInputValue(formik.values[name]);
+    }
+    if (!freeSolo && !fieldValue) {
+      const formikValue = formik.values[name];
+      const initialOption = options.find((item) => item.key === formikValue);
+      setFieldValue(initialOption);
+    }
+  }, [options, formik.values[name]]);
 
 	return (
 		<FormControl

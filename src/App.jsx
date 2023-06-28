@@ -7,14 +7,15 @@ import { ThemeProvider, Box } from '@mui/material';
 import CRoutes from './routes/CRoutes';
 import theme from './themes/themeConfig';
 // import { UserProvider } from './context/UserContext';
+import { LoadingProvider } from './context/LoaderContext';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
 			<Box>
-				{/* <UserProvider> */}
+				<LoadingProvider>
 				  <CRoutes />
-				{/* </UserProvider> */}
+				</LoadingProvider>
 			</Box>
     {/*<ModalProvider>
     //       <LoadingProvider>

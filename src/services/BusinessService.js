@@ -6,17 +6,24 @@ const getBusinesses = () => {
 	return api.get(urlService);
 };
 
-const getBusinessById = (id, body) => {
+const getBusinessById = (id) => {
 	console.log("SERVICE", id)
 	let urlService = apiUrl.getUrlService('business.getBusinessById');
 	urlService = urlService.replace(':id', id);
-	return api.get(urlService, body);
+	return api.get(urlService);
 };
 
-const editBusiness = (id) => {
+const editBusiness = (id, body, accountId) => {
+	const bodyAfter = {	...body };
+	bodyAfter.email = null;
+	// bodyAfter.activeProfile = null;
+	bodyAfter.accountId = parseInt(accountId);
+	bodyAfter.postalCode = parseInt(body.postalCode);
+	console.log(bodyAfter);
 	let urlService = apiUrl.getUrlService('business.editBusiness');
 	urlService = urlService.replace(':id', id);
-	return api.put(urlService);
+	return api.put(urlService, bodyAfter);
+	
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export

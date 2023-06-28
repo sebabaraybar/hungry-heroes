@@ -10,41 +10,61 @@ import logo from '../../../media/logo.png';
 import styles from './Login.module.scss';
 import AuthService from '../../../services/AuthService';
 import { LOCAL_STORAGE } from '../../../utils/constants';
+import useLoading from '../../../hooks/useLoading';
 
 const Login = function () {
   const navigate = useNavigate();
 	const formikRef = useRef();
+	const setLoading = useLoading();
 
   const VALIDATION = Yup.object().shape({
     email: Yup.string().email('Usuario inválido - usuario@email.com').required('Campo obligatorio'),
     password: Yup.string().required('Campo obligatorio')
   });
 
-  const onLogin = async ({ email, password }) => {
-    console.log(`USER: ${email}`, `PASS: ${password}`);
-		try {
-			const userLogged = await AuthService.login(email, password);
-			// const userLogged = {
-			// 	jwtToken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJuYmYiOjE2ODY5NTgyNTQsImV4cCI6MTY4Njk1OTE1NCwiaWF0IjoxNjg2OTU4MjU0fQ.pdZFWwpuprwvlKUSjLgAoD3YJZp-frUNXZ7MZwrvM6Y",
-			// 	email: "cs@hotmail.com",
-			// 	role: "Business"
-			// }
-			localStorage.setItem(LOCAL_STORAGE.TOKEN_LOGIN, userLogged.jwtToken);
-			localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, userLogged.email);
-			localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
-			localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id)
-			console.log(userLogged)
+  // const onLogin = async ({ email, password }) => {
+  //   console.log(`USER: ${email}`, `PASS: ${password}`);
+	// 	try {
+	// 		const userLogged = await AuthService.login(email, password);
+	// 		localStorage.setItem(LOCAL_STORAGE.TOKEN_LOGIN, userLogged.jwtToken);
+	// 		localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, userLogged.email);
+	// 		localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
+	// 		localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id)
+	// 		localStorage.setItem(LOCAL_STORAGE.BUSINESS_ID, userLogged.userBusinessId)
+	// 		console.log(userLogged)
 
-			if(userLogged.role === 'Client') {
-				navigate(ROUTES_ENUM.BUSINESS);
-			} else {
-				navigate(ROUTES_ENUM.BOXES);
-			}
-		} catch (error) {
-			console.log(error)
-		}
-  };
+	// 		if(userLogged.role === 'Client') {
+	// 			navigate(ROUTES_ENUM.BUSINESS);
+	// 		} else {
+	// 			navigate(ROUTES_ENUM.BOXES);
+	// 		}
+	// 	} catch (error) {
+	// 		console.log(error)
+	// 	}
+  // };
 
+	const onLogin = ({ email, password }) => {
+		setLoading(true);
+		AuthService.login(email, password)
+			.then((userLogged) => {
+				localStorage.setItem(LOCAL_STORAGE.TOKEN_LOGIN, userLogged.jwtToken);
+				localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, userLogged.email);
+				localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
+				localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id);
+				localStorage.setItem(LOCAL_STORAGE.BUSINESS_ID, userLogged.userBusinessId);
+				
+				if (userLogged.role === 'Client') {
+					navigate(ROUTES_ENUM.BUSINESS);
+				} else {
+					navigate(ROUTES_ENUM.BOXES);
+				}
+				setLoading(false);
+			})
+			.catch((error) => {
+				console.log(error);
+				setLoading(false);
+			});
+	};
 
   return (
     <Box className={styles.container}>

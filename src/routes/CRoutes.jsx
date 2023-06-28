@@ -20,6 +20,7 @@ import SalesPage from '../pages/SalesPage';
 import RemoveAccountPage from '../pages/RemoveAccountPage';
 import AboutPage from '../pages/AboutPage';
 import ResetPassPage from '../pages/ResetPassPage';
+import BoxPageForClient from '../pages/BoxPageForClient';
 import environments from '../api/environments';
 
 const { IS_DEVELOPMENT } = environments;
@@ -130,6 +131,10 @@ const CRoutes = function () {
 					{
 						path: ROUTES_ENUM.BOXES,
 						element: <BoxPage />
+					},
+					{
+						path: ROUTES_ENUM.BOXES_FOR_CLIENT,
+						element: <BoxPageForClient />
 					},
 					{
 						path: ROUTES_ENUM.AUTH_CHANGE_PASS,

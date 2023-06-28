@@ -21,7 +21,7 @@ const BoxCard = function ({
 	onDelete,
 	onBuy,
 	userType,
-	published
+	activeProfile
 }) {
 
 	const navigate = useNavigate();
@@ -73,7 +73,7 @@ const BoxCard = function ({
 						/>
 					}
 				</CardActions>
-				{(userType === "Business" && !published) ? (
+				{(userType === "Business" && !activeProfile) ? (
 					<>
 					<Box className={styles.state}>
 						<Typography>sin publicar</Typography>
@@ -101,7 +101,7 @@ BoxCard.propTypes = {
 	onDelete: PropTypes.func.isRequired,
 	onBuy: PropTypes.func.isRequired,
 	userType: PropTypes.string.isRequired,
-	published: PropTypes.bool.isRequired
+	activeProfile: PropTypes.bool.isRequired
 };
 
 BoxCard.defaultProps = {

@@ -23,7 +23,9 @@ const apiUrl = {
 	},
 	product: {
 		getProductsByBusinessId: `${API}/Product/AllByBusiness/:id`,
-		createProduct: `${API}/Product`
+		createProduct: `${API}/Product`,
+		editProduct: `${API}/Product/:id`,
+		deleteProduct: `${API}/Product/:id`
 	}
 };
 

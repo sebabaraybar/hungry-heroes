@@ -4,15 +4,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid } from "@mui/material";
 import CTextField from "../../ui/form/CTextField";
-import BusinessService from "../../../services/BusinessService";
 
 const FormBox = function ({
 	onSubmit,
 	formikRef,
-	initialValues,
-	businessId
+	box
 }) {
-
 	const VALIDATION = Yup.object().shape({
 		name: Yup.string().required('Campo obligatorio'),
 		detail: Yup.string().required('Campo obligatorio'),
@@ -24,46 +21,9 @@ const FormBox = function ({
 		onSubmit(values);
 	};
 
-	// useEffect(() => {
-  //   if (businessId) {
-  //     // setLoading(true);
-  //     BusinessService.getBusinessById(businessId)
-	// 		.then((response) => {
-  //       formikRef.current.setValues(response);
-	// 			console.log(formikRef.current.initialValues)
-	// 			console.log(businessId)
-  //       // setLoading(false);
-  //     })
-  //       .catch((error) => {
-  //         // setSnackbar(isAuth(handleError(error)));
-  //         // setLoading(false);
-	// 				console.log(error)
-  //       });
-  //   }
-  // }, []);
-
-  
-
-	// useEffect(() => {
-	// 	formikRef.current.setValues({
-	// 		name: initialValues.name || '',
-	// 		description: initialValues.description || '',
-	// 		price: initialValues.price || null,
-	// 		stock: initialValues.stock || null,
-	// 		published: initialValues.published || false
-	// 	});
-	// }, [formikRef, initialValues]);
-
 	return (
 		<Formik
-			initialValues={{
-				name: '',
-				description: '',
-				price: null,
-				stock: null,
-				published: false
-			}}
-			// initialValues={initialValues}
+			initialValues={box || {}}
 			validationSchema={VALIDATION}
 			onSubmit={onSubmitForm}
 			innerRef={formikRef}
@@ -81,6 +41,7 @@ const FormBox = function ({
 					<Grid item xs={12}>
 						{/* hay que poner contador de caracteres  */}
 						<CTextField
+						  multiline
 							label="Descripción"
 							name="description"
 							formik={formik}
@@ -108,7 +69,7 @@ const FormBox = function ({
 };
 
 FormBox.propTypes = {
-  formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
+  // formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
   onSubmit: PropTypes.func.isRequired,
 	// initialValues: PropTypes.objectOf(PropTypes.any),
 	userId: PropTypes.number

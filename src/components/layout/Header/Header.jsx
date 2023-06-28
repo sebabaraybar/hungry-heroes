@@ -5,6 +5,7 @@ import CButton from '../../ui/Button/CButton';
 import ROUTES_ENUM from '../../../enums/routesEnum';
 import { getHome, getItemsForRole } from '../../../utils/navUtils';
 import logo from '../../../media/logo-light.png'
+import AuthService from '../../../services/AuthService';
 import styles from './Header.module.scss';
 import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded, ShoppingCart} from '@mui/icons-material';
 
@@ -25,7 +26,7 @@ const Header = function () {
   };
 
 	const onLogout = () => {
-		// AuthService.logout();
+		AuthService.logout()
 		navigate(ROUTES_ENUM.AUTH_LOGIN);
 	};
 

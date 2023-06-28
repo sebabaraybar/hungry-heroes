@@ -1,22 +1,18 @@
-import React, {  useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid, Typography } from '@mui/material';
 import CTextField from '../../ui/form/CTextField';
-import CSelect from '../../ui/Select/CSelect';
 import CAutocomplete from '../../ui/Select/CAutocomplete';
 import CButton from '../../ui/Button/CButton';
 import { Box } from '@mui/material';
-import UploadImg from '../../ui/UploadImg/UploadImg';
+// import UploadImg from '../../ui/UploadImg/UploadImg';
 import DISTRICT_ENUM from '../../../enums/districtEnum';
 import { makeOptionsObject } from '../../../utils/utils';
-import { LOCAL_STORAGE } from '../../../utils/constants';
 import styles from './FormBusiness.module.scss';
 import BusinessService from '../../../services/BusinessService';
 
 const FormBusiness = function({
-	formTitle,
-	activeProfile,
 	business,
 	businessEmail,
 	accountId
@@ -25,11 +21,9 @@ const FormBusiness = function({
 	const formikRef = useRef();
 	const [disabledField, setdisabledField] = useState(true);
 	const [enableBtn, setEnableBtn] = useState(false);
+	// TODO
 	// const [selectedImage, setSelectedImage] = useState();
-	console.log(business);
-	console.log(businessEmail)
 	
-
 	const VALIDATION = Yup.object().shape({
 		fantasyName: Yup.string().required('Campo obligatorio'),
 		businessName: Yup.string().required('Campo obligatorio'),
@@ -45,9 +39,12 @@ const FormBusiness = function({
 	// cuit: Yup.string()
   // .required('Campo obligatorio')
   // .matches(/^\d{2}-\d{8}-\d{1}$/, 'El CUIT debe tener el formato 00-00000000-0'),
+	cuit: Yup.string()
+  .required('Campo obligatorio')
+  .matches(/^[0-9]{11}$/, 'El CUIT debe contener 11 números sin guiones'),
 	alias: Yup.string()
   .required('Campo obligatorio')
-  .matches(/^([a-zA-Z]{1}\.?){6,20}$/, 'El CBU debe tener entre 6 y 20 letras. Puede contener puntos'),
+  .matches(/^([a-zA-Z]{1}\.?){6,20}$/, 'El ALIAS debe tener entre 6 y 20 letras. Puede contener puntos'),
 	web: Yup.string()
   .url('Ejemplo: https://www.negocio.com/')
   .required('Campo obligatorio')
@@ -67,6 +64,9 @@ const FormBusiness = function({
 		setEnableBtn(false);
 	};
 
+
+	//  TODO upload imágenes ************
+
 	// const updateImg = (selectedImage) => {
 	// 	console.log(selectedImage[0])
 	// 	const formData = new FormData();
@@ -76,8 +76,6 @@ const FormBusiness = function({
 	// 	setSelectedImage(formData);
 	// 	console.log(selectedImage)
 	// 	console.log(formikRef)
-
-		
 
 	// 	//llamar al servicio
 	// }
@@ -93,18 +91,12 @@ const FormBusiness = function({
 	// 	reader.onloadend = function(e) {
 	// 		setSelectedImage(reader.result);
 	// 	}
-	// 	console.log("TESTTTTT")
-	// 	console.log(file);
 	// }
+	//  ************
 	
 	const handleSubmit = (values) => {
-		const valuesAfter = {...values};
-		values.role = parseInt(values.role);
-		valuesAfter.accountId = parseInt(accountId);
-		valuesAfter.postalCode = parseInt(values.postalCode);
-		valuesAfter.cuit = parseInt(values.cuit)
-		console.log(valuesAfter);
-		BusinessService.editBusiness(business.userBusinessId, valuesAfter)
+		console.log(values)
+		BusinessService.editBusiness(business.userBusinessId, values, accountId)
 		.then((response) => {
 			console.log(response)
 		})
@@ -113,6 +105,8 @@ const FormBusiness = function({
 		})		
 		setdisabledField(true);
 		setEnableBtn(false);
+	
+	//  TODO upload imágenes ************
 	// 	console.log(formikRef.current.values.logo)
 	// 	const formData = new FormData();
   // Object.keys(formikRef.current.values).forEach((key) => {
@@ -126,31 +120,33 @@ const FormBusiness = function({
   //     formData.append(key, formikRef.current.values[key]);
   //   }
   // });
-	
+	//  ************
 	};
 
 	return(
 		<Box className={styles.container}>
-			<Typography className={styles.title}>{activeProfile ? "Editar perfil" : "Completar perfil"}</Typography>
+			<Typography className={styles.title}>
+				{business.activeProfile ? "Editar perfil" : "Completar perfil"}
+			</Typography>
 			<Formik
 				initialValues={{
 					email: businessEmail,
-					fantasyName: '',
-					businessName: '',
-					slogan: '',
-					description: '',
+					fantasyName: business.fantasyName || '',
+					businessName: business.businessName || '',
+					slogan: business.slogan || '',
+					description: business.description || '',
 					// logo: '',
-					address: '',
-					postalCode: '',
-					location: '',
-					cuit: '',
-					alias: '',
-					web: '',
-					active: false,
+					address: business.address || '',
+					postalCode: business.postalCode || '',
+					location: business.location || '',
+					cuit: business.cuit || '',
+					alias: business.alias || '',
+					web: business.web || ''
 				}}
 				validationSchema={VALIDATION}
 				onSubmit={handleSubmit}
 				innerRef={formikRef}
+				validateOnMount
 			>
 				{(formik) => (
 					<Form onChange={handleChange}>
@@ -171,16 +167,18 @@ const FormBusiness = function({
 									formik={formik}
 								/>
 							</Grid>
-							<Grid item xs={6}>
+							<Grid item xs={12}>
 								<CTextField
+								  multiline
 									disabled={disabledField}
 									label="Slogan"
 									name="slogan"
 									formik={formik}
 								/>
 							</Grid>
-							<Grid item xs={6}>
+							<Grid item xs={12}>
 								<CTextField
+								  multiline
 									disabled={disabledField}
 									label="Descripción"
 									name="description"
@@ -210,6 +208,8 @@ const FormBusiness = function({
 									name="location"
 									formik={formik}
 									options={makeOptionsObject(DISTRICT_ENUM, 'label', 'key')}
+									value={{ label: formik.values.location, value: formik.values.location }}
+
 								/>
 							</Grid>
 							<Grid item xs={6}>
@@ -244,6 +244,7 @@ const FormBusiness = function({
 									formik={formik}
 								/>
 							</Grid>
+							{/*// TODO upload imágenes */}
 							{/* <Grid item xs={6}>
 								<UploadImg
 									name='logo'
@@ -276,10 +277,10 @@ const FormBusiness = function({
 										onClick={handleCancel}
 									/>
 									<CButton
+									  type="submit"
 										title="Guardar cambios"
 										variant="contained"
 										sx={{fontSize: '1.2rem'}}
-										onClick={() => handleSubmit(formik.values)}
 									/>
 								</>
 								)}

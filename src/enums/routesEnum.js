@@ -15,6 +15,7 @@ const ROUTES_ENUM = Object.freeze({
 	BUSINESS: '/business',
 	// BOXES: '/business/:id',
 	BOXES: '/boxes',
+	BOXES_FOR_CLIENT:'/businessboxes',
 	// PROFILE: '/user/:id'
 	PROFILE: '/profile',
 	SALES: '/sales'
