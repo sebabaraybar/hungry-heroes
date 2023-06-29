@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ROUTES_ENUM from '../enums/routesEnum';
 import { Box } from '@mui/material';
-import { createBrowserRouter, Outlet, RouterProvider, useLocation } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider, useNavigation } from 'react-router-dom';
 import RequireAuth from '../components/common/RequireAuth';
-import NoRequireAuth from '../components/common/NoRequireAuth';
 import ErrorPage from '../pages/ErrorPage';
 import LoginPage from '../pages/LoginPage';
 import BusinessPage from '../pages/BusinessPage';
@@ -21,15 +20,18 @@ import RemoveAccountPage from '../pages/RemoveAccountPage';
 import AboutPage from '../pages/AboutPage';
 import ResetPassPage from '../pages/ResetPassPage';
 import BoxPageForClient from '../pages/BoxPageForClient';
-import environments from '../api/environments';
+// import environments from '../api/environments';
+import Spinner from '../components/layout/Spinner/Spinner';
 
-const { IS_DEVELOPMENT } = environments;
+// const { IS_DEVELOPMENT } = environments;
 
 function Layout() {
+	const navigation = useNavigation();
 	return(
 		<Box sx={{boxSizing: 'border-box'}}>
 			<Header /> 
 			<main>
+				<Spinner open={navigation.state === 'loading'} />
 				<Outlet />
 			</main>
 		</Box>
@@ -37,72 +39,43 @@ function Layout() {
 }
 
 const CRoutes = function () {
-
-	// **************
-	// método para recuperar token on resetPass
-	// no tiene que estar acá
-	// const location = useLocation();
-	// const [token, setToken] = useState('');
-
-	// useEffect(() => {
-	// 	const searchParams = new URLSearchParams(location.search);
-	// 	const tokenParam = searchParams.get('token');
-	// 	if(tokenParam) {
-	// 		setToken(tokenParam);
-	// 	}
-	// }, [location.search]);
-	// **************
-
-
 	const router = createBrowserRouter(
 		[
 			{
 				path: ROUTES_ENUM.AUTH_LOGIN,
 				element: <LoginPage />,
-				// errorElement: IS_DEVELOPMENT ? null : <ErrorPage />
 				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.AUTH_REQUEST_PASS,
 				element: <RequestPassPage />,
-				// errorElement: IS_DEVELOPMENT ? null : <PageError />
 				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.AUTH_REQUEST_PASS_CONFIRMATION,
 				element: <RequestPassConfirmationPage />,
-				// errorElement: IS_DEVELOPMENT ? null : <PageError />
 				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.AUTH_RESET_PASS,
-				element: <ResetPassPage/>
+				element: <ResetPassPage/>,
+				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.ABOUT,
-				// element:<NoRequireAuth><AboutPage /></NoRequireAuth>
-				element:<AboutPage />
-				//error element
+				element:<AboutPage />,
+				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.CREATE_ACCOUNT,
-				// element: <NoRequireAuth><CreateUserPage /></NoRequireAuth>
-				element: <CreateUserPage />
+				element: <CreateUserPage />,
+				errorElement: <ErrorPage />
 			},
 			{
 				path: ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION,
-				// element: <NoRequireAuth><CreateUserConfirmationPage /></NoRequireAuth>
-				element: <CreateUserConfirmationPage />
+				element: <CreateUserConfirmationPage />,
+				errorElement: <ErrorPage />
 			},
-			{
-				path: ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION,
-				element: <NoRequireAuth><ChangePassConfirmationPage /></NoRequireAuth>
-			},
-			// {
-			// 	path: ROUTES_ENUM.AUTH_RESTORE_PASS,
-			// 	element: <NoRequireAuth><RestorePassPage /></NoRequireAuth>
-			// 	// errorElement
-			// },
 			// {
 			// 	path: ROUTES_ENUM.AUTH_EMAIL_SENT,
 			// 	element: <NoRequireAuth><EmailSent /></NoRequireAuth>
@@ -110,24 +83,14 @@ const CRoutes = function () {
 			// },
 			{
 				path: '/',
-				// element: <RequireAuth><Layout /></RequireAuth>,
-				element: <Layout />,
-				// errorElement:
+				element: <RequireAuth><Layout /></RequireAuth>,
+				// element: <Layout />,
+				errorElement: <ErrorPage />,
 				children: [
-					// {
-					// 	path: ROUTES_ENUM.AUTH_LOGIN,
-					// 	element: <LoginPage />,
-					// 	errorElement: <ErrorPage />
-					// },
 					{
 						path: ROUTES_ENUM.BUSINESS,
 						element: <BusinessPage />
-						// errorElement
 					},
-
-					// ver si para los boxes se usa el mismo endpoint para ambos roles. 
-					// entonces dentro de box if isAllowed && (acciones edit y delete)
-					// y si is Allowed botón CREAR BOX
 					{
 						path: ROUTES_ENUM.BOXES,
 						element: <BoxPage />
@@ -151,9 +114,18 @@ const CRoutes = function () {
 					{
 						path: ROUTES_ENUM.REMOVE_ACCOUNT,
 						element: <RemoveAccountPage />
-					}
+					},
+					{
+						path: ROUTES_ENUM.AUTH_CHANGE_PASS,
+						element: <ChangePassPage />
+					},
+					{
+						path: ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION,
+						element: <ChangePassConfirmationPage />
+					},
 				]
-			}
+			},
+			{ path: '*', element: <ErrorPage /> }
 		]
 	);
 	return <RouterProvider router={router}/>;

@@ -157,7 +157,7 @@ const BoxContainer = function () {
 					price={box.price}
 					onEdit={() => handleEditBox(box)}
 					onDelete={() => handleDeleteBox(box)}
-					onBuy={() => handleBuyBox(box)}
+					// onBuy={() => handleBuyBox(box)}
 					userType={userType}
 					activeProfile={activeProfile}
 					/>

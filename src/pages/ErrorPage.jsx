@@ -1,10 +1,11 @@
 import React from "react";
-// import useNavigate from 'react-router-dom';
 import MasterCard from "../components/layout/MasterCard/MasterCard";
 import CButton from "../components/ui/Button/CButton";
+import { useNavigate } from "react-router-dom";
+import ROUTES_ENUM from "../enums/routesEnum";
 
 const ErrorPage = () => {
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	return (
 			<MasterCard 
@@ -14,7 +15,7 @@ const ErrorPage = () => {
 			>
 				<CButton 
 					title="Volver"
-					onClick={() => alert("Vuelve a la home")}
+					onClick={() => navigate(ROUTES_ENUM.AUTH_LOGIN)}
 					sx={{fontSize: '1.2rem'}}
 				/>
 			</MasterCard>

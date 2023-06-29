@@ -3,25 +3,36 @@ import { useNavigate } from "react-router-dom";
 import MasterCard from "../../layout/MasterCard/MasterCard";
 import CButton from "../../ui/Button/CButton";
 import ROUTES_ENUM from "../../../enums/routesEnum";
+import AuthService from "../../../services/AuthService";
+import useLoading from "../../../hooks/useLoading";
 
 const RemoveAccount = function () {
 
 	const navigate = useNavigate();
+	const setLoading = useLoading();
+	const userEmail = localStorage.getItem('id');
 
-	const onRemoveAccount = ({ id }) => {
-		alert("llama al servicio RemoveAccount");
-		navigate(ROUTES_ENUM.AUTH_LOGIN);
-
+	const onRemoveAccount = () => {
+		setLoading(true);
+		AuthService.deleteAccount(userEmail)
+		.then(() => {
+			setLoading(false);
+			navigate(ROUTES_ENUM.ABOUT);
+		})
+		.catch((error) => {
+			console.log(error);
+			setLoading(false);
+		})
 	}
 
 	return (
 		<MasterCard
 			headerTitle="Eliminar cuenta"
-			headerSubtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			headerSubtitle="La eliminación de la cuenta implica la pérdida permanente de todos tus datos, incluyendo la información personal y el historial asociado a tu perfil, así que no podrás acceder a tu cuenta ni recuperar ninguna información una vez que se complete el proceso de eliminación."
 		>
 			<CButton
 				type="submit"
-				title="Eliminar cuenta"
+				title="Confirmo que deseo eliminar mi cuenta"
 				sx={{fontSize: '1.2rem'}}
 				onClick={onRemoveAccount}
 			/>

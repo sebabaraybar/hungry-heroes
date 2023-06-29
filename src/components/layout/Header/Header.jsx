@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Box, AppBar, Toolbar, List, ListItemText, Menu, Divider, MenuItem, Typography } from '@mui/material';
 import CButton from '../../ui/Button/CButton';
 import ROUTES_ENUM from '../../../enums/routesEnum';
-import { getHome, getItemsForRole } from '../../../utils/navUtils';
+import { getHome } from '../../../utils/navUtils';
 import logo from '../../../media/logo-light.png'
 import AuthService from '../../../services/AuthService';
 import styles from './Header.module.scss';

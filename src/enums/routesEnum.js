@@ -1,37 +1,36 @@
 const ROUTES_ENUM = Object.freeze({
+	// no auth required
 	AUTH_LOGIN: '/login',
-	AUTH_RESTORE_PASS: '/restore-password',
-	AUTH_EMAIL_SENT: '/emailsent',
-	AUTH_CHANGE_PASS_CONFIRMATION: '/change-password-confirmation',
+	CREATE_ACCOUNT: '/Accounts/register',
+	CREATE_ACCOUNT_CONFIRMATION: '/create-account-confirmation',
 	AUTH_REQUEST_PASS: '/Accounts/forgot-password',
 	AUTH_REQUEST_PASS_CONFIRMATION: '/request-password-confirmation',
 	AUTH_RESET_PASS: '/Accounts/reset-password',
-	
-	CREATE_ACCOUNT: '/Accounts/register',
-	CREATE_ACCOUNT_CONFIRMATION: '/create-account-confirmation',
-	REMOVE_ACCOUNT: '/remove-account',
 	ABOUT: '/about',
-	// USERS: '/users',
+
+	// auth required
+	AUTH_CHANGE_PASS: '/change-password',
+	AUTH_CHANGE_PASS_CONFIRMATION: '/change-password-confirmation',
+	REMOVE_ACCOUNT: '/remove-account',
 	BUSINESS: '/business',
-	// BOXES: '/business/:id',
+	PROFILE: '/profile',
 	BOXES: '/boxes',
 	BOXES_FOR_CLIENT:'/businessboxes',
-	// PROFILE: '/user/:id'
-	PROFILE: '/profile',
-	SALES: '/sales'
+	SALES: '/sales',
+	
+	AUTH_EMAIL_SENT: '/emailsent',
 });
 
-const ROUTES_KEY_ENUM = Object.freeze({
-	// ABOUT: 'ABOUT',
-	BUSINESS: 'BUSINESS',
-	BOXES: 'BOXES',
-	PROFILE: 'PROFILE',
-	CHANGE_PASSWORD: 'AUTH_CHANGE_PASS',
-	LOGOUT: 'AUTH_LOGIN',
-	SALES: 'SALES',
-	REMOVE_ACCOUNT: 'REMOVE_ACCOUNT'
-});
+// const ROUTES_KEY_ENUM = Object.freeze({
+// 	BUSINESS: 'BUSINESS',
+// 	BOXES: 'BOXES',
+// 	PROFILE: 'PROFILE',
+// 	CHANGE_PASSWORD: 'AUTH_CHANGE_PASS',
+// 	LOGOUT: 'AUTH_LOGIN',
+// 	SALES: 'SALES',
+// 	REMOVE_ACCOUNT: 'REMOVE_ACCOUNT'
+// });
 
-export { ROUTES_KEY_ENUM };
+// export { ROUTES_KEY_ENUM };
 
 export default ROUTES_ENUM;

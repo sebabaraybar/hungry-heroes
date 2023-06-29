@@ -18,14 +18,15 @@ const BusinessContainer = function () {
 	const handleSelectBusiness = (id) => {
 		setBusinessId(id);
 		console.log(id);
-		// ProductService.getProductsByBusinessId(id)
-		// .then((response) => {
-		// 	console.log(response);
-		// 	navigate(ROUTES_ENUM.BOXES_FOR_CLIENT)
-		// })
-		// .catch((error) => {
-		// 	console.log(error);
-		// })
+		ProductService.getProductsByBusinessId(id)
+		.then((response) => {
+			console.log(response);
+			navigate(ROUTES_ENUM.BOXES_FOR_CLIENT, { state: response });
+
+		})
+		.catch((error) => {
+			console.log(error);
+		})
 	}
 
 	useEffect(() => {

@@ -5,11 +5,20 @@ import CTextField from "../../ui/form/CTextField";
 import CButton from "../../ui/Button/CButton";
 import { Grid, Typography } from "@mui/material";
 import * as Yup from 'yup';
+import AuthService from "../../../services/AuthService";
+import useLoading from "../../../hooks/useLoading";
+import { useNavigate } from "react-router-dom";
+import ROUTES_ENUM from "../../../enums/routesEnum";
 
 const ChangePass = function () {
 
+	const setLoading = useLoading();
+	const navigate = useNavigate();
+	const userEmail = localStorage.getItem('email');
+	const userId = localStorage.getItem('id');
+
 	const VALIDATION = Yup.object().shape({
-		currentPassword: Yup.string().required('Campo obligatorio'),
+		oldPassword: Yup.string().required('Campo obligatorio'),
 		newPassword: Yup.string().required('Campo obligatorio')
 			.min(8, 'Debe contener al menos 8 caracteres')
 			.max(20, "Debe contener un máximo de 20 caracteres"),
@@ -17,8 +26,19 @@ const ChangePass = function () {
 		.oneOf([Yup.ref('newPassword'), null], 'Las contraseñas no coinciden')
 	});
 
-	const onSave = ({ currentPassword, newPassword }) => {
-		alert("llama al servicio changePass")
+	const onSubmit = (values) => {
+		setLoading(true);
+		console.log(values);
+		AuthService.changePassword(userId, values)
+		.then(() => {
+			setLoading(false);
+			navigate(ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION);
+		})
+		.catch((error) => {
+			setLoading(false);
+			// {message: 'Old password is incorrect'}
+			console.log(error);
+		})
 	}
 
 	return (
@@ -27,12 +47,13 @@ const ChangePass = function () {
 		>
 			<Formik
 				initialValues={{
-					currentPassword: '',
+					email: userEmail,
+					oldPassword: '',
 					newPassword: '',
 					confirmPassword: ''
 				}}
 				validationSchema={ VALIDATION }
-				onSubmit={onSave}
+				onSubmit={onSubmit}
 				>
 				{(formik) => (
 					<Form>
@@ -41,17 +62,15 @@ const ChangePass = function () {
 								<CTextField
 									required
 									label="Usuario"
-									name="username"
+									name="email"
 									disabled
 									formik={formik}
-									// value={userLogged.username}
-									// variant="standard"
 								/>
 							</Grid>
 							<Grid item xs={12}>
 								<CTextField
 									label="Contraseña actual"
-									name="currentPassword"
+									name="oldPassword"
 									type="password"
 									formik={formik}
 								/>

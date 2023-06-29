@@ -3,7 +3,6 @@ import apiUrl from "../api/apiUrl";
 
 const login = (email, password) => {
 	const urlService = apiUrl.getUrlService('auth.login');
-	console.log("SERVICE", email, password);
 	return api.post(urlService, { email, password });
 };
 
@@ -12,18 +11,16 @@ const logout = () => {
 };
 
 const register = (email, password, confirmPassword, role) => {
-	console.log("SERVICIO", email, password, confirmPassword, role);
-	console.log("SERVICIO", role, typeof role);
   const urlService = apiUrl.getUrlService('auth.register');
-  return api.post(urlService, email, password, confirmPassword, role )
-	.then((response) => {
-		console.log(response);
-		console.log("SERVICIO", email, password, confirmPassword, role);
-	})
-	.catch((err) => {
-		console.log(err);
-		console.log("SERVICIO", email, password, confirmPassword, role);
-	})
+  return api.post(urlService, email, password, confirmPassword, role );
+	// .then((response) => {
+	// 	console.log(response);
+	// 	console.log("SERVICIO", email, password, confirmPassword, role);
+	// })
+	// .catch((err) => {
+	// 	console.log(err);
+	// 	console.log("SERVICIO", email, password, confirmPassword, role);
+	// })
 };
 
 const requestPass = (email) => {
@@ -46,11 +43,24 @@ const requestPass = (email) => {
 	});
 };
 
-
+const changePassword = (id, body) => {
+	const bodyAfter = {...body};
+	bodyAfter.email = null;
+	bodyAfter.id = parseInt(id);
+	const urlService = apiUrl.getUrlService('auth.changePassword');
+	return api.post(urlService, bodyAfter);
+};
 
 const restorePass = (body) => {
 	const urlService = apiUrl.getUrlService('auth.restorePass');
 	return api.post(urlService, body);
+};
+
+const deleteAccount = (id) => {
+	const idAfter = parseInt(id);
+	let urlService = apiUrl.getUrlService('auth.deleteAccount');
+	urlService = urlService.replace(':id', idAfter);
+	return api.delete(urlService);
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -59,5 +69,7 @@ export default {
 	logout,
 	register,
 	restorePass,
-	requestPass
+	requestPass,
+	changePassword,
+	deleteAccount
 };

@@ -30,10 +30,19 @@
 				margin-bottom: 1rem;
 			}
 
-			.carddetails {
-				font-weight: 900;
+			.carddescription {
+				font-weight: 700;
 				font-size: 1.1rem;
 				letter-spacing: -0.5px;
+			}
+
+			.carddetails {
+				font-weight: 900;
+				font-size: 1.2rem;
+				letter-spacing: -0.5px;
+				background-color: $blue;
+				text-align: center;
+				padding: 0.5rem 0;
 			}
 		}
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ROUTES_ENUM from '../enums/routesEnum';
 import { Box, Typography } from '@mui/material';
 import BoxCard from '../components/ui/BoxCard/BoxCard';
@@ -21,10 +21,12 @@ const BoxContainerForClient = function () {
 	const [openModalDelete, setOpenModalDelete] = useState(false);
 	const [box, setBox] = useState(null);
 	const [boxName, setBoxName] = useState();
-	const [boxes, setBoxes] = useState([]);
+	// const [boxes, setBoxes] = useState([]);
 	const userType = localStorage.getItem('role');
 	// const clientId = localStorage.getItem('userClientId');
 	// const [activeProfile, setActiveProfile] = useState();
+	const location = useLocation();
+	const boxes = location.state;
 
 
 	const handleBuyBox = (box) => {
@@ -47,6 +49,7 @@ const BoxContainerForClient = function () {
 					stock={box.stock}
 					price={box.price}
 					userType={userType}
+					onBuy={() => handleBuyBox(box)}
 					/>
 				))
 				}

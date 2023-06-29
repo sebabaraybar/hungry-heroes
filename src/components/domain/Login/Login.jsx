@@ -11,6 +11,7 @@ import styles from './Login.module.scss';
 import AuthService from '../../../services/AuthService';
 import { LOCAL_STORAGE } from '../../../utils/constants';
 import useLoading from '../../../hooks/useLoading';
+import { getHome } from '../../../utils/navUtils';
 
 const Login = function () {
   const navigate = useNavigate();
@@ -22,27 +23,6 @@ const Login = function () {
     password: Yup.string().required('Campo obligatorio')
   });
 
-  // const onLogin = async ({ email, password }) => {
-  //   console.log(`USER: ${email}`, `PASS: ${password}`);
-	// 	try {
-	// 		const userLogged = await AuthService.login(email, password);
-	// 		localStorage.setItem(LOCAL_STORAGE.TOKEN_LOGIN, userLogged.jwtToken);
-	// 		localStorage.setItem(LOCAL_STORAGE.USER_EMAIL, userLogged.email);
-	// 		localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
-	// 		localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id)
-	// 		localStorage.setItem(LOCAL_STORAGE.BUSINESS_ID, userLogged.userBusinessId)
-	// 		console.log(userLogged)
-
-	// 		if(userLogged.role === 'Client') {
-	// 			navigate(ROUTES_ENUM.BUSINESS);
-	// 		} else {
-	// 			navigate(ROUTES_ENUM.BOXES);
-	// 		}
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-  // };
-
 	const onLogin = ({ email, password }) => {
 		setLoading(true);
 		AuthService.login(email, password)
@@ -53,11 +33,7 @@ const Login = function () {
 				localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id);
 				localStorage.setItem(LOCAL_STORAGE.BUSINESS_ID, userLogged.userBusinessId);
 				
-				if (userLogged.role === 'Client') {
-					navigate(ROUTES_ENUM.BUSINESS);
-				} else {
-					navigate(ROUTES_ENUM.BOXES);
-				}
+				navigate(getHome(userLogged.role));
 				setLoading(false);
 			})
 			.catch((error) => {

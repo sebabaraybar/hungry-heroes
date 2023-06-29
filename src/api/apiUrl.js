@@ -3,18 +3,10 @@ const API = 'https://hungry-heroes.azurewebsites.net';
 const apiUrl = {
 	auth: {
 		login: `${API}/Accounts/login`,
-		// login: `/Accounts/login`,
 		register: `${API}/Accounts/register`,
 		requestPass: `${API}/Accounts/forgot-password`,
-		restorePass: 'auth/restore-password'
-	},
-	user: {
-		me: 'users/me',
-		getUsers: '/users',
-		createUser: '/users',
-		deleteUSer: '/users/:id',
-		editUser: '/users/:id',
-		getSingleUser: '/users/:id'
+		deleteAccount: `${API}/Accounts/:id`,
+		changePassword: `${API}/Accounts/change-password`
 	},
 	business: {
 		getBusinesses: `${API}/Business/All`,
