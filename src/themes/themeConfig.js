@@ -108,9 +108,9 @@ const theme = createTheme ( {
 			styleOverrides: {
 				root: {
 					'& > *': {
-						fontWeight: '900',
+						fontWeight: '900 !important',
 						color: vars.secondary,
-						fontSize: '1.1rem',
+						fontSize: '1.2rem !important',
 						letterSpacing: '-0.5px',
 						backgroundColor: 'transparent'
 					}
@@ -134,7 +134,7 @@ const theme = createTheme ( {
 			styleOverrides: {
 				root: {
 					fontWeight: '900',
-					fontSize: '1.1rem'
+					fontSize: '1.2rem'
 				}
 			}
 		},
@@ -143,8 +143,8 @@ const theme = createTheme ( {
 				root: {
 					backgroundColor: vars.primary,
 					'& > *' :{
-						fontWeight: '900',
-						fontSize: '1.3rem'
+						fontWeight: '900 !important',
+						fontSize: '1.2rem !important'
 					}
 				}
 			}

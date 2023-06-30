@@ -275,13 +275,13 @@ const FormBusiness = function({
 								{(enableBtn) && (
 									<>
 									<CButton
-										title="Cancelar"
+										title="cancelar"
 										sx={{fontSize: '1.2rem'}}
 										onClick={handleCancel}
 									/>
 									<CButton
 									  type="submit"
-										title="Guardar cambios"
+										title="guardar cambios"
 										variant="contained"
 										sx={{fontSize: '1.2rem'}}
 									/>
