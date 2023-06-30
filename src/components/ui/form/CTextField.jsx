@@ -21,11 +21,11 @@ const CTextField = function ({
   InputProps,
 	helperText,
 	error,
-	formik
+	formik,
+	position
 }) {
 
   const [isPassVisible, setPassVisibility] = useState(false);
-	// console.log(isPassVisible)
   
 	const setPassFieldType = () => {
     if (isPassVisible) { 
@@ -35,7 +35,7 @@ const CTextField = function ({
   
 	const inputPropsPass = {
     endAdornment: (
-      <InputAdornment>
+      <InputAdornment position="end">
         <CIconButton
           disableRipple
           onClick={() => { 
@@ -61,7 +61,7 @@ const CTextField = function ({
     type={type === 'password' ? setPassFieldType() : type}
     size={size}
     placeholder={placeholder}
-    autocomplete={autocomplete}
+    autoComplete={autocomplete}
 		variant={variant}
 		value={formik.values[name]}
 		onChange={(e) => (formik.handleChange(e))}

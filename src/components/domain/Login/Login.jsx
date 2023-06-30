@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useNavigation } from 'react-router-dom';
 import CTextField from '../../ui/form/CTextField';
 import CButton from '../../ui/Button/CButton';
 import { Box, Grid, TextField } from '@mui/material';
@@ -34,12 +34,11 @@ const Login = function () {
 				localStorage.setItem(LOCAL_STORAGE.BUSINESS_ID, userLogged.userBusinessId);
 				
 				navigate(getHome(userLogged.role));
-				setLoading(false);
 			})
 			.catch((error) => {
 				console.log(error);
-				setLoading(false);
 			});
+			setLoading(false);
 	};
 
   return (
@@ -82,15 +81,6 @@ const Login = function () {
 									formik={formik}
                 />
               </Grid>
-							<Box className={styles.linkpass}>
-								<CButton
-									title="Olvidé mi contraseña"
-									variant="text"
-									// color="primary"
-									sx={{fontSize:"0.8rem"}}
-									onClick={() => navigate(ROUTES_ENUM.AUTH_REQUEST_PASS)}
-								/>
-							</Box>
               <Grid item xs={12} mt={4}>
                 <CButton
                   type="submit"
@@ -102,14 +92,24 @@ const Login = function () {
           </Form>
 				)}
         </Formik>
-        <Box className={styles.linkaccount}>
-					<CButton 
-						title='Creá tu cuenta'
-						variant='contained'
-						sx={{fontSize: '1.4rem'}}
-						onClick={() => navigate(ROUTES_ENUM.CREATE_ACCOUNT)}
-					/>
-        </Box>
+				<Box className={styles.linkcontainer}>
+					<Box className={styles.linkpass}>
+						<CButton
+							title="Olvidé mi contraseña"
+							variant="text"
+							sx={{fontSize:"0.9rem"}}
+							onClick={() => navigate(ROUTES_ENUM.AUTH_REQUEST_PASS)}
+						/>
+					</Box>
+					<Box className={styles.linkaccount}>
+						<CButton 
+							title='Creá tu cuenta'
+							variant='contained'
+							sx={{fontSize: '1.4rem'}}
+							onClick={() => navigate(ROUTES_ENUM.CREATE_ACCOUNT)}
+						/>
+					</Box>
+				</Box>
       </Box>
 			<Box className={styles.imgcontainer}>
 				<Box className={styles.btncontainer}>

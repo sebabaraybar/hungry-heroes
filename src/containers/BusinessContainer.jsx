@@ -8,24 +8,26 @@ import BusinessService from '../services/BusinessService';
 import ProductService from '../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import ROUTES_ENUM from '../enums/routesEnum';
+import useLoading from '../hooks/useLoading';
 
 const BusinessContainer = function () {
 
 	const [businesses, setBusinesses] = useState([]);
 	const [businessId, setBusinessId] = useState();
 	const navigate = useNavigate();
+	const setLoading = useLoading();
 
 	const handleSelectBusiness = (id) => {
 		setBusinessId(id);
-		console.log(id);
+		setLoading(true);
 		ProductService.getProductsByBusinessId(id)
 		.then((response) => {
-			console.log(response);
 			navigate(ROUTES_ENUM.BOXES_FOR_CLIENT, { state: response });
-
+			setLoading(false);
 		})
 		.catch((error) => {
 			console.log(error);
+			setLoading(false);
 		})
 	}
 
@@ -37,7 +39,6 @@ const BusinessContainer = function () {
 	.catch((error) => {
 		console.log(error)
 	})
-	console.log(businesses)
 	},[]);
 
 	return (

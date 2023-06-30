@@ -8,13 +8,15 @@ import CTextField from "../../ui/form/CTextField";
 const FormBox = function ({
 	onSubmit,
 	formikRef,
-	box
+	box,
+	values
 }) {
+
 	const VALIDATION = Yup.object().shape({
 		name: Yup.string().required('Campo obligatorio'),
-		detail: Yup.string().required('Campo obligatorio'),
+		description: Yup.string().required('Campo obligatorio'),
 		price: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio'),
-		quantity: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio')
+		stock: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio')
 	});
 
 	const onSubmitForm = (values) => {
@@ -27,6 +29,7 @@ const FormBox = function ({
 			validationSchema={VALIDATION}
 			onSubmit={onSubmitForm}
 			innerRef={formikRef}
+			validateOnChange
 		>
 			{(formik) => (
 			<Form>
@@ -69,7 +72,7 @@ const FormBox = function ({
 };
 
 FormBox.propTypes = {
-  // formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
+  formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
   onSubmit: PropTypes.func.isRequired,
 	// initialValues: PropTypes.objectOf(PropTypes.any),
 	userId: PropTypes.number

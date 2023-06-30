@@ -1,14 +1,15 @@
 $primary: #e9e2e2;
+$dark: #323636;
 $secondary: #2C3535;
 $tertiary: #e3f54a;
-// $blue: #B3D6F4;
-$blue: #aed5f6;
+$blue: #B3D6F4;
+// $blue: #cee6f9;
 $green: #a8de98;
 $pink: rgb(253, 211, 236);
 $disabled: #bdbdbd;
 
 // no puse versiones light, main en theme config
-$error: #d35151;
+$error: #eb6772;
 $warning: #ffa726;
 $info: #4fc3f7;
 $success: #388e3c;
@@ -28,4 +29,5 @@ $success: #388e3c;
 	warning: $warning;
 	info: $info;
 	success: $success;
+	dark: $dark;
 }

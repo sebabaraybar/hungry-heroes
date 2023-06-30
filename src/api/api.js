@@ -18,11 +18,6 @@ const api = axios.create({
 	headers: getHeaders()
 });
 
-const test = () => {
-	console.log(API_BASE_URL);
-}
-test()
-
 api.interceptors.request.use(
 	(config) => {
 		const token = localStorage.getItem('jwtToken');

@@ -78,6 +78,7 @@ const FormUser = function () {
 							<Grid item xs={12}>
 								<CTextField
 									label="Contraseña"
+									type="password"
 									name="password"
 									formik={formik}
 								/>
@@ -85,6 +86,7 @@ const FormUser = function () {
 							<Grid item xs={12}>
 								<CTextField
 									label="Repetir contraseña"
+									type="password"
 									name="confirmPassword"
 									formik={formik}
 								/>

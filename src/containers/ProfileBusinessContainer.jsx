@@ -11,16 +11,12 @@ const ProfileBusinessContainer = function () {
 	const businessId = localStorage.getItem('userBusinessId');
 	const accountId = localStorage.getItem('id');
 	const businessEmail = localStorage.getItem('email');
-	console.log(businessEmail);
-	console.log(accountId);
-	console.log(businessId);
 
 	useEffect(() => {
 		setLoading(true)
 		BusinessService.getBusinessById(businessId)
 	.then((response) => {
 		setBusiness(response)
-		console.log(business)
 		setLoading(false);
 	})
 	.catch((error) => {

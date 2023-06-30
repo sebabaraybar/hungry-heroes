@@ -11,6 +11,7 @@ import DISTRICT_ENUM from '../../../enums/districtEnum';
 import { makeOptionsObject } from '../../../utils/utils';
 import styles from './FormBusiness.module.scss';
 import BusinessService from '../../../services/BusinessService';
+import useLoading from '../../../hooks/useLoading';
 
 const FormBusiness = function({
 	business,
@@ -21,6 +22,7 @@ const FormBusiness = function({
 	const formikRef = useRef();
 	const [disabledField, setdisabledField] = useState(true);
 	const [enableBtn, setEnableBtn] = useState(false);
+	const setLoading = useLoading();
 	// TODO
 	// const [selectedImage, setSelectedImage] = useState();
 	
@@ -95,13 +97,14 @@ const FormBusiness = function({
 	//  ************
 	
 	const handleSubmit = (values) => {
-		console.log(values)
+		setLoading(true);
 		BusinessService.editBusiness(business.userBusinessId, values, accountId)
-		.then((response) => {
-			console.log(response)
+		.then(() => {
+			setLoading(false);
 		})
 		.catch((error) => {
 			console.log(error)
+			setLoading(false);
 		})		
 		setdisabledField(true);
 		setEnableBtn(false);

@@ -79,15 +79,14 @@
 		}
 	}
 
-	.linkpass {
-		
-		&:hover {
-			background-color: rgba($color: $primary, $alpha: 0.2);
-			color: $primary;
+	.linkcontainer {
+		margin-top: auto;
+		.linkpass {
+			margin-bottom: 1rem;
+			&:hover {
+				background-color: rgba($color: $primary, $alpha: 0.2);
+				color: $primary;
+			}
 		}
-	}
-
-	.linkaccount {
-		margin: auto auto 0 auto;
 	}
 }

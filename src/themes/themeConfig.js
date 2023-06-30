@@ -4,7 +4,7 @@ import vars from '../styles/variables.scss';
 const theme = createTheme ( {
 	palette: {
 		primary: {
-			main: vars.primary,
+			main: vars.dark,
 			contrastText: vars.secondary
 		},
 		secondary: {
@@ -81,8 +81,7 @@ const theme = createTheme ( {
 			styleOverrides: {
 				root: {
 					fontWeight: '900',
-					textTransform: 'lowercase',
-					letterSpacing: '-0.5px',
+					textTransform: 'lowercase'
 				}
 			}
 		},
@@ -92,7 +91,7 @@ const theme = createTheme ( {
 					fontWeight: '900',
 					fontSize: '1.2rem',
 					textTransform: 'lowercase',
-					letterSpacing: '-1px',		
+					letterSpacing: '-1px'
 				}
 			}
 		},
@@ -109,19 +108,12 @@ const theme = createTheme ( {
 			styleOverrides: {
 				root: {
 					'& > *': {
-						// textTransform: 'lowercase',
 						fontWeight: '900',
 						color: vars.secondary,
 						fontSize: '1.1rem',
 						letterSpacing: '-0.5px',
 						backgroundColor: 'transparent'
-					},
-					// '& .Mui-focused': {
-					// 	color: vars.secondary
-					// },
-					// '& .MuiInputBase-input-MuiInput-input::focus': {
-					// 	color: vars.blue
-					// }
+					}
 				}
 			}
 		},
@@ -135,6 +127,25 @@ const theme = createTheme ( {
 					textTransform: 'lowercase',
 					letterSpacing: '-1px',
 					borderRadius: '0'
+				}
+			}
+		},
+		MuiSelect: {
+			styleOverrides: {
+				root: {
+					fontWeight: '900',
+					fontSize: '1.1rem'
+				}
+			}
+		},
+		MuiList: {
+			styleOverrides: {
+				root: {
+					backgroundColor: vars.primary,
+					'& > *' :{
+						fontWeight: '900',
+						fontSize: '1.3rem'
+					}
 				}
 			}
 		}

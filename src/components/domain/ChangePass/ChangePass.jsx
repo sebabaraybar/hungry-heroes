@@ -28,7 +28,6 @@ const ChangePass = function () {
 
 	const onSubmit = (values) => {
 		setLoading(true);
-		console.log(values);
 		AuthService.changePassword(userId, values)
 		.then(() => {
 			setLoading(false);

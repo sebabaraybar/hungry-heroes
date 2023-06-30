@@ -7,7 +7,7 @@ import { getHome } from '../../../utils/navUtils';
 import logo from '../../../media/logo-light.png'
 import AuthService from '../../../services/AuthService';
 import styles from './Header.module.scss';
-import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded, ShoppingCart} from '@mui/icons-material';
+import { ExitToAppRounded, LockRounded, ManageAccountsRounded, PersonRemoveRounded, ShoppingCart, Home} from '@mui/icons-material';
 
 const Header = function () {
 
@@ -37,7 +37,7 @@ const Header = function () {
 		>
 			<Toolbar className={styles.toolbar}>
 				<Box className={styles.logoContainer}>
-					<Link to={ getHome() }>
+					<Link to={ (getHome(userRole)) }>
 					<img
 						alt="Logo de Hungry Heroes"
 						src={logo}
@@ -49,8 +49,8 @@ const Header = function () {
 					<CButton
 						onClick={handleClick}
 						title="menú"
-						color="primary"
-						sx={{fontSize: "2rem"}}
+						className={styles.menubtn}
+						sx={{fontSize: "2rem", color: '#fff', border: 'solid 2px #fff'}}
 					/>
 					<Menu
 						open={open}
@@ -67,6 +67,15 @@ const Header = function () {
 						classes={{ paper: styles['menu-paper'] }}
 					>
 						<List>
+						<ListItemText sx={{ textAlign: 'left'}} >
+									<CButton
+										variant="text"
+										title="Inicio"
+										startIcon={<Home />}
+										sx={{ fontSize: '1.2rem'}}
+										onClick={() => navigate(getHome(userRole))}
+									/>
+								</ListItemText>
 							{userRole==='Business' ? (
 								<ListItemText sx={{ textAlign: 'left'}} >
 									<CButton
@@ -78,24 +87,6 @@ const Header = function () {
 									/>
 								</ListItemText>
 							):null}
-							<ListItemText sx={{ textAlign: 'left'}}>
-								<CButton
-									variant="text"
-									title="Cambiar contraseña"
-									sx={{ fontSize: '1.2rem'}}
-									startIcon={ <LockRounded /> }
-									onClick={() => navigate(ROUTES_ENUM.AUTH_CHANGE_PASS)}
-								/>
-							</ListItemText>
-							<ListItemText sx={{ textAlign: 'left'}}>
-								<CButton
-									variant="text"
-									title="Cerrar sesión"
-									sx={{ fontSize: '1.2rem'}}
-									startIcon={ <ExitToAppRounded /> }
-									onClick={onLogout}
-								/>
-							</ListItemText>
 							{userRole === 'Client' ? (
 								<ListItemText sx={{ textAlign: 'left'}}>
 									<CButton
@@ -117,6 +108,24 @@ const Header = function () {
 								/>
 							</ListItemText>
 							)}
+							<ListItemText sx={{ textAlign: 'left'}}>
+								<CButton
+									variant="text"
+									title="Cambiar contraseña"
+									sx={{ fontSize: '1.2rem'}}
+									startIcon={ <LockRounded /> }
+									onClick={() => navigate(ROUTES_ENUM.AUTH_CHANGE_PASS)}
+								/>
+							</ListItemText>
+							<ListItemText sx={{ textAlign: 'left'}}>
+								<CButton
+									variant="text"
+									title="Cerrar sesión"
+									sx={{ fontSize: '1.2rem'}}
+									startIcon={ <ExitToAppRounded /> }
+									onClick={onLogout}
+								/>
+							</ListItemText>
 							<Divider sx={{marginTop: '1.5rem'}}/>
 							<ListItemText sx={{ textAlign: 'left'}}>
 								<CButton

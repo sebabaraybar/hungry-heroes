@@ -8,9 +8,12 @@
 	.card {
 		box-shadow: 0 3px 6px #0000001c;
 		width: 380px;
-		height: 400px;
+		height: 500px;
 		display: flex;
 		flex-direction: column;
+		&:hover {
+			transform: scale(1.1)
+		}
 
 		.img {
 			height: 100%;
@@ -20,19 +23,18 @@
 		}
 
 		.cardcontent {
+			text-align: center;
+			text-transform: lowercase;
 
 			.cardtitle {
-				text-transform: lowercase;
 				font-size: 1.5rem;
 				font-weight: 900;
 				letter-spacing: -1px;
-				text-align: center;
 				margin-bottom: 1rem;
 			}
 
 			.carddescription {
-				font-weight: 700;
-				font-size: 1.1rem;
+				font-size: 1.2rem;
 				letter-spacing: -0.5px;
 			}
 
@@ -40,9 +42,23 @@
 				font-weight: 900;
 				font-size: 1.2rem;
 				letter-spacing: -0.5px;
-				background-color: $blue;
-				text-align: center;
+				border: 3px solid $blue;
 				padding: 0.5rem 0;
+			}
+
+			.stock {
+				font-weight: 900;
+				font-size: 1.2rem;
+				letter-spacing: -0.5px;
+				text-align: left;
+
+				span {
+					background-color: $secondary;
+					padding: 4px 12px;
+					color: $primary;
+					border-radius: 100%;
+					font-weight: 900;
+				}
 			}
 		}
 

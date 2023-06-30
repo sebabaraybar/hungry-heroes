@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
 import ROUTES_ENUM from "../../../enums/routesEnum";
 import CIconButton from "../Button/CIconButton";
-import { Box, Typography, Card, CardMedia, CardContent, CardActions, Grid } from "@mui/material";
+import { Box, Typography, Card, CardMedia, CardContent, CardActions, Grid, Divider } from "@mui/material";
 import { EditRounded, DeleteRounded } from "@mui/icons-material";
 import CButton from "../Button/CButton";
 import { InfoRounded } from "@mui/icons-material";
@@ -28,21 +28,27 @@ const BoxCard = function ({
 }) {
 
 	const navigate = useNavigate();
+	const[options, setOptions] = useState([]);
+
+	const onSubmitForm = (values) => {
+		// console.log("DESDE BOX CARD")
+		onEdit(values);
+		onDelete(values);
+		onBuy(values);
+	};
+
 	const VALIDATION = Yup.object().shape({
 		stock: Yup.string().required('Campo obligatorio').nullable,
 		});
+
 	const formik = useFormik({
 		initialValues: {
 			stock: {stock}
 		},
 		validationSchema: VALIDATION,
-		onSubmit: values => {
-			// Handle form submission if needed
-			console.log(values)
-		}
+		onSubmit: {onSubmitForm},
 	});
-const[options, setOptions] = useState([]);
-	console.log(stock)
+
 	useEffect(() => {
 		const stockOptions = [];
 		for (let i = 1; i <= stock; i++) {
@@ -73,26 +79,37 @@ const[options, setOptions] = useState([]);
 								{description}
 							</Typography>
 						</Grid>
-						<Grid item xs={8}>
-							<Typography mt={2} className={styles.carddetails}>
-								${price}
-							</Typography>
-						</Grid>
-						<Grid item xs={4} mt={2}>
 							{userType === "Business" ? (
-								<Typography>
-									stock: {stock}
+								<>
+								<Grid item xs={12} mx={6} mt={2}>
+								<Typography mt={2} className={styles.carddetails}>
+									${price}
 								</Typography>
-							): (
-								<CSelect
-									name="stock"
-									label="cantidad"
-									formik={formik}
-									selectOption={options}
-								>
-								</CSelect>
+								</Grid>
+								<Grid item xs={12} mx={6} mt={2}>
+									<Typography className={styles.stock}>
+										stock: <span>{stock}</span>
+									</Typography>
+								</Grid>
+								</>
+							):(
+								<>
+								<Grid item xs={6}>
+								<Typography mt={6} className={styles.carddetails}>
+									${price}
+								</Typography>
+								</Grid>
+								<Grid item xs={6} mt={6}>
+									<CSelect
+										name="stock"
+										label="cantidad"
+										formik={formik}
+										selectOption={options}
+									>
+									</CSelect>
+							</Grid>
+								</>
 							)}
-						</Grid>
 					</Grid>
 				</CardContent>
 				<CardActions className={styles.btncontainer}>
@@ -141,9 +158,9 @@ BoxCard.propTypes = {
 	description: PropTypes.string,
 	alt: PropTypes.string.isRequired,
 	img: PropTypes.node.isRequired,
-	onEdit: PropTypes.func.isRequired,
-	onDelete: PropTypes.func.isRequired,
-	onBuy: PropTypes.func.isRequired,
+	onEdit: PropTypes.func,
+	onDelete: PropTypes.func,
+	onBuy: PropTypes.func,
 	userType: PropTypes.string.isRequired,
 	activeProfile: PropTypes.bool.isRequired
 };

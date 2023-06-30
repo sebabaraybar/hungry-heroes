@@ -34,7 +34,7 @@ const BoxContainer = function () {
 		setLoading(false);
 	})
 	.catch((error) => {
-   console.log(error)
+   console.log(error.message)
 	 setLoading(false);
 	})
 	},[]);
@@ -44,8 +44,6 @@ const BoxContainer = function () {
 		BusinessService.getBusinessById(businessId)
 		.then((response) => {
 			setActiveProfile(response.activeProfile);
-			console.log(activeProfile)
-			console.log(response)
 		})
 		.catch((error) => {
 			console.log(error);
@@ -74,16 +72,15 @@ const BoxContainer = function () {
 	};
 
 	const editBox = (values) => {
-		console.log(values)
 		setLoading(true);
 		ProductService.editProduct(businessId, values)
-		.then((response) => {
-			console.log(response)
+		.then(() => {
 			setLoading(false);
 			navigate(0);
 		})
 		.catch((error) => {
 			console.log(error)
+			setLoading(false);
 		})
 		setOpenModalEdit(false);
 	};
@@ -95,7 +92,6 @@ const BoxContainer = function () {
 	};	
 
 	const deleteBox = (box) => {
-		console.log(box)
 		setLoading(true);
 		ProductService.deleteProduct(box.productId)
 		.then(() => {
@@ -107,12 +103,6 @@ const BoxContainer = function () {
 			setLoading(false);
 		})
 		setOpenModalDelete(false);
-	};
-
-	const handleBuyBox = (box) => {
-		setBox(box);
-		setBoxName(box.name);
-		alert("llama al servicio comprar:")
 	};
 
 	return (
@@ -157,7 +147,6 @@ const BoxContainer = function () {
 					price={box.price}
 					onEdit={() => handleEditBox(box)}
 					onDelete={() => handleDeleteBox(box)}
-					// onBuy={() => handleBuyBox(box)}
 					userType={userType}
 					activeProfile={activeProfile}
 					/>
@@ -170,7 +159,6 @@ const BoxContainer = function () {
 				closeModal={() => setOpenModalCreate(false)}
 				btnDialogTitle="Guardar"
 				btnDialogOnClick={() => createBox(formikRef.current.values)}
-				// formikRef={formikRef}
 			>
 				<FormBox
 					onSubmit={createBox}
