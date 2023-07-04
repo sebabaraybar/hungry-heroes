@@ -12,11 +12,14 @@ import AuthService from '../../../services/AuthService';
 import { LOCAL_STORAGE } from '../../../utils/constants';
 import useLoading from '../../../hooks/useLoading';
 import { getHome } from '../../../utils/navUtils';
+import useSnackbar from '../../../hooks/useSnackbar';
+import handleError from '../../../utils/errors';
 
 const Login = function () {
   const navigate = useNavigate();
 	const formikRef = useRef();
 	const setLoading = useLoading();
+	const setSnackbar = useSnackbar();
 
   const VALIDATION = Yup.object().shape({
     email: Yup.string().email('Usuario inválido - usuario@email.com').required('Campo obligatorio'),
@@ -37,6 +40,7 @@ const Login = function () {
 			})
 			.catch((error) => {
 				console.log(error);
+				setSnackbar(handleError(error.message));
 			});
 			setLoading(false);
 	};

@@ -15,8 +15,22 @@ const CDialog = function({
 	fullWidth,
 	maxWidth,
 	btnDialogTitle,
-	btnDialogOnClick
+	btnDialogOnClick,
+	formikRef
 }){
+
+	const handleClick = () => {
+		if(formikRef) {
+			formikRef.current.validateForm().then(() => {
+				formikRef.current.handleSubmit();
+			});
+		} else {
+			if(btnDialogOnClick.action) {
+				btnDialogOnClick.action();
+			}
+			closeModal();
+		}
+	}
 
 	const afterModalClose = (event, reason) => {
 		if (reason === 'backdropClick') {
@@ -56,7 +70,7 @@ const CDialog = function({
 						<CButton
 							type="submit"
 							title={btnDialogTitle}
-							onClick={btnDialogOnClick}
+							onClick={handleClick}
 							sx={{fontSize: '1.2rem'}}
 						/>
 					</DialogActions>
@@ -76,6 +90,12 @@ CDialog.propTypes = {
 	formikRef: PropTypes.oneOfType([
     PropTypes.shape(FORMIK_PROPTYPES).isRequired,
     PropTypes.bool
+  ]),
+	btnDialogOnClick: PropTypes.oneOfType([
+    PropTypes.shape({
+      action: PropTypes.func
+    }),
+    PropTypes.bool
   ])
 };
 
@@ -83,6 +103,7 @@ CDialog.defaultProps = {
 	maxWidth: 'sm',
 	fullWidth: false,
 	formikRef: false,
+	btnDialogOnClick: false
 };
 
 export default CDialog;

@@ -99,6 +99,8 @@ $blue-light: #e0eefa;
 			}
 		}
 
+		
+
 		.maintitle {
 			& > * {
 				font-weight: 900;
@@ -117,9 +119,10 @@ $blue-light: #e0eefa;
 			text-transform: lowercase;
 			position: relative;
 			padding-left: 3rem;
+			
 
 			.imgcontainer {
-				width: 45%;
+				width: 55%;
 				right: 0;
 
 				img {
@@ -150,12 +153,11 @@ $blue-light: #e0eefa;
 			.commercial {
 				// display: flex;
 				// flex-direction: column;
-				// width: 100%;
-
+				width: 45%;
+				margin-left: 4rem;
 				.client {
 					// width: 100%;
 					text-align: center;
-					// background-color: #f3ef21;
 				}
 				.business {
 					width: 100%;

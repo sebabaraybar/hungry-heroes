@@ -4,12 +4,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid } from "@mui/material";
 import CTextField from "../../ui/form/CTextField";
+import FORMIK_PROPTYPES from "../../../modelsFormik/FormikProps";
 
 const FormBox = function ({
 	onSubmit,
 	formikRef,
-	box,
-	values
+	box
 }) {
 
 	const VALIDATION = Yup.object().shape({
@@ -19,17 +19,13 @@ const FormBox = function ({
 		stock: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio')
 	});
 
-	const onSubmitForm = (values) => {
-		onSubmit(values);
-	};
-
 	return (
 		<Formik
 			initialValues={box || {}}
 			validationSchema={VALIDATION}
-			onSubmit={onSubmitForm}
+			onSubmit={onSubmit}
 			innerRef={formikRef}
-			validateOnChange
+			validateOnMount
 		>
 			{(formik) => (
 			<Form>
@@ -72,14 +68,12 @@ const FormBox = function ({
 };
 
 FormBox.propTypes = {
-  formikRef: PropTypes.objectOf(PropTypes.any).isRequired,
+  formikRef: PropTypes.objectOf(FORMIK_PROPTYPES).isRequired,
   onSubmit: PropTypes.func.isRequired,
-	// initialValues: PropTypes.objectOf(PropTypes.any),
 	userId: PropTypes.number
 };
 
 FormBox.defaultProps = {
-	// initialValues: {},
 	userId: undefined
 };
 

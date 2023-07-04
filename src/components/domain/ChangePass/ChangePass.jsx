@@ -9,6 +9,7 @@ import AuthService from "../../../services/AuthService";
 import useLoading from "../../../hooks/useLoading";
 import { useNavigate } from "react-router-dom";
 import ROUTES_ENUM from "../../../enums/routesEnum";
+import useSnackbar from "../../../hooks/useSnackbar";
 
 const ChangePass = function () {
 
@@ -16,6 +17,7 @@ const ChangePass = function () {
 	const navigate = useNavigate();
 	const userEmail = localStorage.getItem('email');
 	const userId = localStorage.getItem('id');
+	const setSnackbar = useSnackbar();
 
 	const VALIDATION = Yup.object().shape({
 		oldPassword: Yup.string().required('Campo obligatorio'),
@@ -31,11 +33,12 @@ const ChangePass = function () {
 		AuthService.changePassword(userId, values)
 		.then(() => {
 			setLoading(false);
+			setSnackbar({message: 'La contraseña se actualizó correctamente', severity: 'error'});
 			navigate(ROUTES_ENUM.AUTH_CHANGE_PASS_CONFIRMATION);
 		})
 		.catch((error) => {
 			setLoading(false);
-			// {message: 'Old password is incorrect'}
+			setSnackbar({message: error.message, severity: 'error'});
 			console.log(error);
 		})
 	}

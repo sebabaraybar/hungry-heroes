@@ -11,6 +11,7 @@ import styles from './BoxContainer.module.scss';
 import ProductService from '../services/ProductService';
 import useLoading from '../hooks/useLoading';
 import BusinessService from '../services/BusinessService';
+import useSnackbar from '../hooks/useSnackbar';
 
 const BoxContainer = function () {
 	const navigate = useNavigate();
@@ -25,6 +26,9 @@ const BoxContainer = function () {
 	const userType = localStorage.getItem('role');
 	const businessId = localStorage.getItem('userBusinessId');
 	const [activeProfile, setActiveProfile] = useState();
+	const setSnackbar = useSnackbar();
+	
+
 
 	useEffect(() => {
 		setLoading(true);
@@ -50,17 +54,19 @@ const BoxContainer = function () {
 		})
 	}, [businessId, activeProfile]);
 
-	const createBox = (values) => {
+	const createBox = (values) => {	
 		setLoading(true);
 		const valuesAfter = {...values};
 		valuesAfter.userBusinessId = businessId;
 		ProductService.createProduct(valuesAfter)
 		.then((response) => {
+			setSnackbar({message: 'El box fue creado correctamente', severity: 'success'})
 			setBoxes((prevBoxes) => [...prevBoxes, response]);
 			setLoading(false);
 		})
 		.catch((error) => {
 			console.log(error);
+			setSnackbar({message: 'Hubo un error', severity: 'error'})
 			setLoading(false);
 		})
 		setOpenModalCreate(false);
@@ -76,30 +82,35 @@ const BoxContainer = function () {
 		ProductService.editProduct(businessId, values)
 		.then(() => {
 			setLoading(false);
+			setSnackbar({message: 'El box fue editado correctamente', severity: 'success'})
 			navigate(0);
 		})
 		.catch((error) => {
 			console.log(error)
+			setSnackbar({message: 'Hubo un error', severity: 'error'})
 			setLoading(false);
 		})
 		setOpenModalEdit(false);
 	};
 
 	const handleDeleteBox = (box) => {
+		console.log(box)
 		setBox(box);
 		setBoxName(box.name);
 		setOpenModalDelete(true);
 	};	
 
-	const deleteBox = (box) => {
+	const deleteBox = () => {
 		setLoading(true);
 		ProductService.deleteProduct(box.productId)
 		.then(() => {
 			setLoading(false);
+			setSnackbar({message: 'El box fue eliminado correctamente', severity: 'success'})
 			navigate(0);
 		})
 		.catch((error) => {
 			console.log(error);
+			setSnackbar({message: 'Hubo un error', severity: 'error'});
 			setLoading(false);
 		})
 		setOpenModalDelete(false);
@@ -158,7 +169,10 @@ const BoxContainer = function () {
 				open={openModalCreate}
 				closeModal={() => setOpenModalCreate(false)}
 				btnDialogTitle="Guardar"
-				btnDialogOnClick={() => createBox(formikRef.current.values)}
+				formikRef={formikRef}
+				btnDialogOnClick={{
+					action: createBox
+				}}
 			>
 				<FormBox
 					onSubmit={createBox}
@@ -170,8 +184,9 @@ const BoxContainer = function () {
 				open={openModalDelete}
 				closeModal={() => setOpenModalDelete(false)}
 				btnDialogTitle="Eliminar"
-				btnDialogOnClick={() => deleteBox(box)}
-				formikRef={formikRef}
+				btnDialogOnClick={{
+					action: () => deleteBox()
+				}}
 			>
 				<Typography variant='h6'>
 					¿Querés eliminar el box {boxName}?
@@ -182,8 +197,10 @@ const BoxContainer = function () {
 				open={openModalEdit}
 				closeModal={() => setOpenModalEdit(false)}
 				btnDialogTitle="Guardar cambios"
-				btnDialogOnClick={() => editBox(formikRef.current.values)}
-				formikRef={formikRef.current}
+				formikRef={formikRef}
+				btnDialogOnClick={{
+					action: editBox
+				}}
 			>
 				<FormBox
 					onSubmit={editBox}

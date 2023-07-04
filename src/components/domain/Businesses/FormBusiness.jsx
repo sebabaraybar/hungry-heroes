@@ -12,6 +12,7 @@ import { makeOptionsObject } from '../../../utils/utils';
 import styles from './FormBusiness.module.scss';
 import BusinessService from '../../../services/BusinessService';
 import useLoading from '../../../hooks/useLoading';
+import useSnackbar from '../../../hooks/useSnackbar';
 
 const FormBusiness = function({
 	business,
@@ -23,6 +24,7 @@ const FormBusiness = function({
 	const [disabledField, setdisabledField] = useState(true);
 	const [enableBtn, setEnableBtn] = useState(false);
 	const setLoading = useLoading();
+	const setSnackbar = useSnackbar();
 	// TODO
 	// const [selectedImage, setSelectedImage] = useState();
 	
@@ -101,9 +103,11 @@ const FormBusiness = function({
 		BusinessService.editBusiness(business.userBusinessId, values, accountId)
 		.then(() => {
 			setLoading(false);
+      setSnackbar({message: 'El perfil se actualizó correctamente', severity: 'success'});
 		})
 		.catch((error) => {
-			console.log(error)
+			console.log(error);
+			setSnackbar({message: 'Hubo un error', severity: 'error'});
 			setLoading(false);
 		})		
 		setdisabledField(true);
