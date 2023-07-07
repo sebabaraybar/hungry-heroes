@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.18450b1b.css",
+    "main.js": "/static/js/main.c3e01bae.js",
+    "static/js/787.067ede44.chunk.js": "/static/js/787.067ede44.chunk.js",
+    "static/media/woman.png": "/static/media/woman.0c12ad97914cbf5d135e.png",
+    "static/media/woman2.png": "/static/media/woman2.57f054691d9038da86a3.png",
+    "static/media/bg-drop.png": "/static/media/bg-drop.b2c4f68f62151b098dc6.png",
+    "static/media/world-woman.png": "/static/media/world-woman.ee292049ec71c3d24d6d.png",
+    "static/media/logo-placeholder.png": "/static/media/logo-placeholder.5f82c425538fac3df3aa.png",
+    "static/media/logo.png": "/static/media/logo.7f4a5704b83254dd9b8f.png",
+    "static/media/logo-light.png": "/static/media/logo-light.b5e95d83c246e25b70e8.png",
+    "index.html": "/index.html",
+    "main.18450b1b.css.map": "/static/css/main.18450b1b.css.map",
+    "main.c3e01bae.js.map": "/static/js/main.c3e01bae.js.map",
+    "787.067ede44.chunk.js.map": "/static/js/787.067ede44.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18450b1b.css",
+    "static/js/main.c3e01bae.js"
+  ]
+}
