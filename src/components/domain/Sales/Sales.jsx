@@ -1,5 +1,5 @@
 import React from 'react';
-import salesList from '../../../sales.json';
+// import salesList from '../../../sales.json';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Box, Paper,Typography } from '@mui/material';
@@ -7,9 +7,10 @@ import CTextField from '../../ui/form/CTextField';
 import styles from './Sales.module.scss';
 import CButton from '../../ui/Button/CButton';
 
-const Sales = function() {
-	const userType = localStorage.getItem('role');
-	console.log(userType)
+const Sales = function({
+	userType,
+	salesList
+}) {
 
 	const VALIDATION = Yup.object().shape({
 		code: Yup.number().typeError("solo números").required('Campo obligatorio'),
@@ -29,15 +30,29 @@ const Sales = function() {
 				<Paper className={styles.card}>
 					<Box className={styles.datacontainer}>
 						<Typography className={styles.title}>Fecha</Typography>
-						<Typography className={styles.text}>{sale.date}</Typography>
-					</Box>
-					<Box className={styles.datacontainer}>
-						<Typography className={styles.title}>Box</Typography>
-						<Typography className={styles.text}>{sale.boxName}</Typography>
+						<Typography className={styles.text}>
+							{sale.dateSale}
+						</Typography>
 					</Box>
 					<Box className={styles.datacontainer}>
 						<Typography className={styles.title}>Comercio</Typography>
-						<Typography className={styles.text}>{sale.businessName}</Typography>
+						<Typography className={styles.text}>
+							{sale.fantasyName}
+						</Typography>
+					</Box>
+					<Box className={styles.datacontainer}>
+						<Typography className={styles.title}>Box</Typography>
+						<Typography className={styles.text}>
+							{sale.boxName}
+						</Typography>
+					</Box>
+					<Box className={styles.datacontainer}>
+						<Typography className={styles.title}>Cantidad</Typography>
+						<Typography className={styles.text}>{sale.quantity}</Typography>
+					</Box>
+					<Box className={styles.datacontainer}>
+						<Typography className={styles.title}>Total</Typography>
+						<Typography className={styles.text}>{sale.total}</Typography>
 					</Box>
 					<Box className={styles.datacontainer}>
 						<Typography className={styles.title}>Usuario</Typography>
@@ -47,40 +62,50 @@ const Sales = function() {
 						{userType === "Client" ? (
 							<Box className={styles.datacontainer}>
 							<Typography className={styles.title}>Código</Typography>
-							<Typography className={styles.data}>{sale.code}</Typography>
+							<Typography className={styles.data}>
+								{sale.code}
+							</Typography>
 							</Box>
 						) : (
+							<>
 							<Box className={styles.datacontainer}>
-							<Formik
-								initialValues={{
-									code: sale.code,
-								}}
-								validationSchema={VALIDATION}
-								onSubmit={onSubmit}
-								// innerRef={formikRef}
-							>
-								{(formik) => (
-									<Form>
-										<Box className={styles.formikcontainer}>
-											<CTextField
-												name="code"
-												label='Código'
-												fullWidth= {false}
-												formik={formik}
-												className={styles.data}
-												disabled={formik.initialValues.code !==""}
-											/>
-											{formik.initialValues.code ==="" && (
-												<CButton
-													title="Validar"
-													onClick={formik.handleSubmit}
-												/>
-											)}	
-										</Box>
-									</Form>
-								)}
-							</Formik>
+								<Typography className={styles.title}>Usuario</Typography>
+								<Typography className={styles.text}>
+									{sale.userClientEmail}
+								</Typography>
 							</Box>
+							<Box className={styles.datacontainer}>
+								<Formik
+									initialValues={{
+										code: sale.code,
+									}}
+									validationSchema={VALIDATION}
+									onSubmit={onSubmit}
+									// innerRef={formikRef}
+								>
+									{(formik) => (
+										<Form>
+											<Box className={styles.formikcontainer}>
+												<CTextField
+													name="code"
+													label='Código'
+													fullWidth= {false}
+													formik={formik}
+													className={styles.data}
+													disabled={formik.initialValues.code !==""}
+												/>
+												{formik.initialValues.code ==="" && (
+													<CButton
+														title="Validar"
+														onClick={formik.handleSubmit}
+													/>
+												)}	
+											</Box>
+										</Form>
+									)}
+								</Formik>
+							</Box>
+							</>
 						)}
 					</Box>
 					<Box className={styles.datacontainer}>

@@ -1,91 +1,59 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import FORMIK_PROPTYPES from '../../../modelsFormik/FormikProps';
-import { Box, Fab, Typography } from '@mui/material';
-import { AddPhotoAlternate } from '@mui/icons-material';
+import { Box, Grid, Typography } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
+import useSnackbar from '../../../hooks/useSnackbar';
 
 const UploadImg = function({
-	formik,
-	name,
-	disabled,
+	// formik,
+	// name,
+	// disabled,
 	updateImg,
-	img
 }) {
 
-	const [selectedImg, setSelectedImg] = useState([]);
+	const [selectedImg, setSelectedImg] = useState();
+	const setSnackbar = useSnackbar();
 
-	const onDrop = useCallback((acceptedFiles) => {
-		setSelectedImg(acceptedFiles);
-		updateImg(acceptedFiles);
-	}, [updateImg]);
+	const onDrop = useCallback((acceptedFile) => {
+		if(acceptedFile.length === 0) {
+			setSnackbar('Solo podés cargar una(1) imagen');
+			return;
+		}
+		setSelectedImg(acceptedFile[0]);
+		updateImg(acceptedFile[0]);
+	}, []);
+	
 	const {
 		getRootProps,
 		getInputProps
 	} = useDropzone({
 		onDrop,
 		accept: {
-			'img/jpeg': [],
-			'img/png': []
+			'image/jpeg': ['.jpg', '.jpeg'],
+			'image/png': ['.png'],
+			// 'image/svg+xml': ['.svg']
 		},
 		maxFiles: 1
 	});
 
 	return (
-		<>
-			{/* <input
-				type='file' 
-				accept='image/*'
-				name={name}
-				disabled={disabled}
-				value={formik.values[name]}
-				onChange={(e) => (formik.handleChange(e))}
-				onBlur={(e) => (formik.handleBlur(e))}
-				helperText={(formik.touched[name] && formik.errors[name])}
-				error={(formik.touched[name] && Boolean(formik.errors[name]))}			
-			/>
-			<label  htmlFor="contained-button-file">
-        <Fab component="span">
-					<AddPhotoAlternate />
-				</Fab>
-			</label> */}
+		<Grid {...getRootProps()}>
+			<input {...getInputProps()}/>
 			<Box>
-				{img ? (
-					<img
-						src={img && URL.createObjectURL(img)}
-						alt=""
-					/>
-				) : (
-					<Box
-					{...getRootProps()}
-					>
-						<input  
-						  {...getInputProps()}
-							htmlFor="contained-button-file"
-							// error={(formik.touched[name] && Boolean(formik.errors[name]))}
-						/>
-							<Fab component="span">
-								<AddPhotoAlternate />
-							</Fab>
-					</Box>
-				)}
+				<Typography>Agregar archivo</Typography>
 			</Box>
-		</>
+			{selectedImg && (
+				<Box>
+					{/* <img src={selectedImg}></img> */}
+					<Typography>{selectedImg.path}</Typography>
+				</Box>
+			)}
+		</Grid>
 	);
 };
 
 UploadImg.propTypes = {
-	name: PropTypes.string.isRequired,
-	disabled: PropTypes.bool,
-	formik: PropTypes.shape(FORMIK_PROPTYPES),
-	updateImg: PropTypes.func.isRequired,
-	img: PropTypes.objectOf(PropTypes.any)
+	updateImg: PropTypes.func.isRequired
 };
-
-UploadImg.defaultProps = {
-	disabled: false,
-	formik: null,
-	img: null
-}
 
 export default UploadImg;

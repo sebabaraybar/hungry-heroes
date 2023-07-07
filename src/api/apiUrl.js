@@ -18,6 +18,14 @@ const apiUrl = {
 		createProduct: `${API}/Product`,
 		editProduct: `${API}/Product/:id`,
 		deleteProduct: `${API}/Product/:id`
+	},
+	sales: {
+		createSale: `${API}/Sale`,
+		getSaleById: `${API}/Sale/:id`,
+		modifyStock: `${API}/Sale/Modify-Stock?idProduct=:id&quantity=:quantity`,
+		verifyStock: `${API}/Sale/Verify-Sale?code=:code&idSale=:id`,
+		getSalesByClientId: `${API}/Sale/Buys/:id`,
+		getSalesByBusinessId: `${API}/Sale/:id`,
 	}
 };
 

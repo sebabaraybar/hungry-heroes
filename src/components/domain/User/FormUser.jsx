@@ -9,11 +9,15 @@ import CButton from '../../ui/Button/CButton';
 import styles from './FormUser.module.scss';
 import AuthService from '../../../services/AuthService';
 import { useNavigate } from 'react-router-dom';
+import useLoading from '../../../hooks/useLoading';
+import useSnackbar from '../../../hooks/useSnackbar';
 
 const FormUser = function () {
 
 	const formikRef = useRef();
 	const navigate = useNavigate();
+	const setLoading = useLoading();
+	const setSnackbar = useSnackbar();
 
 	const VALIDATION = Yup.object().shape({
 		email: Yup.string()
@@ -30,17 +34,18 @@ const FormUser = function () {
 		role: Yup.string().required('Campo obligatorio')
 	});
 
-	const onRegister = async (values) => {
+	const onRegister = (values) => {
 		const valuesAfter = {...values};
 		values.role = parseInt(values.role); 
-		
-		console.log(valuesAfter)
+		setLoading(true);
 		AuthService.register(valuesAfter)
 		.then(() => {
 			navigate(ROUTES_ENUM.CREATE_ACCOUNT_CONFIRMATION);
+			setLoading(false);
 		})
 		.catch((error) => {
-			console.log(error);
+			setLoading(false);
+			setSnackbar({message: error.message, severity: 'error'});
 		})
 	}
 

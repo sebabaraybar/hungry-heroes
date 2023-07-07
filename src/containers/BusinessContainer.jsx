@@ -9,6 +9,7 @@ import ProductService from '../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import ROUTES_ENUM from '../enums/routesEnum';
 import useLoading from '../hooks/useLoading';
+import useSnackbar from '../hooks/useSnackbar';
 
 const BusinessContainer = function () {
 
@@ -16,6 +17,7 @@ const BusinessContainer = function () {
 	const [businessId, setBusinessId] = useState();
 	const navigate = useNavigate();
 	const setLoading = useLoading();
+	const setSnackbar = useSnackbar();
 
 	const handleSelectBusiness = (id) => {
 		setBusinessId(id);
@@ -28,6 +30,7 @@ const BusinessContainer = function () {
 		.catch((error) => {
 			console.log(error);
 			setLoading(false);
+			setSnackbar({message: error.message, severity: 'error'});
 		})
 	}
 
@@ -38,6 +41,7 @@ const BusinessContainer = function () {
 	})
 	.catch((error) => {
 		console.log(error)
+		setSnackbar({message: error.message, severity: 'error'});
 	})
 	},[]);
 

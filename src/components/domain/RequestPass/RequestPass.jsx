@@ -9,11 +9,13 @@ import CButton from '../../ui/Button/CButton';
 import { ArrowBackRounded } from '@mui/icons-material';
 import ROUTES_ENUM from '../../../enums/routesEnum';
 import AuthService from '../../../services/AuthService';
+import useSnackbar from '../../../hooks/useSnackbar';
 
 
 const RequestPass = function () {
 	const formikRef = useRef();
 	const navigate = useNavigate();
+	const setSnackbar = useSnackbar();
 
 	const VALIDATION = Yup.object().shape({
 		email: Yup.string()
@@ -27,8 +29,9 @@ const RequestPass = function () {
 			console.log(response)
 			navigate(ROUTES_ENUM.AUTH_REQUEST_PASS_CONFIRMATION);
 		})
-		.catch((err) => {
-			console.log(err)
+		.catch((error) => {
+			console.log(error)
+			setSnackbar({message: error.message, severity: 'error'});
 		})
 	};
 

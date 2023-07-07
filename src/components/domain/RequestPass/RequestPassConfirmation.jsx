@@ -6,19 +6,26 @@ import CButton from '../../ui/Button/CButton';
 import { LoginRounded } from '@mui/icons-material';
 import ROUTES_ENUM from '../../../enums/routesEnum';
 import AuthService from '../../../services/AuthService';
+import useSnackbar from '../../../hooks/useSnackbar';
+import useLoading from '../../../hooks/useLoading';
 
 const RequestPassConfirmation = function () {
 	const navigate = useNavigate();
+	const setLoading = useLoading();
+	const setSnackbar = useSnackbar();
 	const email = localStorage.getItem('storedEmail');
 
 	const reSend = () => {
+		setLoading(true);
 		AuthService.requestPass(email)
 		.then((response) => {
 			console.log(response)
-			alert("email enviado")
+			setLoading(false);
+			setSnackbar({message: 'El email fue enviado correctamente', severity: 'success'});
 		})
-		.catch((err) => {
-			console.log(err)
+		.catch((error) => {
+			console.log(error);
+			setSnackbar({message: error.message, severity: 'error'});
 		})
 	};
 

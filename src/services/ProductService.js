@@ -8,10 +8,15 @@ const getProductsByBusinessId = (id) => {
 	return api.get(urlService);
 };
 
-const createProduct = (body) => {
+const createProduct = (businessId, body, image) => {
+	const bodyAfter = { ...body };
+	bodyAfter.userBusinessId = parseInt(businessId);
+	bodyAfter.stock = parseInt(body.stock);
+	bodyAfter.price = parseInt(body.price);
+	bodyAfter.image = image;
 	const urlService = apiUrl.getUrlService('product.createProduct');
-
-	return api.post(urlService, body);
+console.log(bodyAfter);
+ return api.post(urlService, bodyAfter);
 };
 
 const editProduct = (businessId, body) => {

@@ -35,14 +35,20 @@ const Login = function () {
 				localStorage.setItem(LOCAL_STORAGE.USER_ROLE, userLogged.role);
 				localStorage.setItem(LOCAL_STORAGE.ACCOUNT_ID, userLogged.id);
 				localStorage.setItem(LOCAL_STORAGE.BUSINESS_ID, userLogged.userBusinessId);
+				localStorage.setItem(LOCAL_STORAGE.CLIENT_ID, userLogged.userClientId);
 				
 				navigate(getHome(userLogged.role));
+				setLoading(false);
 			})
+			// .then ((userLogged) => {
+			// 	navigate(getHome(userLogged.role));
+			// 	setLoading(false);
+			// })
 			.catch((error) => {
 				console.log(error);
-				setSnackbar(handleError(error.message));
+				setSnackbar({message: error.message, severity: 'error'});
+				setLoading(false);
 			});
-			setLoading(false);
 	};
 
   return (

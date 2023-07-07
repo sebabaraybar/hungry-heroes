@@ -13,6 +13,7 @@ import styles from './FormBusiness.module.scss';
 import BusinessService from '../../../services/BusinessService';
 import useLoading from '../../../hooks/useLoading';
 import useSnackbar from '../../../hooks/useSnackbar';
+import UploadImg from '../../ui/UploadImg/UploadImg';
 
 const FormBusiness = function({
 	business,
@@ -40,12 +41,9 @@ const FormBusiness = function({
   .required('Campo obligatorio')
   .matches(/^[0-9]{4}$/, 'El código postal debe contener 4 números'),
 	location: Yup.string().required('Campo obligatorio'),
-	// cuit: Yup.string()
-  // .required('Campo obligatorio')
-  // .matches(/^\d{2}-\d{8}-\d{1}$/, 'El CUIT debe tener el formato 00-00000000-0'),
 	cuit: Yup.string()
   .required('Campo obligatorio')
-  .matches(/^[0-9]{11}$/, 'El CUIT debe contener 11 números sin guiones'),
+  .matches(/^\d{2}-\d{8}-\d{1}$/, 'El CUIT debe tener el formato 00-00000000-0'),
 	alias: Yup.string()
   .required('Campo obligatorio')
   .matches(/^([a-zA-Z]{1}\.?){6,20}$/, 'El ALIAS debe tener entre 6 y 20 letras. Puede contener puntos'),
@@ -107,7 +105,7 @@ const FormBusiness = function({
 		})
 		.catch((error) => {
 			console.log(error);
-			setSnackbar({message: 'Hubo un error', severity: 'error'});
+			setSnackbar({message: error.message, severity: 'error'});
 			setLoading(false);
 		})		
 		setdisabledField(true);
@@ -252,22 +250,9 @@ const FormBusiness = function({
 								/>
 							</Grid>
 							{/*// TODO upload imágenes */}
-							{/* <Grid item xs={6}>
-								<UploadImg
-									name='logo'
-									// disabled={disabledField}
-									formik={formik}
-									// onChange={(event) => {
-									// 	formik.setFieldValue("file", event.currentTarget.files[0]);
-									// }}
-									onChange={(event) => {
-										formik.setFieldValue("file", selectedImage);
-									}}
-									// onChange={handleUpload}
-									updateImg={updateImg}
-                  img={selectedImage}
-								/>
-							</Grid> */}
+							<Grid item xs={6}>
+								<UploadImg />
+							</Grid>
 							<Box  className={styles.btncontainer}>
 								{(!enableBtn && (
 									<CButton

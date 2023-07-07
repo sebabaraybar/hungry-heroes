@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import BoxCard from '../components/ui/BoxCard/BoxCard';
 import CDialog from '../components/ui/form/CDialog';
 import CButton from '../components/ui/Button/CButton';
-import img from '../media/box-img-placeholder.png'
+// import img from '../media/box-img-placeholder.png'
 import FormBox from '../components/domain/Boxes/FormBox';
 import styles from './BoxContainer.module.scss';
 import ProductService from '../services/ProductService';
@@ -28,8 +28,6 @@ const BoxContainer = function () {
 	const [activeProfile, setActiveProfile] = useState();
 	const setSnackbar = useSnackbar();
 	
-
-
 	useEffect(() => {
 		setLoading(true);
 		ProductService.getProductsByBusinessId(businessId)
@@ -39,6 +37,7 @@ const BoxContainer = function () {
 	})
 	.catch((error) => {
    console.log(error.message)
+	 setSnackbar({message: error.message, severity: 'error'});
 	 setLoading(false);
 	})
 	},[]);
@@ -54,11 +53,9 @@ const BoxContainer = function () {
 		})
 	}, [businessId, activeProfile]);
 
-	const createBox = (values) => {	
+	const createBox = (values, image) => {
 		setLoading(true);
-		const valuesAfter = {...values};
-		valuesAfter.userBusinessId = businessId;
-		ProductService.createProduct(valuesAfter)
+		ProductService.createProduct(businessId, values, image)
 		.then((response) => {
 			setSnackbar({message: 'El box fue creado correctamente', severity: 'success'})
 			setBoxes((prevBoxes) => [...prevBoxes, response]);
@@ -66,8 +63,8 @@ const BoxContainer = function () {
 		})
 		.catch((error) => {
 			console.log(error);
-			setSnackbar({message: 'Hubo un error', severity: 'error'})
 			setLoading(false);
+			setSnackbar({message: error.message, severity: 'error'});
 		})
 		setOpenModalCreate(false);
 	};
@@ -87,7 +84,7 @@ const BoxContainer = function () {
 		})
 		.catch((error) => {
 			console.log(error)
-			setSnackbar({message: 'Hubo un error', severity: 'error'})
+			setSnackbar({message: error.message, severity: 'error'});
 			setLoading(false);
 		})
 		setOpenModalEdit(false);
@@ -110,7 +107,7 @@ const BoxContainer = function () {
 		})
 		.catch((error) => {
 			console.log(error);
-			setSnackbar({message: 'Hubo un error', severity: 'error'});
+			setSnackbar({message: error.message, severity: 'error'});
 			setLoading(false);
 		})
 		setOpenModalDelete(false);
@@ -151,7 +148,7 @@ const BoxContainer = function () {
 					key={box.productId}
 					title={box.name}
 					alt={`Logo de ${box.name}`}
-					img={img}
+					img={box.image}
 					//hay que definir cant de caracteres
 					description={box.description}
 					stock={box.stock}

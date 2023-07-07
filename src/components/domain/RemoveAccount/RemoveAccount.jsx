@@ -5,12 +5,14 @@ import CButton from "../../ui/Button/CButton";
 import ROUTES_ENUM from "../../../enums/routesEnum";
 import AuthService from "../../../services/AuthService";
 import useLoading from "../../../hooks/useLoading";
+import useSnackbar from "../../../hooks/useSnackbar";
 
 const RemoveAccount = function () {
 
 	const navigate = useNavigate();
 	const setLoading = useLoading();
 	const userEmail = localStorage.getItem('id');
+	const setSnackbar = useSnackbar();
 
 	const onRemoveAccount = () => {
 		setLoading(true);
@@ -21,6 +23,7 @@ const RemoveAccount = function () {
 		})
 		.catch((error) => {
 			console.log(error);
+			setSnackbar({message: error.message, severity: 'error'});
 			setLoading(false);
 		})
 	}

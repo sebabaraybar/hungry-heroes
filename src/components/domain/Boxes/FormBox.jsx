@@ -1,16 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Grid } from "@mui/material";
 import CTextField from "../../ui/form/CTextField";
 import FORMIK_PROPTYPES from "../../../modelsFormik/FormikProps";
+import UploadImg from "../../ui/UploadImg/UploadImg";
 
 const FormBox = function ({
 	onSubmit,
 	formikRef,
 	box
 }) {
+
+	const [img, setImg] = useState(null);
 
 	const VALIDATION = Yup.object().shape({
 		name: Yup.string().required('Campo obligatorio'),
@@ -19,11 +22,15 @@ const FormBox = function ({
 		stock: Yup.number().typeError('Ingresar solo números').required('Campo obligatorio')
 	});
 
+	const onSubmitForm = (values) => {
+	  onSubmit(values, img);
+	}
+
 	return (
 		<Formik
 			initialValues={box || {}}
 			validationSchema={VALIDATION}
-			onSubmit={onSubmit}
+			onSubmit={(values) => {onSubmitForm(values)}}
 			innerRef={formikRef}
 			validateOnMount
 		>
@@ -60,6 +67,11 @@ const FormBox = function ({
 							formik={formik}
 						/>
 					</Grid>
+					<Grid item xs={6}>
+								<UploadImg 
+								updateImg={setImg}
+								/>
+							</Grid>
 				</Grid>
 			</Form>
 		)}

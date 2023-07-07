@@ -11,9 +11,10 @@ import CSelect from '../Select/CSelect';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import styles from './BoxCard.module.scss';
+import UploadImg from "../UploadImg/UploadImg";
 
 const BoxCard = function ({
-	key,
+
 	title,
 	description,
 	stock,
@@ -24,29 +25,24 @@ const BoxCard = function ({
 	onDelete,
 	onBuy,
 	userType,
-	activeProfile
+	activeProfile,
+	onSubmit,
+	formikRef
 }) {
 
 	const navigate = useNavigate();
 	const[options, setOptions] = useState([]);
 
-	const onSubmitForm = (values) => {
-		// console.log("DESDE BOX CARD")
-		onEdit(values);
-		onDelete(values);
-		onBuy(values);
-	};
-
 	const VALIDATION = Yup.object().shape({
-		stock: Yup.string().required('Campo obligatorio').nullable,
-		});
+		quantity: Yup.number().required('Campo obligatorio')
+	});
 
 	const formik = useFormik({
-		initialValues: {
-			stock: {stock}
-		},
+		initialValues: { quantity:''},
 		validationSchema: VALIDATION,
-		onSubmit: {onSubmitForm},
+		// onSubmit: onSubmit,
+		onSubmit: onBuy,
+		innerRef: formikRef
 	});
 
 	useEffect(() => {
@@ -60,8 +56,14 @@ const BoxCard = function ({
 		setOptions(stockOptions);
 	}, [stock]);
 
+	const formatPrice = (price) => {
+		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+	};
+	
+	const formattedPrice = formatPrice(price);
+
 	return (
-		<Box className={styles.container} key={key}>
+		<Box className={styles.container}>
 			<Card className={styles.card}>
 				<CardMedia
 					className={styles.img}
@@ -83,7 +85,7 @@ const BoxCard = function ({
 								<>
 								<Grid item xs={12} mx={6} mt={2}>
 								<Typography mt={2} className={styles.carddetails}>
-									${price}
+									${formattedPrice}
 								</Typography>
 								</Grid>
 								<Grid item xs={12} mx={6} mt={2}>
@@ -91,17 +93,20 @@ const BoxCard = function ({
 										stock: <span>{stock}</span>
 									</Typography>
 								</Grid>
+								<Grid item xs={6}>
+								<UploadImg />
+							</Grid>
 								</>
 							):(
 								<>
 								<Grid item xs={6}>
 								<Typography mt={6} className={styles.carddetails}>
-									${price}
+									${formattedPrice}
 								</Typography>
 								</Grid>
 								<Grid item xs={6} mt={6}>
 									<CSelect
-										name="stock"
+										name="quantity"
 										label="cantidad"
 										formik={formik}
 										selectOption={options}
@@ -130,7 +135,9 @@ const BoxCard = function ({
 						<CButton
 							title="Comprar"
 							sx={{fontSize: '1.1rem'}}
-							onClick={() => onBuy()}
+							// onClick={(values) => onBuy(values)}
+							onClick={formik.handleSubmit} 
+
 						/>
 					}
 				</CardActions>
@@ -153,7 +160,7 @@ const BoxCard = function ({
 };
 
 BoxCard.propTypes = {
-	key: PropTypes.string.isRequired,
+
 	title: PropTypes.string.isRequired,
 	description: PropTypes.string,
 	alt: PropTypes.string.isRequired,
@@ -162,14 +169,15 @@ BoxCard.propTypes = {
 	onDelete: PropTypes.func,
 	onBuy: PropTypes.func,
 	userType: PropTypes.string.isRequired,
-	activeProfile: PropTypes.bool.isRequired
+	activeProfile: PropTypes.bool
 };
 
 BoxCard.defaultProps = {
 	description: null,
 	onEdit: null,
-	OnDelete: null,
-	onBuy: null
+	onDelete: null,
+	onBuy: null,
+	activeProfile: false
 }
 
 export default BoxCard;

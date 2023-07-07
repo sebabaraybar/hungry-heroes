@@ -3,7 +3,8 @@ const LOCAL_STORAGE = Object.freeze ({
 	ACCOUNT_ID: 'id',
 	USER_EMAIL: 'email',
 	USER_ROLE: 'role',
-	BUSINESS_ID: 'userBusinessId'
+	BUSINESS_ID: 'userBusinessId',
+	CLIENT_ID: 'userClientId'
 });
 
 export {
