@@ -76,7 +76,7 @@ const BoxContainerForClient = function () {
 					key={box.productId}
 					title={box.name}
 					alt={`Logo de ${box.name}`}
-					img={box.image}
+					img={box.imageUrl}
 					//hay que definir cant de caracteres
 					description={box.description}
 					stock={box.stock}

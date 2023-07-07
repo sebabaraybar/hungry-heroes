@@ -27,6 +27,11 @@ const BoxContainer = function () {
 	const businessId = localStorage.getItem('userBusinessId');
 	const [activeProfile, setActiveProfile] = useState();
 	const setSnackbar = useSnackbar();
+	const [image, setImage] = useState();
+
+	useEffect(() => {
+		console.log("IMAGEN", image)
+	}, [image])
 	
 	useEffect(() => {
 		setLoading(true);
@@ -54,9 +59,12 @@ const BoxContainer = function () {
 	}, [businessId, activeProfile]);
 
 	const createBox = (values, image) => {
+		setImage(image);
 		setLoading(true);
+		console.log(values, image)
 		ProductService.createProduct(businessId, values, image)
 		.then((response) => {
+			console.log(response);
 			setSnackbar({message: 'El box fue creado correctamente', severity: 'success'})
 			setBoxes((prevBoxes) => [...prevBoxes, response]);
 			setLoading(false);
@@ -74,9 +82,9 @@ const BoxContainer = function () {
 		setOpenModalEdit(true);
 	};
 
-	const editBox = (values) => {
+	const editBox = (values, image) => {
 		setLoading(true);
-		ProductService.editProduct(businessId, values)
+		ProductService.editProduct(businessId, values,image)
 		.then(() => {
 			setLoading(false);
 			setSnackbar({message: 'El box fue editado correctamente', severity: 'success'})
@@ -131,11 +139,11 @@ const BoxContainer = function () {
 						</Typography>
 						{!activeProfile && (
 						<>
-							<Typography mt={4}>
-								Tené en cuenta que para que tus boxes sean publicados es necesario que
+							<Typography mt={4} mb={2}>
+								podés crear tu box haciendo clic en crear box, <br/> pero tené en cuenta que para que tu comercio sea habilitado para vender, deberás
 							</Typography>
 							<CButton 
-							title="Completes tu perfil"
+							title="Completar tu perfil"
 							onClick={() => navigate
 							(ROUTES_ENUM.PROFILE)}
 							/>
@@ -148,7 +156,7 @@ const BoxContainer = function () {
 					key={box.productId}
 					title={box.name}
 					alt={`Logo de ${box.name}`}
-					img={box.image}
+					img={box.imageUrl}
 					//hay que definir cant de caracteres
 					description={box.description}
 					stock={box.stock}

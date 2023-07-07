@@ -9,24 +9,48 @@ const getProductsByBusinessId = (id) => {
 };
 
 const createProduct = (businessId, body, image) => {
-	const bodyAfter = { ...body };
-	bodyAfter.userBusinessId = parseInt(businessId);
-	bodyAfter.stock = parseInt(body.stock);
-	bodyAfter.price = parseInt(body.price);
-	bodyAfter.image = image;
+	// const bodyAfter = { ...body };
+	// bodyAfter.userBusinessId = parseInt(businessId);
+	// bodyAfter.stock = parseInt(body.stock);
+	// bodyAfter.price = parseInt(body.price);
+	// bodyAfter.image = image;
 	const urlService = apiUrl.getUrlService('product.createProduct');
-console.log(bodyAfter);
- return api.post(urlService, bodyAfter);
+	// console.log(bodyAfter);
+	const formData = new FormData();
+	formData.append('userBusinessId', parseInt(businessId));
+	formData.append('name', body.name);
+	formData.append('description', body.description);
+	formData.append('stock', parseInt(body.stock));
+	formData.append('price', parseInt(body.price));
+	formData.append('image', image);
+//  return api.post(urlService, bodyAfter);
+return api.post(urlService, formData, {
+	headers: {
+		'Content-type': 'multipart/form-data'
+	}
+});
 };
 
-const editProduct = (businessId, body) => {
-	const bodyAfter = {	...body };
-	bodyAfter.userBusinessId = businessId;
-	bodyAfter.productId = null;
+const editProduct = (businessId, body, image) => {
+	// const bodyAfter = {	...body };
+	// bodyAfter.userBusinessId = businessId;
+	// bodyAfter.productId = null;
 	let urlService = apiUrl.getUrlService('product.editProduct');
 	urlService = urlService.replace(':id', body.productId);
 
-	return api.put(urlService, bodyAfter)
+	const formData = new FormData();
+	formData.append('name', body.name);
+	formData.append('UserBusinessId', businessId);
+	formData.append('description', body.description);
+	formData.append('stock', parseInt(body.stock));
+	formData.append('price', parseInt(body.price));
+	formData.append('image', image);
+
+	return api.put(urlService, formData, {
+		headers: {
+			'Content-type': 'multipart/form-data'
+		}
+	});
 };
 
 const deleteProduct = (id) => {

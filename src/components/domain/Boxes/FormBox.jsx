@@ -14,6 +14,7 @@ const FormBox = function ({
 }) {
 
 	const [img, setImg] = useState(null);
+	console.log(box);
 
 	const VALIDATION = Yup.object().shape({
 		name: Yup.string().required('Campo obligatorio'),

@@ -16,6 +16,7 @@ const ProfileBusinessContainer = function () {
 		setLoading(true)
 		BusinessService.getBusinessById(businessId)
 	.then((response) => {
+		console.log(response);
 		setBusiness(response)
 		setLoading(false);
 	})

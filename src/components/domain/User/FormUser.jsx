@@ -57,7 +57,7 @@ const FormUser = function () {
 					email: '',
 					password: '',
 					confirmPassword: '',
-					role: 0
+					role: ''
 				}}
 				validationSchema={VALIDATION}
 				onSubmit={onRegister}

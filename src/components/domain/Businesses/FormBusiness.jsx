@@ -65,36 +65,6 @@ const FormBusiness = function({
 		setdisabledField(true);
 		setEnableBtn(false);
 	};
-
-
-	//  TODO upload imágenes ************
-
-	// const updateImg = (selectedImage) => {
-	// 	console.log(selectedImage[0])
-	// 	const formData = new FormData();
-	// 	formData.append('file', selectedImage[0]);
-	// 	console.log(formData, "TESTTTTT")
-	// 	// console.log(formData)
-	// 	setSelectedImage(formData);
-	// 	console.log(selectedImage)
-	// 	console.log(formikRef)
-
-	// 	//llamar al servicio
-	// }
-	// useEffect(() => {
-	// 	console.log(selectedImage)
-	// },[selectedImage]);
-
-	// const handleUpload = (e) => {
-	// 	let file = e.target.files[0];
-	// 	const reader = new FileReader();
-	// 	let url = reader.readAsDataURL(file);
-
-	// 	reader.onloadend = function(e) {
-	// 		setSelectedImage(reader.result);
-	// 	}
-	// }
-	//  ************
 	
 	const handleSubmit = (values) => {
 		setLoading(true);
@@ -110,22 +80,7 @@ const FormBusiness = function({
 		})		
 		setdisabledField(true);
 		setEnableBtn(false);
-	
-	//  TODO upload imágenes ************
-	// 	console.log(formikRef.current.values.logo)
-	// 	const formData = new FormData();
-  // Object.keys(formikRef.current.values).forEach((key) => {
-  //   if (key === 'logo') {
-  //     const value = formikRef.current.values[key];
-  //     const blob = value instanceof File
-  //       ? new Blob([value], { type: value.type })
-  //       : value;
-  //     formData.append(key, blob, value.name);
-  //   } else {
-  //     formData.append(key, formikRef.current.values[key]);
-  //   }
-  // });
-	//  ************
+
 	};
 
 	return(
