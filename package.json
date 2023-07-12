@@ -17,6 +17,7 @@
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "sass": "^1.43.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
